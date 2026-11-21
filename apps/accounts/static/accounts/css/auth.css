@@ -1,0 +1,131 @@
+body {
+  background-color: #e1e1e1;
+}
+.auth-language-selector {
+  position: absolute;
+  right: 20px;
+  top: 20px;
+}
+.language-selector select {
+  background: #fff;
+  border: 1px solid #bbb;
+  border-radius: 4px;
+  padding: 5px 8px;
+}
+a {
+  color: #333;
+  text-decoration: underline;
+}
+a:hover,
+a:focus {
+  color: #2a6496;
+  outline: none;
+}
+ul {
+  list-style: none;
+  padding-left: 20px;
+}
+label {
+  font-weight: 500;
+}
+select {
+  cursor: pointer;
+}
+h1,
+h2,
+h3,
+p {
+  text-align: center;
+}
+.btn {
+  text-decoration: none;
+}
+.form-control:focus {
+  box-shadow: none;
+}
+.input-group-lg .input-group-addon {
+  min-width: 45px;
+}
+.input-group-lg .form-control,
+.input-group-lg .input-group-addon {
+  padding: 10px 12px;
+}
+.login-form-wrapper {
+  margin-top: 40%;
+  border: 1px solid #bbb;
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.09);
+}
+.login-form-wrapper .auth-header {
+  margin: 5px 0 25px;
+}
+.login-form-wrapper .auth-header h2 {
+  color: #6aa84b;
+  margin-bottom: 5px;
+}
+.login-form-wrapper .auth-header p {
+  color: #777777;
+}
+.login-form-wrapper .auth-panel {
+  padding: 0 20px 15px;
+}
+.login-form-wrapper .auth-switch-prompt {
+  color: #777777;
+  margin-bottom: 10px;
+}
+.login-form-wrapper .auth-switch {
+  background: none;
+  border: 0;
+  color: #428bca;
+  cursor: pointer;
+  padding: 0;
+  text-decoration: underline;
+}
+.login-form-wrapper .auth-switch:focus {
+  outline: 1px dotted #428bca;
+  outline-offset: 2px;
+}
+.login-form-wrapper .panel-heading {
+  background-color: #fff;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+  color: #6aa84b;
+}
+.login-form-wrapper form {
+  margin: 15px auto;
+}
+.login-form-wrapper form .terms {
+  font-size: 11px;
+}
+.login-form-wrapper form .form-group {
+  margin-bottom: 22px;
+}
+.login-form-wrapper form .input-lg {
+  height: 35px;
+  border-radius: 4px;
+}
+.login-form-wrapper form .btn {
+  margin-top: 30px;
+  margin-bottom: 20px;
+}
+.login-form-wrapper form .alert {
+  margin-bottom: 30px;
+}
+.error-w {
+  margin-top: 250px;
+}
+@media (max-width: 767px) {
+  .auth-language-selector {
+    position: static;
+    padding: 10px 15px 0;
+    text-align: right;
+  }
+  .login-form-wrapper {
+    margin-top: 15px;
+  }
+  .login-form-wrapper .auth-panel {
+    padding: 0;
+  }
+  .login-form-wrapper form {
+    width: 100%;
+  }
+}

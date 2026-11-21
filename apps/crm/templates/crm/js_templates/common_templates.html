@@ -1,0 +1,219 @@
+{% verbatim %}
+<script type="text/template" id="filters-form-tmpl">
+<div>
+    <h4 class="text-center">{{ $root.i18n.gettext('Filters') }}</h4>
+
+    <form class="filters-form" @submit.prevent="submit">
+        <div v-for="field in form">
+            <div class="form-group {{ !!field.hidden ? 'hidden' : '' }} {{ field.name }}-field-w" :class="{'has-error': !!field.error}">
+                <label class="control-label">{{ field.label }}</label>
+                <component :is="field.editor" :field-data="field"></component>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="row">
+                <div class="col-md-12">
+                    <a class="btn btn-default btn-block reset-filter" @click.prevent="resetFilters">
+                        {{ $root.i18n.gettext('Reset') }}
+                    </a>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+</script>
+
+
+<script type="text/template" id="card-persons-tmpl">
+<div class="overflow-wrapper">
+    <table class="table table-hover table-bordered card-persons">
+        <tbody>
+            <tr v-if="persons.length === 0" transition="fade">
+                <td>{{ $root.i18n.gettext('This company has no employees yet.') }}</td>
+            </tr>
+            <tr v-for="person in persons" transition="fade">
+                <td class="text-left">
+                    <a v-link="person.url">{{ person.name }}</a>
+                </td>
+                <td>{{ person.post }}</td>
+                <td>{{ person.phone }}</td>
+                <td class="text-right">
+                    <a :href="'mailto:' + person.email">{{ person.email }}</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+</script>
+
+
+<script type="text/template" id="card-deals-tmpl">
+<div class="overflow-wrapper">
+    <table class="table table-hover table-bordered card-deals">
+        <tbody>
+            <tr v-if="deals.length === 0" transition="fade">
+                <td>{{ $root.i18n.gettext('No deals are linked to this contact yet.') }}</td>
+            </tr>
+            <tr v-for="deal in deals" transition="fade">
+                <td class="col-md-6 text-left">
+                    <a v-link="deal.url">{{ deal.name }}</a>
+                </td>
+                <td class="col-md-3" :title="$root.i18n.gettext('Deal stage')">
+                    <span v-if="deal.status===1 && deal.stage">{{ deal.stage.name }}</span>
+                </td>
+                <td class="col-md-3 text-right">
+                    <span class="label"
+                          :class="{'label-default': deal.status===1, 'label-success': deal.status===2, 'label-danger': deal.status===3}">
+                        {{ deal.budget_verbose }}
+                    </span>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+</script>
+
+
+<script type="text/template" id="card-tasks-tmpl">
+<div class="overflow-wrapper">
+    <table class="table table-hover table-bordered card-tasks">
+        <tbody>
+            <tr v-if="tasks.length === 0" transition="fade">
+                <td>{{ $root.i18n.gettext('No tasks.') }}</td>
+            </tr>
+            <tr v-for="task in tasks" transition="fade">
+                <td class="col-md-6 text-left">
+                    <a v-link="task.url">{{ task.name }}</a>
+                </td>
+                <td class="col-md-3" :title="$root.i18n.gettext('Due date')">
+                    <span v-if="task.expire_date && !isGta()">{{ task.expire_date | datetime  }}</span>
+                    <span v-if="task.expire_date && isGta()">{{ task.expire_date | date  }}</span>
+                </td>
+                <td class="col-md-3 text-right">
+                    <span class="label" :class="{'label-primary': task.state === 1, 'label-success': task.state === 2, 'label-danger': task.state === 3}">
+                        {{ task.verbose_state }}
+                    </span>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+</script>
+
+
+<script type="text/template" id="card-notes-tmpl">
+<div class="tab-pane fade" :class="{'in active': cardTab === 'notes'}" id="notes">
+    <form class="form-horizontal add-note-form" method="post" :action="item.url + 'add_note/'"
+          @submit.prevent="addNote($event)" v-if="hasPerm('add_note')">
+        <textarea class="form-control" rows="6" name="text" v-el:text></textarea>
+        <div class="dropzone-w" v-el:dropzone v-if="hasPerm('add_upload')">
+            <input type="file" name="dropzone" multiple v-el:dropzone-input>
+            <div class="dropzone-text">
+                {{ $root.i18n.gettext('Attach a file to the note') }}<br>
+                <span>{{ $root.i18n.gettext('Maximum file size is 20 MB') }}</span>
+            </div>
+        </div>
+        <div v-for="file in files" class="note-file">
+            <i class="fa fa-file-o"></i> {{ file.name }}
+        </div>
+        <button type="submit" class="btn btn-success" v-el:submit>{{ $root.i18n.gettext('Add note') }}</button>
+    </form>
+
+    <div class="card-notes">
+        <div class="note text-center" v-if="notes.length === 0">
+            {{ $root.i18n.gettext('There are no notes yet.') }}
+        </div>
+        <div v-for="note in notes" class="note" transition="fade">
+            <div class="note-header">
+                <span class="note-user">{{ note.user.name }}</span>
+                <span class="note-created-at">{{ note.created_at | datetime }}</span>
+                <span class="delete-note" @click="deleteNote(note)"
+                      v-if="(hasPerm('delete_own_note') && isCreator(note)) || isAdmin()">
+                    <i class="fa fa-trash-o" :title="$root.i18n.gettext('Delete')"></i>
+                </span>
+            </div>
+            <div class="note-body">
+                {{{ note.text | linebreaks | urlize }}}
+
+                <div v-for="upload in note.uploads" class="note-file">
+                    <a :href="'/upload/' + upload.id + '/download/'">
+                        <i class="fa fa-file-o"></i> {{ upload.name }}
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+</script>
+
+
+<script type="text/template" id="card-uploads-tmpl">
+<div class="tab-pane fade" :class="{'in active': cardTab === 'uploads'}" id="uploads">
+    <div class="dropzone-w" v-el:dropzone v-if="hasPerm('add_upload')">
+        <input type="file" name="dropzone" multiple v-el:dropzone-input>
+        <div class="dropzone-icon">
+            <i class="fa fa-cloud-upload"></i>
+        </div>
+        <div class="dropzone-text">
+            {{ $root.i18n.gettext('Drag files here or click') }}<br>
+            <span>{{ $root.i18n.gettext('Maximum file size is 20 MB') }}</span>
+        </div>
+    </div>
+
+    <div class="card-uploads">
+        <div class="note text-center" v-if="uploads.length===0" transition="fade">
+            {{ $root.i18n.gettext('No files are attached yet.') }}
+        </div>
+        <div v-for="upload in uploads" class="upload" transition="fade">
+            <div class="upload-header">
+                <span class="upload-user">{{ upload.user.name }}</span>
+                <span class="upload-created-at">{{ upload.created_at | datetime }}</span>
+                <span class="delete-upload" @click="deleteUpload(upload)"
+                      v-if="(hasPerm('delete_own_upload') && isCreator(upload)) || isAdmin()">
+                    <i class="fa fa-trash-o" :title="$root.i18n.gettext('Delete')"></i>
+                </span>
+            </div>
+            <div class="upload-body">
+                <a :href="'/upload/' + upload.id + '/download/'">
+                    <i class="fa fa-file-o"></i> {{ upload.name }}
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+</script>
+
+
+<script type="text/template" id="card-extra-fields-tmpl">
+<div class="info-field" v-for="field in extraFields | existing item">
+    <div class="info-label">{{ field.name }}</div>
+    <div class="info-value" :class="{tags: field.type === extraFieldTypes.PHONES || field.type === extraFieldTypes.EMAILS}">
+        <span v-if="field.type === extraFieldTypes.NUMBER">
+            {{ item.extra_fields[field.codename] | money }}
+        </span>
+        <span v-if="field.type === extraFieldTypes.DATE">
+            {{ item.extra_fields[field.codename] | date }}
+        </span>
+        <span v-if="field.type === extraFieldTypes.DATETIME">
+            {{ item.extra_fields[field.codename] | datetime }}
+        </span>
+        <span v-if="field.type === extraFieldTypes.STRING || field.type === extraFieldTypes.TEXT || field.type === extraFieldTypes.SELECT">
+            {{ item.extra_fields[field.codename] }}
+        </span>
+        <div v-if="field.type === extraFieldTypes.PHONES">
+          <span v-for="phone in item.extra_fields[field.codename]"
+                class="badge tag tag-phone" :title="$root.i18n.gettext('Copy')" @click.stop="copyText">
+              <i class="fa fa-envelope-o"></i> {{ phone }}
+          </span>
+        </div>
+        <div v-if="field.type === extraFieldTypes.EMAILS">
+          <span v-if="field.type === extraFieldTypes.EMAILS" v-for="email in item.extra_fields[field.codename]"
+                class="badge tag tag-email" :title="$root.i18n.gettext('Copy')" @click.stop="copyText">
+              <i class="fa fa-envelope-o"></i> {{ email }}
+          </span>
+        </div>
+    </div>
+</div>
+</script>
+{% endverbatim %}

@@ -1,0 +1,1 @@
+{% load i18n %}{% translate "Deal" %} {{ deal.get_status_display|lower }}: {{ deal.name|safe }}

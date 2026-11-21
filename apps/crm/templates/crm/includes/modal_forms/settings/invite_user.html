@@ -1,0 +1,41 @@
+{% load filters i18n %}
+{% load widget_tweaks %}
+
+<form class="form-horizontal" method="POST" action="{% url 'invite_user' %}">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4>{% translate "Invite users" %}</h4>
+    </div>
+
+    <div class="modal-body">
+        {% csrf_token %}
+        {{ formset.management_form }}
+
+        {% if formset.non_form_errors %}
+            <div class="alert alert-danger alert-dismissable">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                {% for non_form_error in formset.non_form_errors %}
+                     {{ non_form_error }}
+                {% endfor %}
+            </div>
+        {% endif %}
+
+        {% for form in formset %}
+            <div class="form-group {% if form.email.errors %}has-error{% endif %} {% if forloop.counter > 3 %}hide{% endif %}">
+                <label for="id_email" class="control-label col-sm-4 col-lg-4">{{ forloop.counter }}. {{ form.email.label }}</label>
+                <div class="col-sm-8 col-lg-8">
+                    {{ form.email|add_class:'form-control' }}
+
+                    {% for error in form.email.errors %}
+                        <span class="help-block">{{ error }}</span>
+                    {% endfor %}
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">{% translate "Cancel" %}</button>
+        <button class="btn btn-success" type="submit">{% translate "Send invitations" %}</button>
+    </div>
+</form>

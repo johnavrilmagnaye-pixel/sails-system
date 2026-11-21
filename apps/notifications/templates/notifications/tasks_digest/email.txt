@@ -1,0 +1,17 @@
+{% extends 'notifications/email_base.txt' %}
+{% load i18n %}
+
+{% load tz %}
+
+{% block content %}
+{% translate "Today's task digest" %}
+{% for task in tasks %}
+{% translate "Task:" %} {{ task.numbered_name|safe }}
+{% translate "Task link:" %} {{ task.url }}
+{% translate "Due date:" %} {{ task.expire_date|timezone:user_link.timezone }}
+{% if task.person %}{% translate "Contact:" %} {{ task.person|safe }}{% if task.company %} ({{ task.company|safe }}){% endif %}{% elif task.company %}{% translate "Contact:" %} {{ task.company|safe }}{% endif %}
+{% if task.deal %}{% translate "Deal:" %} {{ task.deal|safe }}{% endif %}
+{% if task.details %}{% translate "Task description:" %} {{ task.details|safe|linebreaksbr }}{% endif %}
+
+{% endfor %}
+{% endblock %}

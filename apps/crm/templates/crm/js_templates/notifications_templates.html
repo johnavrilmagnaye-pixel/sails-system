@@ -1,0 +1,50 @@
+{% verbatim %}
+<script type="text/template" id="notifications-layout-tmpl">
+<ui-state v-if="$loadingRouteData" kind="loading" :message="$root.i18n.gettext('Loading...')"></ui-state>
+
+<div v-if="!$loadingRouteData" class="route-wrapper">
+    <div class="content-header row">
+        <div class="toggle-sidebar visible-xs col-xs-2">
+            <i class="ion-navicon"></i>
+        </div>
+
+        <div class="content-title col-md-4 col-xs-10">{{ $root.i18n.gettext('Notifications') }}</div>
+
+        <div class="col-md-8 col-xs-12">
+            <div class="btn btn-default pull-right" @click="hideAll">{{ $root.i18n.gettext('Hide all') }}</div>
+        </div>
+    </div>
+
+    <div class="content-body row">
+        <div class="col-md-12 notifications-wrapper">
+            <h4 v-show="notifications.length===0" class="text-center">
+                {{ $root.i18n.gettext('You have no unread notifications') }}
+            </h4>
+
+            <table class="table table-hover notifications-table">
+                <tbody>
+                    <tr v-for="notification in notifications" transition="fade">
+                        <td class="notification-item">
+                            <div class="notification-dt">
+                                <i class="fa fa-clock-o"></i>
+                                {{ notification.created_at | datetime }}
+                            </div>
+                            <div>
+                                {{{ notification.text | linebreaks }}}
+                            </div>
+                        </td>
+                        <td></td>
+                        <td>
+                            <a href="#" @click.prevent="hideNotification(notification)"
+                               class="hide-notification-btn pull-right">
+                                <i class="fa fa-times"></i>
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+</script>
+{% endverbatim %}

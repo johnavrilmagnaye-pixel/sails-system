@@ -1,0 +1,18 @@
+{% extends 'notifications/email_base.txt' %}
+{% load i18n %}
+
+{% block content %}
+{% translate "Hello!" %}
+{% translate "Welcome to Sails CRM." %}
+
+{% translate "You were invited to the account" %} {{ account.name }}{% translate ". Follow this link to activate your account:" %}
+
+{{ activation_url }}
+
+
+{% translate "Account information" %}
+{% translate "After activation, select the account" %} {{ account.name }} {% translate "on the sign-in page." %}
+
+{% translate "Help" %}
+{% translate "If you have any questions, reply to this email." %}
+{% endblock %}

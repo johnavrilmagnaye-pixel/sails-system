@@ -1,0 +1,371 @@
+﻿{% verbatim %}
+<script type="text/template" id="person-list-layout-tmpl">
+<ui-state v-if="$loadingRouteData" kind="loading" :message="$root.i18n.gettext('Loading...')"></ui-state>
+
+<div v-if="!$loadingRouteData" class="route-wrapper">
+    <div class="content-header row">
+        <div class="toggle-sidebar visible-xs col-xs-2">
+            <i class="ion-navicon"></i>
+        </div>
+
+        <div class="content-title col-md-4 col-xs-10">{{ $root.i18n.gettext('Persons') }}</div>
+
+        <div class="col-md-4 col-xs-12">
+            <div class="input-group item-table-search">
+                <span class="input-group-addon"><i class="fa fa-search"></i></span>
+                <input type="search" class="form-control" :placeholder="$root.i18n.gettext('Search contacts')"
+                       v-model="filters.data.search" debounce="500">
+            </div>
+        </div>
+
+        <div class="col-md-4 col-xs-12">
+            <div class="toggle-filters pull-right">
+                <div class="btn btn-default" @click="toggleFilters">
+                    <i class="fa fa-filter"></i> {{ $root.i18n.gettext('Filters') }}
+                </div>
+            </div>
+
+            <div class="btn btn-default refresh-btn icon-btn pull-right" @click.prevent="refresh"
+                 :title="$root.i18n.gettext('Refresh data')">
+                <i class="fa fa-refresh"></i>
+                <span class="visible-xs-inline">{{ $root.i18n.gettext('Refresh data') }}</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="content-body row">
+        <div class="col-md-2 filters" v-show="filters.show">
+            <component is="filters" :filters="filters.data" :extra-fields="personExtraFields"></component>
+        </div>
+
+        <div class="col-md-10 items-view-wrapper" :class="{'full-width': !filters.show}">
+            <component is="grid" :filters="filters.data" :person-extra-fields="personExtraFields"
+                       :company-extra-fields="companyExtraFields" v-ref:items-view></component>
+        </div>
+    </div>
+</div>
+</script>
+
+
+<script type="text/template" id="person-grid-tmpl">
+<div>
+    <div class="row">
+        <div class="col-md-6 table-actions">
+            <a class="btn btn-success" href="#" @click.prevent="togglePersonFormModal(true)"
+               v-if="hasPerm('add_person')">
+                <i class="fa fa-plus"></i> {{ $root.i18n.gettext('New contact') }}
+            </a>
+            <a class="btn btn-default" href="#" v-if="isAdmin()" @click.prevent="toggleImportStep1Modal(true)">
+                {{ $root.i18n.gettext('Import contacts') }}
+            </a>
+            <div class="btn-group" v-if="isAdmin()">
+                <button class="btn btn-default dropdown-toggle" data-toggle="dropdown"
+                        :class="{disabled: !showActionsBtn}">
+                    {{ $root.i18n.gettext('Actions') }} <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu">
+                    <li>
+                        <a href="#" @click.prevent="toggleResponsiblesModal(true)">{{ $root.i18n.gettext('Manage assignees') }}</a>
+                    </li>
+                    <li>
+                        <a href="#" @click.prevent="toggleTagsModal(true)">{{ $root.i18n.gettext('Set tags') }}</a>
+                    </li>
+                    <li>
+                        <a href="/person/export/" class="show-modal-form" data-form="export">{{ $root.i18n.gettext('Export') }}</a>
+                    </li>
+                    <li>
+                        <a href="#" @click.prevent="deleteItems">{{ $root.i18n.gettext('Delete') }}</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-md-offset-4 col-md-2">
+            <div class="btn-group pull-right grid-config-btn">
+                <a href="#" class="btn btn-default icon-btn" @click.prevent="toggleGridConfigModal(true)">
+                    <i class="fa fa-cog"></i>
+                    <span class="visible-xs-inline">{{ $root.i18n.gettext('Table settings') }}</span>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="overflow-wrapper">
+        <table class="table table-hover item-table person-table">
+            <thead>
+                <tr>
+                    <th class="checkall" v-if="isAdmin()">
+                        <div class="checkbox">
+                            <input type="checkbox" id="checkbox0" v-model="checkedAll" @change="checkAll">
+                            <label for="checkbox0"></label>
+                        </div>
+                    </th>
+                    <th class="edit-cell"></th>
+                    <th class="text-left sortable" @click="sortTable('name')">
+                        {{ $root.i18n.gettext('Full name') }}
+                        <i v-show="sortField==='name'" class="fa"
+                           :class="{'fa-caret-up': sortOrder==='', 'fa-caret-down': sortOrder==='-'}">
+                        </i>
+                    </th>
+                    <th v-for="column in columns | filterBy true in 'isVisible'"
+                        @click="sortTable(column.sortFieldName)"
+                        :class="{'sortable': !!column.sortFieldName}">
+                        {{ column.label }}
+                        <i v-show="sortField===column.sortFieldName" class="fa"
+                           :class="{'fa-caret-up': sortOrder==='', 'fa-caret-down': sortOrder==='-'}">
+                        </i>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-show="!items.length">
+                    <td :colspan="emptyTableColspan">{{ $root.i18n.gettext('The contact list is empty.') }}</td>
+                </tr>
+                <tr v-for="person in items" track-by="id" @click="checkItem(person.id)">
+                    <td v-if="isAdmin()">
+                        <div class='checkbox'>
+                            <input type='checkbox' :value='person.id' :id="'checkbox' + person.id"
+                                   v-model="person.checked" @click.prevent.stop="checkItem()">
+                            <label :for="'checkbox' + person.id"></label>
+                        </div>
+                    </td>
+                    <td class="edit-cell">
+                        <a href="#" @click.prevent.stop="togglePersonFormModal(true, person)"
+                           v-if="canEditItem('person', person)">
+                            <i class="fa fa-pencil"></i>
+                        </a>
+                    </td>
+                    <td class="text-left">
+                        <a v-link="person.url">{{ person.name }}</a>
+                    </td>
+                    <td v-for="column in columns | filterBy true in 'isVisible'">
+                        <span v-if="column.name==='company' && person.company">
+                            <a v-link="person.company.url">{{ person.company.name }}</a>
+                        </span>
+                        <span v-if="column.name==='post'">
+                            {{ person.post }}
+                        </span>
+                        <span v-if="column.name === 'phone'" class="tags">
+                            <span v-for="phone in person.phones" class="badge tag tag-phone" :title="$root.i18n.gettext('Copy')"
+                                  @click.stop="copyText">
+                                <i class="fa fa-phone"></i> {{ phone }}
+                            </span>
+                        </span>
+                        <span v-if="column.name === 'email'" class="tags">
+                            <span v-for="email in person.emails" class="badge tag tag-email" :title="$root.i18n.gettext('Copy')"
+                                  @click.stop="copyText">
+                                <i class="fa fa-envelope-o"></i> {{ email }}
+                            </span>
+                        </span>
+                        <span v-if="column.name==='tags'" class="tags">
+                            <span v-for="tag in person.tags" class="badge tag">
+                                <i class="fa fa-tag"></i> {{ tag.name }}
+                            </span>
+                        </span>
+                        <span v-if="column.name==='responsibles'" class="tags">
+                            <span v-for="responsible in person.responsibles" class="badge tag tag-user">
+                                <i class="fa fa-user-o"></i> {{ responsible.name }}
+                            </span>
+                        </span>
+                        <span v-if="column.name==='details'">
+                            {{ person.details }}
+                        </span>
+                        <span v-if="column.name==='user'">
+                            {{ person.user.name }}
+                        </span>
+                        <span v-if="column.name==='created_at'">
+                            {{ person.created_at | datetime }}
+                        </span>
+                        <span v-if="column.name.indexOf('extra_field') > -1">
+                            <span v-if="!!column.isText">{{ person.extra_fields[column.name] }}</span>
+                            <span v-if="!!column.isNumber">{{ person.extra_fields[column.name] | money }}</span>
+                            <span v-if="!!column.isDate">{{ person.extra_fields[column.name] | date }}</span>
+                            <span v-if="!!column.isDatetime">{{ person.extra_fields[column.name] | datetime }}</span>
+                            <span v-if="!!column.isPhone" class="tags">
+                                <span v-for="phone in person.extra_fields[column.name]" class="badge tag tag-phone" :title="$root.i18n.gettext('Copy')"
+                                      @click.stop="copyText">
+                                    <i class="fa fa-phone"></i> {{ phone }}
+                                </span>
+                            </span>
+                            <span v-if="!!column.isEmail" class="tags">
+                                <span v-for="email in person.extra_fields[column.name]" class="badge tag tag-email" :title="$root.i18n.gettext('Copy')"
+                                      @click.stop="copyText">
+                                    <i class="fa fa-envelope-o"></i> {{ email }}
+                                </span>
+                            </span>
+                        </span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <component is="grid-pagination" :pagination-data="paginationData" :items-cnt="items.length"
+               :can-change-page-size="true"></component>
+    <component is="import-step1-modal" v-if="modals.importStep1.show"></component>
+    <component is="import-step2-modal" v-if="modals.importStep2.show" :import-data="modals.importStep2.data"></component>
+    <component is="responsibles-modal" v-if="modals.responsibles.show" :modal-data="modals.responsibles.data"></component>
+    <component is="tags-modal" v-if="modals.tags.show" :modal-data="modals.tags.data"></component>
+    <component is="person-form-modal" v-if="modals.personForm.show" :modal-data="modals.personForm.data"></component>
+    <component is="company-form-modal" v-if="modals.companyForm.show" :modal-data="modals.companyForm.data"></component>
+    <component is="grid-config-modal" v-if="modals.gridConfig.show" :modal-data="modals.gridConfig.data"></component>
+</div>
+</script>
+
+
+<script type="text/template" id="person-card-layout-tmpl">
+<ui-state v-if="$loadingRouteData" kind="loading" :message="$root.i18n.gettext('Loading...')"></ui-state>
+
+<div v-if="!$loadingRouteData" class="route-wrapper">
+    <div class="content-header row">
+        <div class="toggle-sidebar visible-xs col-xs-2">
+            <i class="ion-navicon"></i>
+        </div>
+
+        <div class="content-title col-md-7 col-xs-10">{{ item.name }}</div>
+
+        <div class="col-md-5 col-xs-12">
+            <div class="item-toolbar btn-group pull-right vertical-xs">
+                <a href="#" @click.prevent.stop="togglePersonFormModal(true, item, extraFields)"
+                   v-if="canEditItem('person', item)" class="btn btn-default">
+                    <i class="fa fa-pencil"></i> {{ $root.i18n.gettext('Edit') }}
+                </a>
+
+                <div v-if="canDeleteItem('person', item)" class="btn btn-default" @click="deleteItem">
+                    <i class="fa fa-trash-o"></i> {{ $root.i18n.gettext('Delete') }}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="content-body row">
+        <div class="col-md-3 card-sidebar">
+            <div class="card-info">
+                <div class="info-field" v-if="item.company">
+                    <div class="info-label">{{ $root.i18n.gettext('Company') }}</div>
+                    <div class="info-value">
+                        <a v-link="item.company.url">{{ item.company.name }}</a>
+                    </div>
+                </div>
+                <div class="info-field" v-if="item.post">
+                    <div class="info-label">{{ $root.i18n.gettext('Job title') }}</div>
+                    <div class="info-value">{{ item.post }}</div>
+                </div>
+                <div class="info-field" v-if="item.phones.length">
+                    <div class="info-label">{{ $root.i18n.gettext('Phone') }}</div>
+                    <div class="info-value tags">
+                        <span class="badge tag tag-phone" v-for="phone in item.phones" :title="$root.i18n.gettext('Copy')"
+                              @click.stop="copyText">
+                            <i class="fa fa-phone"></i> {{ phone }}
+                        </span>
+                    </div>
+                </div>
+                <div class="info-field" v-if="item.emails.length">
+                    <div class="info-label">{{ $root.i18n.gettext('Email address') }}</div>
+                    <div class="info-value tags">
+                        <span class="badge tag tag-email" v-for="email in item.emails" :title="$root.i18n.gettext('Copy')"
+                              @click.stop="copyText">
+                            <i class="fa fa-envelope-o"></i> {{ email }}
+                        </span>
+                    </div>
+                </div>
+                <div v-if="item.extra_fields">
+                    <component is="card-extra-fields" :extra-fields="personExtraFields" :item="item"></component>
+                </div>
+                <div class="info-field" v-if="item.details">
+                    <div class="info-label">{{ $root.i18n.gettext('Additional information') }}</div>
+                    <div class="info-value item-details">{{{ item.details | linebreaks | urlize }}}</div>
+                </div>
+                <div class="info-field" v-if="!isGta()">
+                    <div class="info-label">
+                        {{ $root.i18n.gettext('Tags') }}
+                        <a v-tags :initial-value="item.tags" class="edit-tags" href="#">
+                            <i class="fa fa-edit"></i>
+                        </a>
+                    </div>
+                    <div class="info-value tags">
+                        <span v-if="!item.tags.length">{{ $root.i18n.gettext('No tags') }}</span>
+                        <span class="badge tag" v-for="tag in item.tags">
+                            <i class="fa fa-tag"></i> {{ tag.name }}
+                        </span>
+                    </div>
+                </div>
+                <div class="info-field" v-if="item.responsibles">
+                    <div class="info-label">
+                        {{ $root.i18n.gettext('Assignees') }}
+                        <a v-responsibles :initial-value="item.responsibles" class="edit-tags" href="#">
+                            <i class="fa fa-edit"></i>
+                        </a>
+                    </div>
+                    <div class="info-value tags">
+                        <span v-if="!item.responsibles.length">{{ $root.i18n.gettext('No assignees') }}</span>
+                        <span v-for="responsible in item.responsibles" class="badge tag tag-user">
+                            <i class="fa fa-user-o"></i> {{ responsible.name }}
+                        </span>
+                    </div>
+                </div>
+                <div class="info-field" v-if="item.user">
+                    <div class="info-label">{{ $root.i18n.gettext('Created by') }}</div>
+                    <div class="info-value">{{ item.user.name }}</div>
+                </div>
+                <div class="info-field">
+                    <div class="info-label">{{ $root.i18n.gettext('Date created') }}</div>
+                    <div class="info-value">{{ item.created_at | datetime }}</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-9 card-content">
+            <ul class="nav nav-tabs">
+                <li :class="{'active': cardTab === 'notes'}">
+                    <a href="#notes" data-toggle="tab" @click.prevent="saveCardTab('notes')">
+                        {{ $root.i18n.gettext('Notes (') }}{{ notes.length }})
+                    </a>
+                </li>
+                <li :class="{'active': cardTab === 'deals'}">
+                    <a href="#deals" data-toggle="tab" @click.prevent="saveCardTab('deals')">
+                        {{ $root.i18n.gettext('Deals (') }}{{ deals.length }})
+                    </a>
+                </li>
+                <li :class="{'active': cardTab === 'tasks'}">
+                    <a href="#tasks" data-toggle="tab" @click.prevent="saveCardTab('tasks')">
+                        {{ $root.i18n.gettext('Tasks (') }}{{ tasks.length }})
+                    </a>
+                </li>
+                <li :class="{'active': cardTab === 'uploads'}">
+                    <a href="#uploads" data-toggle="tab" @click.prevent="saveCardTab('uploads')">
+                        {{ $root.i18n.gettext('Files (') }}{{ uploads.length }})
+                    </a>
+                </li>
+            </ul>
+
+            <div class="tab-content">
+                <component is="card-notes" :notes="notes" :item="item" :card-tab="cardTab"></component>
+
+                <div class="tab-pane fade" :class="{'in active': cardTab === 'deals'}" id="deals">
+                    <a class="btn btn-success" href="#" @click.prevent="toggleDealFormModal(true)"
+                       v-if="hasPerm('add_deal')">
+                        {{ $root.i18n.gettext('Add deal') }}
+                    </a>
+
+                    <component is="card-deals" :deals="deals"></component>
+                </div>
+
+                <div class="tab-pane fade" :class="{'in active': cardTab === 'tasks'}" id="tasks">
+                    <a class="btn btn-success" href="#" @click.prevent="toggleTaskFormModal(true)"
+                       v-if="hasPerm('add_task')">
+                        {{ $root.i18n.gettext('Add task') }}
+                    </a>
+
+                    <component is="card-tasks" :tasks="tasks"></component>
+                </div>
+
+                <component is="card-uploads" :uploads="uploads" :item="item" :card-tab="cardTab"></component>
+            </div>
+        </div>
+    </div>
+    <component is="person-form-modal" v-if="modals.personForm.show" :modal-data="modals.personForm.data"></component>
+    <component is="company-form-modal" v-if="modals.companyForm.show" :modal-data="modals.companyForm.data"></component>
+    <component is="deal-form-modal" v-if="modals.dealForm.show" :modal-data="modals.dealForm.data"></component>
+    <component is="task-form-modal" v-if="modals.taskForm.show" :modal-data="modals.taskForm.data"></component>
+</div>
+</script>
+{% endverbatim %}

@@ -1,0 +1,36 @@
+{% extends 'notifications/email_base.html' %}
+{% load i18n %}
+
+{% block content %}
+    <p style="margin-bottom: 25px; line-height: 21px;">
+        {% translate "User" %} <b>{{ task_user_name }}</b> {% translate "added a new task." %}
+    </p>
+
+    <p style="margin-bottom: 25px; line-height: 21px;">
+        {% translate "Task:" %} <a href="{{ task_url }}">{{ task_name|safe }}</a>
+        {% if task_deadline %}
+            <br>
+            {% translate "Due date:" %} <b>{{ task_deadline }}</b>
+        {% endif %}
+
+        {% if task_person or task_company %}
+            <br>
+            {% translate "Contact:" %}
+            {% if task_person %}
+                <b>{{ task_person|safe }}{% if task_company %} ({{ task_company|safe }}){% endif %}</b>
+            {% elif task_company %}
+                <b>{{ task_company|safe }}</b>
+            {% endif %}
+        {% endif %}
+
+        {% if task_deal %}
+            <br>
+            {% translate "Deal:" %} <b>{{ task_deal|safe }}</b>
+        {% endif %}
+
+        {% if task_details %}
+            <br>
+            {% translate "Task description:" %} {{ task_details|safe|linebreaksbr }}
+        {% endif %}
+    </p>
+{% endblock %}

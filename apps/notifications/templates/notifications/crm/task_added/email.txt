@@ -1,0 +1,13 @@
+{% extends 'notifications/email_base.txt' %}
+{% load i18n %}
+
+{% block content %}
+{% translate "User" %} {{ task_user_name }} {% translate "added a new task." %}
+
+{% translate "Task:" %} {{ task_name|safe }}
+{% translate "Task link:" %} {{ task_url }}
+{% if task_deadline %}{% translate "Due date:" %} {{ task_deadline }}{% endif %}
+{% if task_person %}{% translate "Contact:" %} {{ task_person|safe }}{% if task_company %} ({{ task_company|safe }}){% endif %}{% elif task_company %}{% translate "Contact:" %} {{ task_company|safe }}{% endif %}
+{% if task_deal %}{% translate "Deal:" %} {{ task_deal|safe }}{% endif %}
+{% if task_details %}{% translate "Task description:" %} {{ task_details|safe|linebreaksbr }}{% endif %}
+{% endblock %}

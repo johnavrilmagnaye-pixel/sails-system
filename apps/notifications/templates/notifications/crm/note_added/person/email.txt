@@ -1,0 +1,12 @@
+{% extends 'notifications/email_base.txt' %}
+{% load i18n %}
+
+{% block content %}
+{% translate "User" %} {{ note_user_name }} {% translate "added a note:" %}
+
+{{ note.text|safe|linebreaksbr }}
+
+{% translate "Person:" %} {{ item.name|safe }}
+{% translate "Person link:" %} {{ item_url }}
+{% if item.company %}{% translate "Company:" %} {{ item.company.name|safe }}{% endif %}
+{% endblock %}

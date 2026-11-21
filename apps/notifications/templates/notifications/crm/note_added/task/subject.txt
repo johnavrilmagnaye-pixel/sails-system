@@ -1,0 +1,1 @@
+{% load i18n %}{% translate "New note for task:" %} {{ item.name|safe }}

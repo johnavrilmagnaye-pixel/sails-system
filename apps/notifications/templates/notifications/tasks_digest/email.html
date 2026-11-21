@@ -1,0 +1,37 @@
+{% extends 'notifications/email_base.html' %}
+
+{% load tz i18n %}
+
+{% block content %}
+    <h4 style="margin-bottom: 25px;">
+        {% translate "Today's task digest" %}
+    </h4>
+
+    {% for task in tasks %}
+        <p style="margin-bottom: 25px; line-height: 21px;">
+            {% translate "Task:" %} <a href="{{ task.url }}">{{ task.numbered_name|safe }}</a>
+            <br>
+            {% translate "Due date:" %} <b>{{ task.expire_date|timezone:user_link.timezone }}</b>
+
+            {% if task.person or task.company %}
+                <br>
+                {% translate "Contact:" %}
+                {% if task.person %}
+                    <b>{{ task.person|safe }}{% if task.company %} ({{ task.company|safe }}){% endif %}</b>
+                {% elif task.company %}
+                    <b>{{ task.company|safe }}</b>
+                {% endif %}
+            {% endif %}
+
+            {% if task.deal %}
+                <br>
+                {% translate "Deal:" %} <b>{{ task.deal|safe }}</b>
+            {% endif %}
+
+            {% if task.details %}
+                <br>
+                {% translate "Task description:" %} {{ task.details|safe|linebreaksbr }}
+            {% endif %}
+        </p>
+    {% endfor %}
+{% endblock %}

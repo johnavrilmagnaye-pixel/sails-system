@@ -1,0 +1,2598 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Sails CRM\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-08-23 14:38+0000\n"
+"PO-Revision-Date: 2026-08-16 00:00+0200\n"
+"Last-Translator: Sails CRM contributors\n"
+"Language-Team: Russian\n"
+"Language: ru\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n%100>=11 && n%100<=14) ? 2 : 3);\n"
+
+#: apps/core/static/core/js/views/CardView.js:14
+#: apps/crm/static/crm/js/views/deals/DealBoardView.js:62
+msgid "Are you sure you want to delete "
+msgstr "Вы уверены, что хотите удалить "
+
+#: apps/core/static/core/js/views/CardView.js:17
+#: apps/core/static/core/js/widget_i18n.js:37
+#: apps/crm/static/crm/js/mixins/GridCheckboxesMixin.js:99
+#: apps/crm/static/crm/js/modal.js:103
+#: apps/crm/static/crm/js/views/deals/DealBoardView.js:65
+#: apps/crm/static/crm/js/views/settings/SettingsCompanyFieldsLayoutView.js:62
+#: apps/crm/static/crm/js/views/settings/SettingsDealFieldsLayoutView.js:70
+#: apps/crm/static/crm/js/views/settings/SettingsPersonFieldsLayoutView.js:62
+#: apps/crm/static/crm/js/views/settings/SettingsTaskFieldsLayoutView.js:62
+#: apps/crm/static/crm/js/views/settings/SettingsUsersLayoutView.js:143
+#: apps/crm/static/crm/js/views/tasks/PeriodicTasksView.js:175
+#: apps/crm/templates/crm/js_templates/intro_templates.html:255
+#: apps/crm/templates/crm/js_templates/modals_templates.html:27
+#: apps/crm/templates/crm/js_templates/modals_templates.html:76
+#: apps/crm/templates/crm/js_templates/modals_templates.html:130
+#: apps/crm/templates/crm/js_templates/modals_templates.html:175
+#: apps/crm/templates/crm/js_templates/modals_templates.html:278
+#: apps/crm/templates/crm/js_templates/modals_templates.html:338
+#: apps/crm/templates/crm/js_templates/modals_templates.html:383
+#: apps/crm/templates/crm/js_templates/modals_templates.html:477
+#: apps/crm/templates/crm/js_templates/modals_templates.html:601
+#: apps/crm/templates/crm/js_templates/modals_templates.html:673
+#: apps/crm/templates/crm/js_templates/modals_templates.html:852
+msgid "Cancel"
+msgstr "Отмена"
+
+#: apps/core/static/core/js/views/CardView.js:21
+#: apps/crm/static/crm/js/views/deals/DealBoardView.js:69
+#: apps/crm/static/crm/js/views/settings/SettingsCompanyFieldsLayoutView.js:66
+#: apps/crm/static/crm/js/views/settings/SettingsDealFieldsLayoutView.js:74
+#: apps/crm/static/crm/js/views/settings/SettingsPersonFieldsLayoutView.js:66
+#: apps/crm/static/crm/js/views/settings/SettingsTaskFieldsLayoutView.js:66
+#: apps/crm/static/crm/js/views/tasks/PeriodicTasksView.js:179
+#: apps/crm/templates/crm/js_templates/companies_templates.html:76
+#: apps/crm/templates/crm/js_templates/companies_templates.html:232
+#: apps/crm/templates/crm/js_templates/deals_templates.html:103
+#: apps/crm/templates/crm/js_templates/deals_templates.html:344
+#: apps/crm/templates/crm/js_templates/deals_templates.html:379
+#: apps/crm/templates/crm/js_templates/persons_templates.html:77
+#: apps/crm/templates/crm/js_templates/persons_templates.html:233
+#: apps/crm/templates/crm/js_templates/settings_templates.html:597
+#: apps/crm/templates/crm/js_templates/settings_templates.html:718
+#: apps/crm/templates/crm/js_templates/settings_templates.html:847
+#: apps/crm/templates/crm/js_templates/settings_templates.html:946
+#: apps/crm/templates/crm/js_templates/tasks_templates.html:90
+#: apps/crm/templates/crm/js_templates/tasks_templates.html:293
+msgid "Delete"
+msgstr "Удалить"
+
+#: apps/core/static/core/js/views/CardView.js:33
+msgid "Could not delete the item"
+msgstr "Ошибка при удалении"
+
+#: apps/core/static/core/js/views/Editors.js:59
+msgid "Add another"
+msgstr "Добавить еще"
+
+#: apps/core/static/core/js/vue/directives.js:103
+msgid "Required field"
+msgstr "Обязательное поле"
+
+#: apps/core/static/core/js/vue/directives.js:386
+msgid "Yesterday"
+msgstr "Вчера"
+
+#: apps/core/static/core/js/vue/directives.js:387
+#: apps/core/static/core/js/widget_i18n.js:76
+#: apps/core/static/core/js/widget_i18n.js:90
+msgid "Today"
+msgstr "Сегодня"
+
+#: apps/core/static/core/js/vue/directives.js:388
+msgid "Tomorrow"
+msgstr "Завтра"
+
+#: apps/core/static/core/js/vue/directives.js:389
+msgid "Last 7 days"
+msgstr "Последние 7 дней"
+
+#: apps/core/static/core/js/vue/directives.js:390
+msgid "Last 30 days"
+msgstr "Последние 30 дней"
+
+#: apps/core/static/core/js/vue/directives.js:391
+msgid "Last 90 days"
+msgstr "Последние 90 дней"
+
+#: apps/core/static/core/js/vue/directives.js:392
+msgid "This week"
+msgstr "Эта неделя"
+
+#: apps/core/static/core/js/vue/directives.js:393
+msgid "Previous week"
+msgstr "Прошлая неделя"
+
+#: apps/core/static/core/js/vue/directives.js:394
+msgid "This month"
+msgstr "Этот месяц"
+
+#: apps/core/static/core/js/vue/directives.js:395
+msgid "Previous month"
+msgstr "Прошлый месяц"
+
+#: apps/core/static/core/js/vue/directives.js:425
+msgid "+7 999 999 99 99? ext. 9999999999"
+msgstr "+7 999 999 99 99? доб. 9999999999"
+
+#: apps/core/static/core/js/widget_i18n.js:7
+#: apps/crm/static/crm/js/views/modals/PeriodicTaskFormModalView.js:98
+msgid "Sunday"
+msgstr "Воскресенье"
+
+#: apps/core/static/core/js/widget_i18n.js:7
+#: apps/crm/static/crm/js/views/modals/PeriodicTaskFormModalView.js:92
+msgid "Monday"
+msgstr "Понедельник"
+
+#: apps/core/static/core/js/widget_i18n.js:7
+#: apps/crm/static/crm/js/views/modals/PeriodicTaskFormModalView.js:93
+msgid "Tuesday"
+msgstr "Вторник"
+
+#: apps/core/static/core/js/widget_i18n.js:7
+#: apps/crm/static/crm/js/views/modals/PeriodicTaskFormModalView.js:94
+msgid "Wednesday"
+msgstr "Среда"
+
+#: apps/core/static/core/js/widget_i18n.js:8
+#: apps/crm/static/crm/js/views/modals/PeriodicTaskFormModalView.js:95
+msgid "Thursday"
+msgstr "Четверг"
+
+#: apps/core/static/core/js/widget_i18n.js:8
+#: apps/crm/static/crm/js/views/modals/PeriodicTaskFormModalView.js:96
+msgid "Friday"
+msgstr "Пятница"
+
+#: apps/core/static/core/js/widget_i18n.js:8
+#: apps/crm/static/crm/js/views/modals/PeriodicTaskFormModalView.js:97
+msgid "Saturday"
+msgstr "Суббота"
+
+#: apps/core/static/core/js/widget_i18n.js:11
+msgid "Sun"
+msgstr "Вс"
+
+#: apps/core/static/core/js/widget_i18n.js:11
+msgid "Mon"
+msgstr "Пн"
+
+#: apps/core/static/core/js/widget_i18n.js:11
+msgid "Tue"
+msgstr "Вт"
+
+#: apps/core/static/core/js/widget_i18n.js:11
+msgid "Wed"
+msgstr "Ср"
+
+#: apps/core/static/core/js/widget_i18n.js:11
+msgid "Thu"
+msgstr "Чт"
+
+#: apps/core/static/core/js/widget_i18n.js:11
+msgid "Fri"
+msgstr "Пт"
+
+#: apps/core/static/core/js/widget_i18n.js:11
+msgid "Sat"
+msgstr "Сб"
+
+#: apps/core/static/core/js/widget_i18n.js:14
+#: apps/crm/static/crm/js/views/modals/PeriodicTaskFormModalView.js:112
+msgid "January"
+msgstr "Январь"
+
+#: apps/core/static/core/js/widget_i18n.js:14
+#: apps/crm/static/crm/js/views/modals/PeriodicTaskFormModalView.js:113
+msgid "February"
+msgstr "Февраль"
+
+#: apps/core/static/core/js/widget_i18n.js:14
+#: apps/crm/static/crm/js/views/modals/PeriodicTaskFormModalView.js:114
+msgid "March"
+msgstr "Март"
+
+#: apps/core/static/core/js/widget_i18n.js:14
+#: apps/crm/static/crm/js/views/modals/PeriodicTaskFormModalView.js:115
+msgid "April"
+msgstr "Апрель"
+
+#: apps/core/static/core/js/widget_i18n.js:14
+#: apps/core/static/core/js/widget_i18n.js:18
+#: apps/crm/static/crm/js/views/modals/PeriodicTaskFormModalView.js:116
+msgid "May"
+msgstr "Май"
+
+#: apps/core/static/core/js/widget_i18n.js:14
+#: apps/crm/static/crm/js/views/modals/PeriodicTaskFormModalView.js:117
+msgid "June"
+msgstr "Июнь"
+
+#: apps/core/static/core/js/widget_i18n.js:15
+#: apps/crm/static/crm/js/views/modals/PeriodicTaskFormModalView.js:118
+msgid "July"
+msgstr "Июль"
+
+#: apps/core/static/core/js/widget_i18n.js:15
+#: apps/crm/static/crm/js/views/modals/PeriodicTaskFormModalView.js:119
+msgid "August"
+msgstr "Август"
+
+#: apps/core/static/core/js/widget_i18n.js:15
+#: apps/crm/static/crm/js/views/modals/PeriodicTaskFormModalView.js:120
+msgid "September"
+msgstr "Сентябрь"
+
+#: apps/core/static/core/js/widget_i18n.js:15
+#: apps/crm/static/crm/js/views/modals/PeriodicTaskFormModalView.js:121
+msgid "October"
+msgstr "Октябрь"
+
+#: apps/core/static/core/js/widget_i18n.js:15
+#: apps/crm/static/crm/js/views/modals/PeriodicTaskFormModalView.js:122
+msgid "November"
+msgstr "Ноябрь"
+
+#: apps/core/static/core/js/widget_i18n.js:15
+#: apps/crm/static/crm/js/views/modals/PeriodicTaskFormModalView.js:123
+msgid "December"
+msgstr "Декабрь"
+
+#: apps/core/static/core/js/widget_i18n.js:18
+msgid "Jan"
+msgstr "Янв"
+
+#: apps/core/static/core/js/widget_i18n.js:18
+msgid "Feb"
+msgstr "Фев"
+
+#: apps/core/static/core/js/widget_i18n.js:18
+msgid "Mar"
+msgstr "Мар"
+
+#: apps/core/static/core/js/widget_i18n.js:18
+msgid "Apr"
+msgstr "Апр"
+
+#: apps/core/static/core/js/widget_i18n.js:18
+msgid "Jun"
+msgstr "Июн"
+
+#: apps/core/static/core/js/widget_i18n.js:19
+msgid "Jul"
+msgstr "Июл"
+
+#: apps/core/static/core/js/widget_i18n.js:19
+msgid "Aug"
+msgstr "Авг"
+
+#: apps/core/static/core/js/widget_i18n.js:19
+msgid "Sep"
+msgstr "Сен"
+
+#: apps/core/static/core/js/widget_i18n.js:19
+msgid "Oct"
+msgstr "Окт"
+
+#: apps/core/static/core/js/widget_i18n.js:19
+msgid "Nov"
+msgstr "Ноя"
+
+#: apps/core/static/core/js/widget_i18n.js:19
+msgid "Dec"
+msgstr "Дек"
+
+#: apps/core/static/core/js/widget_i18n.js:26
+msgid "The results could not be loaded."
+msgstr "Не удалось загрузить результаты."
+
+#: apps/core/static/core/js/widget_i18n.js:27
+msgid "Please delete some characters."
+msgstr "Удалите несколько символов."
+
+#: apps/core/static/core/js/widget_i18n.js:28
+msgid "Please enter more characters."
+msgstr "Введите больше символов."
+
+#: apps/core/static/core/js/widget_i18n.js:29
+msgid "Loading more results..."
+msgstr "Загрузка результатов..."
+
+#: apps/core/static/core/js/widget_i18n.js:30
+msgid "You can only select a limited number of items."
+msgstr "Достигнут лимит выбранных элементов."
+
+#: apps/core/static/core/js/widget_i18n.js:31
+msgid "No results found."
+msgstr "Совпадений не найдено."
+
+#: apps/core/static/core/js/widget_i18n.js:32
+msgid "Searching..."
+msgstr "Поиск..."
+
+#: apps/core/static/core/js/widget_i18n.js:36
+msgid "Apply"
+msgstr "Применить"
+
+#: apps/core/static/core/js/widget_i18n.js:40
+msgid "Custom range"
+msgstr "Выбрать период"
+
+#: apps/core/static/core/js/widget_i18n.js:77
+msgid "Clear"
+msgstr "Очистить"
+
+#: apps/core/static/core/js/widget_i18n.js:91
+#: apps/crm/templates/crm/js_templates/tasks_templates.html:246
+msgid "Month"
+msgstr "Месяц"
+
+#: apps/core/static/core/js/widget_i18n.js:92
+#: apps/crm/templates/crm/js_templates/tasks_templates.html:250
+msgid "Week"
+msgstr "Неделя"
+
+#: apps/core/static/core/js/widget_i18n.js:93
+#: apps/crm/templates/crm/js_templates/tasks_templates.html:254
+msgid "Day"
+msgstr "День"
+
+#: apps/core/static/core/js/widget_i18n.js:94
+#: apps/crm/static/crm/js/views/modals/ExtraFieldFormModalView.js:38
+#: apps/crm/templates/crm/js_templates/settings_templates.html:542
+#: apps/crm/templates/crm/js_templates/settings_templates.html:554
+#: apps/crm/templates/crm/js_templates/settings_templates.html:663
+#: apps/crm/templates/crm/js_templates/settings_templates.html:675
+#: apps/crm/templates/crm/js_templates/settings_templates.html:784
+#: apps/crm/templates/crm/js_templates/settings_templates.html:800
+msgid "List"
+msgstr "Список"
+
+#: apps/core/static/core/js/widget_i18n.js:96
+msgid "All day"
+msgstr "Весь день"
+
+#: apps/core/static/core/js/widget_i18n.js:97
+msgid "No events to display"
+msgstr "Нет событий для отображения"
+
+#: apps/core/templates/core/js_templates/component_templates.html:11
+#: apps/crm/templates/crm/js_templates/settings_templates.html:241
+#: apps/crm/templates/crm/js_templates/settings_templates.html:278
+msgid "Account"
+msgstr "Аккаунт"
+
+#: apps/core/templates/core/js_templates/component_templates.html:24
+msgid "Switching account..."
+msgstr "Переключение аккаунта..."
+
+#: apps/core/templates/core/js_templates/editor_templates.html:111
+msgid "Drag files here"
+msgstr "Перетащите файлы сюда"
+
+#: apps/core/templates/core/js_templates/editor_templates.html:111
+msgid "(or just click)"
+msgstr "(или просто кликните)"
+
+#: apps/core/templates/core/js_templates/grid_templates.html:7
+msgid "Show"
+msgstr "Показывать"
+
+#: apps/core/templates/core/js_templates/grid_templates.html:43
+msgid "of"
+msgstr "из"
+
+#: apps/crm/static/crm/js/app.js:202
+msgid "Could not switch account. Please try again."
+msgstr "Не удалось переключить аккаунт. Попробуйте еще раз."
+
+#: apps/crm/static/crm/js/mixins/CommonMixin.js:68
+msgid "Copied"
+msgstr "Скопировано"
+
+#: apps/crm/static/crm/js/mixins/GridCheckboxesMixin.js:31
+msgid "The export file is being generated. Do not reload the page."
+msgstr "Файл для экспорта генерируется, не перезагружайте страницу."
+
+#: apps/crm/static/crm/js/mixins/GridCheckboxesMixin.js:35
+msgid "Could not export data"
+msgstr "Ошибка при экспорте данных"
+
+#: apps/crm/static/crm/js/mixins/GridCheckboxesMixin.js:57
+msgid "Export error"
+msgstr "Ошибка экспорта"
+
+#: apps/crm/static/crm/js/mixins/GridCheckboxesMixin.js:96
+msgid "Are you sure you want to delete the selected "
+msgstr "Вы уверены, что хотите удалить выбранные "
+
+#: apps/crm/static/crm/js/mixins/GridCheckboxesMixin.js:103
+msgid "Delete all"
+msgstr "Удалить все"
+
+#: apps/crm/static/crm/js/mixins/GridCheckboxesMixin.js:120
+#: apps/crm/static/crm/js/mixins/GridCheckboxesMixin.js:149
+msgid " are being deleted"
+msgstr " удаляются"
+
+#: apps/crm/static/crm/js/mixins/GridCheckboxesMixin.js:124
+#: apps/crm/static/crm/js/mixins/GridCheckboxesMixin.js:153
+#: apps/crm/static/crm/js/views/intro/IntroImportStep1View.js:79
+#: apps/crm/static/crm/js/views/intro/IntroUsersStepView.js:81
+#: apps/crm/static/crm/js/views/settings/SettingsCompanyFieldsLayoutView.js:96
+#: apps/crm/static/crm/js/views/settings/SettingsDealFieldsLayoutView.js:104
+#: apps/crm/static/crm/js/views/settings/SettingsPersonFieldsLayoutView.js:96
+#: apps/crm/static/crm/js/views/settings/SettingsTaskFieldsLayoutView.js:96
+#: apps/crm/static/crm/js/views/settings/SettingsUsersLayoutView.js:107
+#: apps/crm/static/crm/js/views/settings/SettingsUsersLayoutView.js:175
+msgid "An error occurred. Please try again or contact support."
+msgstr "Произошла ошибка. Попробуйте еще раз или обратитесь в техподдержку."
+
+#: apps/crm/static/crm/js/mixins/GridCheckboxesMixin.js:131
+msgid "Delete selected"
+msgstr "Удалить выбранные"
+
+#: apps/crm/static/crm/js/mixins/GridCheckboxesMixin.js:149
+msgid "Selected "
+msgstr "Выбранные "
+
+#: apps/crm/static/crm/js/modal.js:102
+msgid "OK"
+msgstr "ОК"
+
+#: apps/crm/static/crm/js/modal.js:104
+msgid "Confirm"
+msgstr "Подтвердить"
+
+#: apps/crm/static/crm/js/views/common/CardNotesView.js:68
+msgid "Note created"
+msgstr "Заметка создана"
+
+#: apps/crm/static/crm/js/views/common/CardNotesView.js:72
+msgid "Could not create the note"
+msgstr "Ошибка при создании заметки"
+
+#: apps/crm/static/crm/js/views/common/CardNotesView.js:85
+msgid "Note deleted"
+msgstr "Заметка удалена"
+
+#: apps/crm/static/crm/js/views/common/CardNotesView.js:97
+#: apps/crm/static/crm/js/views/common/CardUploadsView.js:84
+msgid "Image "
+msgstr "Изображение "
+
+#: apps/crm/static/crm/js/views/common/CardNotesView.js:97
+#: apps/crm/static/crm/js/views/common/CardUploadsView.js:84
+msgid " is too large.\n"
+msgstr " слишком большое.\n"
+
+#: apps/crm/static/crm/js/views/common/CardUploadsView.js:69
+msgid "Files uploaded"
+msgstr "Файлы загужены"
+
+#: apps/crm/static/crm/js/views/common/CardUploadsView.js:69
+msgid "File uploaded"
+msgstr "Файл загужен"
+
+#: apps/crm/static/crm/js/views/common/CardUploadsView.js:72
+msgid "Could not upload the file"
+msgstr "Ошибка при загрузке файла"
+
+#: apps/crm/static/crm/js/views/common/CardUploadsView.js:107
+msgid "File deleted"
+msgstr "Файл удален"
+
+#: apps/crm/static/crm/js/views/common/FiltersFormView.js:119
+#: apps/crm/static/crm/js/views/companies/CompanyGridView.js:188
+#: apps/crm/static/crm/js/views/deals/DealGridView.js:157
+#: apps/crm/static/crm/js/views/intro/IntroImportStep2View.js:14
+#: apps/crm/static/crm/js/views/intro/IntroImportStep2View.js:20
+#: apps/crm/static/crm/js/views/modals/CompanyFormModalView.js:69
+#: apps/crm/static/crm/js/views/modals/DealFormModalView.js:95
+#: apps/crm/static/crm/js/views/modals/ImportContactsStep2ModalView.js:14
+#: apps/crm/static/crm/js/views/modals/ImportContactsStep2ModalView.js:20
+#: apps/crm/static/crm/js/views/modals/PeriodicTaskFormModalView.js:151
+#: apps/crm/static/crm/js/views/modals/PersonFormModalView.js:73
+#: apps/crm/static/crm/js/views/modals/TaskFormModalView.js:79
+#: apps/crm/static/crm/js/views/persons/PersonGridView.js:202
+#: apps/crm/static/crm/js/views/tasks/PeriodicTasksView.js:152
+#: apps/crm/static/crm/js/views/tasks/TaskGridView.js:158
+#: apps/crm/templates/crm/js_templates/companies_templates.html:281
+#: apps/crm/templates/crm/js_templates/deals_templates.html:521
+#: apps/crm/templates/crm/js_templates/persons_templates.html:279
+#: apps/crm/templates/crm/js_templates/settings_templates.html:28
+#: apps/crm/templates/crm/js_templates/settings_templates.html:362
+#: apps/crm/templates/crm/js_templates/tasks_templates.html:407
+msgid "Tags"
+msgstr "Теги"
+
+#: apps/crm/static/crm/js/views/common/FiltersFormView.js:123
+#: apps/crm/templates/crm/js_templates/companies_templates.html:287
+#: apps/crm/templates/crm/js_templates/deals_templates.html:527
+#: apps/crm/templates/crm/js_templates/persons_templates.html:285
+#: apps/crm/templates/crm/js_templates/tasks_templates.html:413
+msgid "No tags"
+msgstr "Без тегов"
+
+#: apps/crm/static/crm/js/views/common/FiltersFormView.js:133
+#: apps/crm/static/crm/js/views/companies/CompanyGridView.js:193
+#: apps/crm/static/crm/js/views/deals/DealGridView.js:162
+#: apps/crm/static/crm/js/views/intro/IntroImportStep2View.js:13
+#: apps/crm/static/crm/js/views/intro/IntroImportStep2View.js:19
+#: apps/crm/static/crm/js/views/modals/CompanyFormModalView.js:80
+#: apps/crm/static/crm/js/views/modals/DealFormModalView.js:106
+#: apps/crm/static/crm/js/views/modals/ImportContactsStep2ModalView.js:13
+#: apps/crm/static/crm/js/views/modals/ImportContactsStep2ModalView.js:19
+#: apps/crm/static/crm/js/views/modals/PeriodicTaskFormModalView.js:162
+#: apps/crm/static/crm/js/views/modals/PersonFormModalView.js:84
+#: apps/crm/static/crm/js/views/modals/TaskFormModalView.js:90
+#: apps/crm/static/crm/js/views/persons/PersonGridView.js:207
+#: apps/crm/static/crm/js/views/tasks/PeriodicTasksView.js:157
+#: apps/crm/static/crm/js/views/tasks/TaskGridView.js:163
+#: apps/crm/templates/crm/js_templates/companies_templates.html:295
+#: apps/crm/templates/crm/js_templates/deals_templates.html:535
+#: apps/crm/templates/crm/js_templates/persons_templates.html:293
+#: apps/crm/templates/crm/js_templates/tasks_templates.html:421
+msgid "Assignees"
+msgstr "Ответственные"
+
+#: apps/crm/static/crm/js/views/common/FiltersFormView.js:137
+#: apps/crm/templates/crm/js_templates/companies_templates.html:301
+#: apps/crm/templates/crm/js_templates/deals_templates.html:541
+#: apps/crm/templates/crm/js_templates/persons_templates.html:299
+#: apps/crm/templates/crm/js_templates/tasks_templates.html:427
+msgid "No assignees"
+msgstr "Без ответственных"
+
+#: apps/crm/static/crm/js/views/common/FiltersFormView.js:147
+#: apps/crm/static/crm/js/views/companies/CompanyGridView.js:204
+#: apps/crm/static/crm/js/views/deals/DealGridView.js:173
+#: apps/crm/static/crm/js/views/persons/PersonGridView.js:218
+#: apps/crm/static/crm/js/views/tasks/TaskGridView.js:174
+#: apps/crm/templates/crm/js_templates/companies_templates.html:308
+#: apps/crm/templates/crm/js_templates/deals_templates.html:548
+#: apps/crm/templates/crm/js_templates/persons_templates.html:306
+#: apps/crm/templates/crm/js_templates/tasks_templates.html:434
+msgid "Created by"
+msgstr "Создатель"
+
+#: apps/crm/static/crm/js/views/common/FiltersFormView.js:158
+#: apps/crm/static/crm/js/views/companies/CompanyGridView.js:210
+#: apps/crm/static/crm/js/views/deals/DealGridView.js:179
+#: apps/crm/static/crm/js/views/persons/PersonGridView.js:224
+#: apps/crm/static/crm/js/views/tasks/TaskGridView.js:180
+#: apps/crm/templates/crm/js_templates/companies_templates.html:312
+#: apps/crm/templates/crm/js_templates/deals_templates.html:552
+#: apps/crm/templates/crm/js_templates/persons_templates.html:310
+#: apps/crm/templates/crm/js_templates/tasks_templates.html:438
+msgid "Date created"
+msgstr "Дата создания"
+
+#: apps/crm/static/crm/js/views/companies/CompanyCardLayoutView.js:38
+#: apps/crm/static/crm/js/views/companies/CompanyGridView.js:38
+#: apps/crm/templates/crm/js_templates/dashboard_templates.html:145
+#: apps/crm/templates/crm/js_templates/modals_templates.html:10
+#: apps/crm/templates/crm/js_templates/settings_templates.html:170
+#: apps/crm/templates/crm/js_templates/settings_templates.html:203
+#: apps/crm/templates/crm/js_templates/settings_templates.html:402
+msgid "company"
+msgid_plural "companies"
+msgstr[0] "компания"
+msgstr[1] "компании"
+msgstr[2] "компаний"
+msgstr[3] "компании"
+
+#: apps/crm/static/crm/js/views/companies/CompanyFiltersFormView.js:9
+#: apps/crm/static/crm/js/views/dashboard/DashboardLayoutView.js:27
+#: apps/crm/templates/crm/js_templates/companies_templates.html:11
+#: apps/crm/templates/crm/js_templates/modals_templates.html:697
+#: apps/crm/templates/crm/js_templates/settings_templates.html:22
+#: apps/crm/templates/crm/js_templates/settings_templates.html:434
+#: apps/crm/templates/crm/js_templates/settings_templates.html:444
+msgid "Companies"
+msgstr "Компаний"
+
+#: apps/crm/static/crm/js/views/companies/CompanyFiltersFormView.js:13
+#: apps/crm/static/crm/js/views/persons/PersonFiltersFormView.js:13
+msgid "With open deals"
+msgstr "С открытыми сделками"
+
+#: apps/crm/static/crm/js/views/companies/CompanyFiltersFormView.js:14
+#: apps/crm/static/crm/js/views/persons/PersonFiltersFormView.js:14
+msgid "No open deals"
+msgstr "Без открытых сделок"
+
+#: apps/crm/static/crm/js/views/companies/CompanyFiltersFormView.js:15
+#: apps/crm/static/crm/js/views/persons/PersonFiltersFormView.js:15
+msgid "With active tasks"
+msgstr "С активными задачами"
+
+#: apps/crm/static/crm/js/views/companies/CompanyFiltersFormView.js:16
+#: apps/crm/static/crm/js/views/persons/PersonFiltersFormView.js:16
+msgid "No active tasks"
+msgstr "Без активных задач"
+
+#: apps/crm/static/crm/js/views/companies/CompanyFiltersFormView.js:17
+msgid "With the same name"
+msgstr "С одинаковым названием"
+
+#: apps/crm/static/crm/js/views/companies/CompanyGridView.js:63
+#: apps/crm/static/crm/js/views/companies/CompanyGridView.js:74
+#: apps/crm/static/crm/js/views/intro/IntroImportStep2View.js:36
+#: apps/crm/static/crm/js/views/modals/ImportContactsStep2ModalView.js:36
+msgid "companies"
+msgstr "компании"
+
+#: apps/crm/static/crm/js/views/companies/CompanyGridView.js:125
+#: apps/crm/static/crm/js/views/intro/IntroLayoutView.js:102
+#: apps/crm/static/crm/js/views/persons/PersonGridView.js:130
+msgid "Contact import completed successfully"
+msgstr "Импорт контактов успешно завершен"
+
+#: apps/crm/static/crm/js/views/companies/CompanyGridView.js:133
+#: apps/crm/static/crm/js/views/intro/IntroImportStep2View.js:197
+#: apps/crm/static/crm/js/views/intro/IntroLayoutView.js:112
+#: apps/crm/static/crm/js/views/modals/ImportContactsStep2ModalView.js:231
+#: apps/crm/static/crm/js/views/persons/PersonGridView.js:138
+msgid "Import error"
+msgstr "Ошибка импорта"
+
+#: apps/crm/static/crm/js/views/companies/CompanyGridView.js:166
+#: apps/crm/static/crm/js/views/intro/IntroImportStep1View.js:7
+#: apps/crm/static/crm/js/views/intro/IntroImportStep2View.js:11
+#: apps/crm/static/crm/js/views/modals/CompanyFormModalView.js:31
+#: apps/crm/static/crm/js/views/modals/ImportContactsStep1ModalView.js:9
+#: apps/crm/static/crm/js/views/modals/ImportContactsStep2ModalView.js:11
+#: apps/crm/templates/crm/js_templates/companies_templates.html:242
+#: apps/crm/templates/crm/js_templates/deals_templates.html:470
+#: apps/crm/templates/crm/js_templates/settings_templates.html:517
+#: apps/crm/templates/crm/js_templates/tasks_templates.html:365
+msgid "Address"
+msgstr "Адрес"
+
+#: apps/crm/static/crm/js/views/companies/CompanyGridView.js:172
+#: apps/crm/static/crm/js/views/intro/IntroImportStep1View.js:8
+#: apps/crm/static/crm/js/views/intro/IntroImportStep2View.js:12
+#: apps/crm/static/crm/js/views/modals/CompanyFormModalView.js:38
+#: apps/crm/static/crm/js/views/modals/ImportContactsStep1ModalView.js:10
+#: apps/crm/static/crm/js/views/modals/ImportContactsStep2ModalView.js:12
+#: apps/crm/templates/crm/js_templates/companies_templates.html:246
+#: apps/crm/templates/crm/js_templates/deals_templates.html:474
+#: apps/crm/templates/crm/js_templates/settings_templates.html:529
+#: apps/crm/templates/crm/js_templates/tasks_templates.html:369
+msgid "Website"
+msgstr "Сайт"
+
+#: apps/crm/static/crm/js/views/companies/CompanyGridView.js:178
+#: apps/crm/static/crm/js/views/intro/IntroImportStep1View.js:9
+#: apps/crm/static/crm/js/views/intro/IntroImportStep1View.js:15
+#: apps/crm/static/crm/js/views/intro/IntroImportStep2View.js:23
+#: apps/crm/static/crm/js/views/modals/CompanyFormModalView.js:45
+#: apps/crm/static/crm/js/views/modals/ExtraFieldFormModalView.js:39
+#: apps/crm/static/crm/js/views/modals/ImportContactsStep1ModalView.js:11
+#: apps/crm/static/crm/js/views/modals/ImportContactsStep1ModalView.js:17
+#: apps/crm/static/crm/js/views/modals/ImportContactsStep2ModalView.js:23
+#: apps/crm/static/crm/js/views/modals/PersonFormModalView.js:49
+#: apps/crm/static/crm/js/views/persons/PersonGridView.js:192
+#: apps/crm/templates/crm/js_templates/companies_templates.html:252
+#: apps/crm/templates/crm/js_templates/deals_templates.html:447
+#: apps/crm/templates/crm/js_templates/deals_templates.html:480
+#: apps/crm/templates/crm/js_templates/persons_templates.html:253
+#: apps/crm/templates/crm/js_templates/settings_templates.html:541
+#: apps/crm/templates/crm/js_templates/settings_templates.html:662
+#: apps/crm/templates/crm/js_templates/tasks_templates.html:341
+#: apps/crm/templates/crm/js_templates/tasks_templates.html:375
+msgid "Phone"
+msgstr "Телефон"
+
+#: apps/crm/static/crm/js/views/companies/CompanyGridView.js:183
+#: apps/crm/static/crm/js/views/intro/IntroImportStep1View.js:10
+#: apps/crm/static/crm/js/views/intro/IntroImportStep1View.js:16
+#: apps/crm/static/crm/js/views/intro/IntroImportStep2View.js:24
+#: apps/crm/static/crm/js/views/intro/IntroProfileStepView.js:16
+#: apps/crm/static/crm/js/views/intro/IntroUsersStepView.js:15
+#: apps/crm/static/crm/js/views/intro/IntroUsersStepView.js:23
+#: apps/crm/static/crm/js/views/intro/IntroUsersStepView.js:31
+#: apps/crm/static/crm/js/views/intro/IntroUsersStepView.js:56
+#: apps/crm/static/crm/js/views/modals/CompanyFormModalView.js:54
+#: apps/crm/static/crm/js/views/modals/ExtraFieldFormModalView.js:40
+#: apps/crm/static/crm/js/views/modals/ImportContactsStep1ModalView.js:12
+#: apps/crm/static/crm/js/views/modals/ImportContactsStep1ModalView.js:18
+#: apps/crm/static/crm/js/views/modals/ImportContactsStep2ModalView.js:24
+#: apps/crm/static/crm/js/views/modals/PersonFormModalView.js:58
+#: apps/crm/static/crm/js/views/persons/PersonGridView.js:197
+#: apps/crm/templates/crm/js_templates/companies_templates.html:262
+#: apps/crm/templates/crm/js_templates/deals_templates.html:456
+#: apps/crm/templates/crm/js_templates/deals_templates.html:489
+#: apps/crm/templates/crm/js_templates/persons_templates.html:262
+#: apps/crm/templates/crm/js_templates/settings_templates.html:46
+#: apps/crm/templates/crm/js_templates/settings_templates.html:305
+#: apps/crm/templates/crm/js_templates/settings_templates.html:553
+#: apps/crm/templates/crm/js_templates/settings_templates.html:674
+#: apps/crm/templates/crm/js_templates/tasks_templates.html:350
+#: apps/crm/templates/crm/js_templates/tasks_templates.html:384
+msgid "Email address"
+msgstr "Электронная почта"
+
+#: apps/crm/static/crm/js/views/companies/CompanyGridView.js:198
+#: apps/crm/static/crm/js/views/intro/IntroImportStep2View.js:25
+#: apps/crm/static/crm/js/views/modals/CompanyFormModalView.js:90
+#: apps/crm/static/crm/js/views/modals/ImportContactsStep2ModalView.js:25
+#: apps/crm/static/crm/js/views/modals/PersonFormModalView.js:94
+#: apps/crm/static/crm/js/views/persons/PersonGridView.js:212
+#: apps/crm/templates/crm/js_templates/companies_templates.html:276
+#: apps/crm/templates/crm/js_templates/persons_templates.html:274
+#: apps/crm/templates/crm/js_templates/settings_templates.html:565
+#: apps/crm/templates/crm/js_templates/settings_templates.html:686
+msgid "Additional information"
+msgstr "Доп. информация"
+
+#: apps/crm/static/crm/js/views/dashboard/DashboardLayoutView.js:28
+#: apps/crm/static/crm/js/views/persons/PersonFiltersFormView.js:9
+#: apps/crm/templates/crm/js_templates/dashboard_templates.html:36
+#: apps/crm/templates/crm/js_templates/modals_templates.html:726
+#: apps/crm/templates/crm/js_templates/persons_templates.html:11
+#: apps/crm/templates/crm/js_templates/settings_templates.html:23
+#: apps/crm/templates/crm/js_templates/settings_templates.html:434
+#: apps/crm/templates/crm/js_templates/settings_templates.html:445
+msgid "Persons"
+msgstr "Контактные лица"
+
+#: apps/crm/static/crm/js/views/dashboard/DashboardLayoutView.js:29
+#: apps/crm/templates/crm/js_templates/dashboard_templates.html:84
+#: apps/crm/templates/crm/js_templates/modals_templates.html:784
+#: apps/crm/templates/crm/js_templates/settings_templates.html:25
+#: apps/crm/templates/crm/js_templates/tasks_templates.html:11
+msgid "Tasks"
+msgstr "Задачи"
+
+#: apps/crm/static/crm/js/views/dashboard/DashboardLayoutView.js:30
+#: apps/crm/templates/crm/js_templates/dashboard_templates.html:56
+#: apps/crm/templates/crm/js_templates/deals_templates.html:12
+#: apps/crm/templates/crm/js_templates/modals_templates.html:755
+#: apps/crm/templates/crm/js_templates/settings_templates.html:24
+msgid "Deals"
+msgstr "Сделки"
+
+#: apps/crm/static/crm/js/views/dashboard/DashboardLayoutView.js:31
+#: apps/crm/templates/crm/js_templates/modals_templates.html:809
+msgid "Notes"
+msgstr "Заметки"
+
+#: apps/crm/static/crm/js/views/dashboard/DashboardLayoutView.js:32
+#: apps/crm/templates/crm/js_templates/modals_templates.html:826
+msgid "Files"
+msgstr "Файлы"
+
+#: apps/crm/static/crm/js/views/deals/DealBoardView.js:15
+#: apps/crm/static/crm/js/views/deals/DealBoardView.js:16
+#: apps/crm/static/crm/js/views/deals/DealCardLayoutView.js:32
+#: apps/crm/static/crm/js/views/deals/DealFunnelView.js:12
+#: apps/crm/static/crm/js/views/deals/DealFunnelView.js:75
+#: apps/crm/static/crm/js/views/deals/DealGridView.js:31
+#: apps/crm/templates/crm/js_templates/dashboard_templates.html:71
+#: apps/crm/templates/crm/js_templates/dashboard_templates.html:151
+#: apps/crm/templates/crm/js_templates/deals_templates.html:305
+#: apps/crm/templates/crm/js_templates/modals_templates.html:104
+#: apps/crm/templates/crm/js_templates/settings_templates.html:178
+#: apps/crm/templates/crm/js_templates/settings_templates.html:211
+#: apps/crm/templates/crm/js_templates/settings_templates.html:404
+msgid "deal"
+msgid_plural "deals"
+msgstr[0] "сделка"
+msgstr[1] "сделки"
+msgstr[2] "сделок"
+msgstr[3] "сделки"
+
+#: apps/crm/static/crm/js/views/deals/DealBoardView.js:94
+#: apps/crm/static/crm/js/views/deals/DealBoardView.js:99
+msgid "Stage <b>"
+msgstr "Этап <b>"
+
+#: apps/crm/static/crm/js/views/deals/DealBoardView.js:94
+msgid "</b> completed. The deal was completed successfully."
+msgstr "</b>  завершен. Сделка успешно завершена."
+
+#: apps/crm/static/crm/js/views/deals/DealBoardView.js:99
+msgid "</b> completed"
+msgstr "</b>  завершен"
+
+#: apps/crm/static/crm/js/views/deals/DealBoardView.js:102
+#: apps/crm/static/crm/js/views/deals/DealBoardView.js:118
+#: apps/crm/static/crm/js/views/deals/DealCardLayoutView.js:104
+#: apps/crm/static/crm/js/views/deals/DealCardLayoutView.js:121
+msgid "Could not complete the stage"
+msgstr "Ошибка при завершении этапа"
+
+#: apps/crm/static/crm/js/views/deals/DealBoardView.js:115
+msgid "Deal lost at stage <b>"
+msgstr "Сделка не реализована. Отказ на этапе <b>"
+
+#: apps/crm/static/crm/js/views/deals/DealFiltersFormView.js:9
+#: apps/crm/static/crm/js/views/deals/DealGridView.js:145
+#: apps/crm/static/crm/js/views/modals/DealFormModalView.js:70
+#: apps/crm/static/crm/js/views/tasks/TaskFiltersFormView.js:9
+#: apps/crm/static/crm/js/views/tasks/TaskGridView.js:152
+#: apps/crm/templates/crm/js_templates/deals_templates.html:397
+#: apps/crm/templates/crm/js_templates/tasks_templates.html:313
+msgid "Status"
+msgstr "Статус"
+
+#: apps/crm/static/crm/js/views/deals/DealFiltersFormView.js:12
+msgid "All deals"
+msgstr "Все сделки"
+
+#: apps/crm/static/crm/js/views/deals/DealFiltersFormView.js:13
+msgid "Open"
+msgstr "Открытые"
+
+#: apps/crm/static/crm/js/views/deals/DealFiltersFormView.js:14
+msgid "Closed"
+msgstr "Закрытые"
+
+#: apps/crm/static/crm/js/views/deals/DealFiltersFormView.js:24
+#: apps/crm/static/crm/js/views/deals/DealGridView.js:151
+#: apps/crm/static/crm/js/views/modals/DealFormModalView.js:82
+#: apps/crm/templates/crm/js_templates/deals_templates.html:249
+#: apps/crm/templates/crm/js_templates/deals_templates.html:403
+#: apps/crm/templates/crm/js_templates/settings_templates.html:799
+msgid "Stage"
+msgstr "Этап"
+
+#: apps/crm/static/crm/js/views/deals/DealFiltersFormView.js:36
+#: apps/crm/static/crm/js/views/deals/DealGridView.js:139
+#: apps/crm/static/crm/js/views/modals/DealFormModalView.js:54
+#: apps/crm/templates/crm/js_templates/deals_templates.html:393
+#: apps/crm/templates/crm/js_templates/settings_templates.html:771
+msgid "Budget"
+msgstr "Бюджет"
+
+#: apps/crm/static/crm/js/views/deals/DealFiltersFormView.js:44
+#: apps/crm/static/crm/js/views/modals/DealFormModalView.js:62
+#: apps/crm/templates/crm/js_templates/settings_templates.html:783
+msgid "Currency"
+msgstr "Валюта"
+
+#: apps/crm/static/crm/js/views/deals/DealFunnelView.js:75
+#: apps/crm/static/crm/js/views/deals/DealGridView.js:49
+#: apps/crm/static/crm/js/views/deals/DealGridView.js:60
+msgid "deals"
+msgstr "сделки"
+
+#: apps/crm/static/crm/js/views/deals/DealGridView.js:127
+#: apps/crm/static/crm/js/views/modals/DealFormModalView.js:29
+#: apps/crm/static/crm/js/views/modals/PeriodicTaskFormModalView.js:31
+#: apps/crm/static/crm/js/views/modals/PersonFormModalView.js:30
+#: apps/crm/static/crm/js/views/modals/TaskFormModalView.js:30
+#: apps/crm/static/crm/js/views/persons/PersonGridView.js:180
+#: apps/crm/static/crm/js/views/tasks/PeriodicTasksView.js:122
+#: apps/crm/static/crm/js/views/tasks/TaskGridView.js:128
+#: apps/crm/templates/crm/js_templates/deals_templates.html:437
+#: apps/crm/templates/crm/js_templates/persons_templates.html:243
+#: apps/crm/templates/crm/js_templates/tasks_templates.html:331
+msgid "Company"
+msgstr "Компания"
+
+#: apps/crm/static/crm/js/views/deals/DealGridView.js:133
+#: apps/crm/static/crm/js/views/modals/DealFormModalView.js:41
+#: apps/crm/static/crm/js/views/modals/PeriodicTaskFormModalView.js:43
+#: apps/crm/static/crm/js/views/modals/TaskFormModalView.js:42
+#: apps/crm/static/crm/js/views/tasks/PeriodicTasksView.js:128
+#: apps/crm/static/crm/js/views/tasks/TaskGridView.js:134
+msgid "Person"
+msgstr "Контактное лицо"
+
+#: apps/crm/static/crm/js/views/deals/DealGridView.js:167
+#: apps/crm/static/crm/js/views/modals/DealFormModalView.js:116
+#: apps/crm/templates/crm/js_templates/deals_templates.html:389
+#: apps/crm/templates/crm/js_templates/settings_templates.html:815
+msgid "Deal description"
+msgstr "Описание сделки"
+
+#: apps/crm/static/crm/js/views/intro/IntroImportStep1View.js:6
+#: apps/crm/static/crm/js/views/intro/IntroImportStep2View.js:10
+#: apps/crm/static/crm/js/views/modals/ImportContactsStep1ModalView.js:8
+#: apps/crm/static/crm/js/views/modals/ImportContactsStep2ModalView.js:10
+#: apps/crm/templates/crm/js_templates/intro_templates.html:174
+#: apps/crm/templates/crm/js_templates/modals_templates.html:516
+msgid "Company name"
+msgstr "Название компании"
+
+#: apps/crm/static/crm/js/views/intro/IntroImportStep1View.js:14
+#: apps/crm/static/crm/js/views/intro/IntroImportStep2View.js:17
+#: apps/crm/static/crm/js/views/modals/GridConfigModalView.js:11
+#: apps/crm/static/crm/js/views/modals/ImportContactsStep1ModalView.js:16
+#: apps/crm/static/crm/js/views/modals/ImportContactsStep2ModalView.js:17
+#: apps/crm/static/crm/js/views/modals/PersonFormModalView.js:23
+#: apps/crm/templates/crm/js_templates/intro_templates.html:174
+#: apps/crm/templates/crm/js_templates/modals_templates.html:516
+#: apps/crm/templates/crm/js_templates/persons_templates.html:103
+#: apps/crm/templates/crm/js_templates/settings_templates.html:638
+msgid "Full name"
+msgstr "ФИО"
+
+#: apps/crm/static/crm/js/views/intro/IntroImportStep1View.js:107
+#: apps/crm/static/crm/js/views/modals/ImportContactsStep1ModalView.js:89
+msgid "File processed"
+msgstr "Файл обработан"
+
+#: apps/crm/static/crm/js/views/intro/IntroImportStep1View.js:112
+#: apps/crm/static/crm/js/views/modals/ImportContactsStep1ModalView.js:94
+msgid "Import failed. Please try again or contact support."
+msgstr "Ошибка импорта. Попробуйте еще раз или обратитесь в техподдержку"
+
+#: apps/crm/static/crm/js/views/intro/IntroImportStep2View.js:18
+#: apps/crm/static/crm/js/views/modals/ImportContactsStep2ModalView.js:18
+#: apps/crm/static/crm/js/views/modals/PersonFormModalView.js:42
+#: apps/crm/static/crm/js/views/persons/PersonGridView.js:186
+#: apps/crm/templates/crm/js_templates/deals_templates.html:443
+#: apps/crm/templates/crm/js_templates/persons_templates.html:249
+#: apps/crm/templates/crm/js_templates/settings_templates.html:650
+#: apps/crm/templates/crm/js_templates/tasks_templates.html:337
+msgid "Job title"
+msgstr "Должность"
+
+#: apps/crm/static/crm/js/views/intro/IntroImportStep2View.js:37
+#: apps/crm/static/crm/js/views/modals/ImportContactsStep2ModalView.js:37
+#: apps/crm/static/crm/js/views/persons/PersonGridView.js:41
+#: apps/crm/static/crm/js/views/persons/PersonGridView.js:66
+#: apps/crm/static/crm/js/views/persons/PersonGridView.js:77
+msgid "contacts"
+msgstr "контактные лица"
+
+#: apps/crm/static/crm/js/views/intro/IntroImportStep2View.js:142
+#: apps/crm/static/crm/js/views/modals/ExtraFieldFormModalView.js:104
+#: apps/crm/static/crm/js/views/modals/ImportContactsStep2ModalView.js:136
+#: apps/crm/static/crm/js/views/modals/ImportContactsStep2ModalView.js:154
+#: apps/crm/static/crm/js/views/modals/ImportContactsStep2ModalView.js:179
+msgid "New field added"
+msgstr "Новое поле добавлено"
+
+#: apps/crm/static/crm/js/views/intro/IntroImportStep2View.js:149
+msgid "Could not add the field. Please try again or contact support."
+msgstr "Ошибка при добавлении поля. Попробуйте еще раз или обратитесь в техподдержку."
+
+#: apps/crm/static/crm/js/views/intro/IntroImportStep2View.js:176
+#: apps/crm/static/crm/js/views/modals/ImportContactsStep2ModalView.js:210
+msgid "None of the required fields is selected. Please specify which column in the file "
+msgstr "Не выбрано ни одного из обязательных полей. Пожалуйста, укажите какая из колонок в файле "
+
+#: apps/crm/static/crm/js/views/intro/IntroImportStep2View.js:177
+#: apps/crm/static/crm/js/views/modals/ImportContactsStep2ModalView.js:211
+msgid "matches the company name or contact full name."
+msgstr "соответствует названию компании или ФИО контактного лица."
+
+#: apps/crm/static/crm/js/views/intro/IntroImportStep2View.js:192
+#: apps/crm/static/crm/js/views/modals/ImportContactsStep2ModalView.js:226
+msgid "Contact import started. You will receive a notification when it is complete."
+msgstr "Импорт контактов запущен. По завершении процесса вам придет уведомление."
+
+#: apps/crm/static/crm/js/views/intro/IntroLayoutView.js:25
+msgid "Create account"
+msgstr "Создание аккаунта"
+
+#: apps/crm/static/crm/js/views/intro/IntroLayoutView.js:30
+msgid "Complete profile"
+msgstr "Заполнение профиля"
+
+#: apps/crm/static/crm/js/views/intro/IntroLayoutView.js:35
+#: apps/crm/templates/crm/js_templates/settings_templates.html:292
+msgid "Invite users"
+msgstr "Пригласить пользователей"
+
+#: apps/crm/static/crm/js/views/intro/IntroLayoutView.js:40
+#: apps/crm/templates/crm/js_templates/companies_templates.html:58
+#: apps/crm/templates/crm/js_templates/modals_templates.html:400
+#: apps/crm/templates/crm/js_templates/persons_templates.html:59
+#: apps/crm/templates/crm/js_templates/settings_templates.html:29
+#: apps/crm/templates/crm/js_templates/settings_templates.html:427
+msgid "Import contacts"
+msgstr "Импорт контактов"
+
+#: apps/crm/static/crm/js/views/intro/IntroProfileStepView.js:23
+#: apps/crm/templates/crm/js_templates/settings_templates.html:54
+msgid "First name"
+msgstr "Имя"
+
+#: apps/crm/static/crm/js/views/intro/IntroProfileStepView.js:30
+#: apps/crm/templates/crm/js_templates/settings_templates.html:63
+msgid "Last name"
+msgstr "Фамилия"
+
+#: apps/crm/static/crm/js/views/intro/IntroProfileStepView.js:37
+#: apps/crm/templates/crm/js_templates/settings_templates.html:72
+msgid "Time zone"
+msgstr "Часовой пояс"
+
+#: apps/crm/static/crm/js/views/intro/IntroProfileStepView.js:45
+#: apps/crm/templates/crm/js_templates/settings_templates.html:82
+msgid "Interface language"
+msgstr "Язык интерфейса"
+
+#: apps/crm/static/crm/js/views/intro/IntroProfileStepView.js:82
+#: apps/crm/static/crm/js/views/settings/SettingsProfileLayoutView.js:64
+msgid "Profile saved"
+msgstr "Профиль сохранен"
+
+#: apps/crm/static/crm/js/views/intro/IntroProfileStepView.js:92
+#: apps/crm/static/crm/js/views/modals/PeriodicTaskFormModalView.js:243
+#: apps/crm/static/crm/js/views/modals/TaskFormModalView.js:202
+#: apps/crm/static/crm/js/views/modals/TaskFormModalView.js:220
+msgid "Could not save the task. Please try again or contact support."
+msgstr "Ошибка при сохранении задачи. Попробуйте еще раз или обратитесь в техподдержку."
+
+#: apps/crm/static/crm/js/views/intro/IntroUsersStepView.js:93
+msgid "Enter at least one email address"
+msgstr "Укажитие хотя бы одну почту"
+
+#: apps/crm/static/crm/js/views/intro/IntroUsersStepView.js:107
+msgid "User invitations sent"
+msgstr "Приглашения пользователям отправлены"
+
+#: apps/crm/static/crm/js/views/intro/IntroUsersStepView.js:113
+msgid "Could not send invitations. Please try again or contact support."
+msgstr "Ошибка при отправлении приглашений. Попробуйте еще раз или обратитесь в техподдержку."
+
+#: apps/crm/static/crm/js/views/modals/CompanyFormModalView.js:24
+#: apps/crm/static/crm/js/views/modals/DealFormModalView.js:22
+#: apps/crm/static/crm/js/views/modals/ExtraFieldFormModalView.js:22
+#: apps/crm/static/crm/js/views/modals/GridConfigModalView.js:11
+#: apps/crm/static/crm/js/views/modals/PeriodicTaskFormModalView.js:24
+#: apps/crm/static/crm/js/views/modals/TaskFormModalView.js:23
+#: apps/crm/templates/crm/js_templates/companies_templates.html:102
+#: apps/crm/templates/crm/js_templates/deals_templates.html:129
+#: apps/crm/templates/crm/js_templates/settings_templates.html:306
+#: apps/crm/templates/crm/js_templates/settings_templates.html:443
+#: apps/crm/templates/crm/js_templates/settings_templates.html:505
+#: apps/crm/templates/crm/js_templates/settings_templates.html:759
+#: apps/crm/templates/crm/js_templates/settings_templates.html:890
+#: apps/crm/templates/crm/js_templates/tasks_templates.html:116
+#: apps/crm/templates/crm/js_templates/tasks_templates.html:494
+msgid "Name"
+msgstr "Название"
+
+#: apps/crm/static/crm/js/views/modals/CompanyFormModalView.js:70
+#: apps/crm/static/crm/js/views/modals/DealFormModalView.js:96
+#: apps/crm/static/crm/js/views/modals/PeriodicTaskFormModalView.js:152
+#: apps/crm/static/crm/js/views/modals/PersonFormModalView.js:74
+#: apps/crm/static/crm/js/views/modals/TaskFormModalView.js:80
+msgid "Select tags"
+msgstr "Укажите теги"
+
+#: apps/crm/static/crm/js/views/modals/CompanyFormModalView.js:81
+#: apps/crm/static/crm/js/views/modals/DealFormModalView.js:107
+#: apps/crm/static/crm/js/views/modals/PeriodicTaskFormModalView.js:163
+#: apps/crm/static/crm/js/views/modals/PersonFormModalView.js:85
+#: apps/crm/static/crm/js/views/modals/TaskFormModalView.js:91
+msgid "Select assignees"
+msgstr "Выберите ответственных"
+
+#: apps/crm/static/crm/js/views/modals/CompanyFormModalView.js:131
+#: apps/crm/static/crm/js/views/modals/DealFormModalView.js:199
+#: apps/crm/static/crm/js/views/modals/ExtraFieldFormModalView.js:104
+#: apps/crm/static/crm/js/views/modals/PeriodicTaskFormModalView.js:237
+#: apps/crm/static/crm/js/views/modals/PersonFormModalView.js:135
+#: apps/crm/static/crm/js/views/modals/TaskFormModalView.js:196
+#: apps/crm/static/crm/js/views/modals/TaskFormModalView.js:214
+#: apps/crm/static/crm/js/views/settings/SettingsCompanyFieldsLayoutView.js:93
+#: apps/crm/static/crm/js/views/settings/SettingsDealFieldsLayoutView.js:101
+#: apps/crm/static/crm/js/views/settings/SettingsPersonFieldsLayoutView.js:93
+#: apps/crm/static/crm/js/views/settings/SettingsTaskFieldsLayoutView.js:93
+msgid "Changes saved"
+msgstr "Изменения сохранены"
+
+#: apps/crm/static/crm/js/views/modals/CompanyFormModalView.js:131
+msgid "New company added"
+msgstr "Новая компания добавлена"
+
+#: apps/crm/static/crm/js/views/modals/CompanyFormModalView.js:137
+msgid "Could not save the company. Please try again or contact support."
+msgstr "Ошибка при сохранении компании. Попробуйте еще раз или обратитесь в техподдержку."
+
+#: apps/crm/static/crm/js/views/modals/DealCurrenciesModalView.js:35
+msgid "Select a new currency"
+msgstr "Выберите новую валюту"
+
+#: apps/crm/static/crm/js/views/modals/DealCurrenciesModalView.js:53
+msgid "Currency added"
+msgstr "Валюта добавлена"
+
+#: apps/crm/static/crm/js/views/modals/DealCurrenciesModalView.js:56
+msgid "Could not create the currency"
+msgstr "Ошибка при создании валюты"
+
+#: apps/crm/static/crm/js/views/modals/DealCurrenciesModalView.js:67
+msgid "Currency deleted"
+msgstr "Валюта удалена"
+
+#: apps/crm/static/crm/js/views/modals/DealCurrenciesModalView.js:70
+msgid "Could not delete the currency"
+msgstr "Ошибка при удалении валюты"
+
+#: apps/crm/static/crm/js/views/modals/DealFormModalView.js:30
+#: apps/crm/static/crm/js/views/modals/PeriodicTaskFormModalView.js:32
+#: apps/crm/static/crm/js/views/modals/PersonFormModalView.js:31
+#: apps/crm/static/crm/js/views/modals/TaskFormModalView.js:31
+msgid "Select a company"
+msgstr "Выберите компанию"
+
+#: apps/crm/static/crm/js/views/modals/DealFormModalView.js:42
+#: apps/crm/static/crm/js/views/modals/PeriodicTaskFormModalView.js:44
+#: apps/crm/static/crm/js/views/modals/TaskFormModalView.js:43
+msgid "Select a contact"
+msgstr "Выберите контактное лицо"
+
+#: apps/crm/static/crm/js/views/modals/DealFormModalView.js:73
+#: apps/crm/templates/crm/js_templates/modals_templates.html:875
+msgid "In progress"
+msgstr "В работе"
+
+#: apps/crm/static/crm/js/views/modals/DealFormModalView.js:74
+#: apps/crm/templates/crm/js_templates/modals_templates.html:916
+msgid "Successfully completed"
+msgstr "Успешно завершена"
+
+#: apps/crm/static/crm/js/views/modals/DealFormModalView.js:75
+#: apps/crm/templates/crm/js_templates/deals_templates.html:334
+#: apps/crm/templates/crm/js_templates/modals_templates.html:919
+msgid "Lost"
+msgstr "Не реализована"
+
+#: apps/crm/static/crm/js/views/modals/DealFormModalView.js:199
+msgid "New deal added"
+msgstr "Новая сделка добавлена"
+
+#: apps/crm/static/crm/js/views/modals/DealFormModalView.js:205
+msgid "Could not save the deal. Please try again or contact support."
+msgstr "Ошибка при сохранении сделки. Попробуйте еще раз или обратитесь в техподдержку."
+
+#: apps/crm/static/crm/js/views/modals/DealStagesModalView.js:34
+msgid "Enter a stage name"
+msgstr "Укажите название этапа"
+
+#: apps/crm/static/crm/js/views/modals/DealStagesModalView.js:52
+msgid "Stage created"
+msgstr "Этап создан"
+
+#: apps/crm/static/crm/js/views/modals/DealStagesModalView.js:55
+msgid "Could not create the stage"
+msgstr "Ошибка при создании этапа"
+
+#: apps/crm/static/crm/js/views/modals/DealStagesModalView.js:66
+msgid "Stage deleted"
+msgstr "Этап удален"
+
+#: apps/crm/static/crm/js/views/modals/DealStagesModalView.js:69
+msgid "Could not delete the stage"
+msgstr "Ошибка при удалении этапа"
+
+#: apps/crm/static/crm/js/views/modals/ExtraFieldFormModalView.js:30
+msgid "Field type"
+msgstr "Тип поля"
+
+#: apps/crm/static/crm/js/views/modals/ExtraFieldFormModalView.js:33
+#: apps/crm/templates/crm/js_templates/settings_templates.html:506
+#: apps/crm/templates/crm/js_templates/settings_templates.html:518
+#: apps/crm/templates/crm/js_templates/settings_templates.html:530
+#: apps/crm/templates/crm/js_templates/settings_templates.html:639
+#: apps/crm/templates/crm/js_templates/settings_templates.html:651
+#: apps/crm/templates/crm/js_templates/settings_templates.html:760
+#: apps/crm/templates/crm/js_templates/settings_templates.html:891
+msgid "String"
+msgstr "Строка"
+
+#: apps/crm/static/crm/js/views/modals/ExtraFieldFormModalView.js:34
+#: apps/crm/templates/crm/js_templates/settings_templates.html:566
+#: apps/crm/templates/crm/js_templates/settings_templates.html:687
+#: apps/crm/templates/crm/js_templates/settings_templates.html:816
+#: apps/crm/templates/crm/js_templates/settings_templates.html:915
+msgid "Text"
+msgstr "Текст"
+
+#: apps/crm/static/crm/js/views/modals/ExtraFieldFormModalView.js:35
+#: apps/crm/static/crm/js/views/modals/PeriodicTaskFormModalView.js:133
+#: apps/crm/templates/crm/js_templates/settings_templates.html:772
+msgid "Number"
+msgstr "Число"
+
+#: apps/crm/static/crm/js/views/modals/ExtraFieldFormModalView.js:36
+msgid "Date"
+msgstr "Дата"
+
+#: apps/crm/static/crm/js/views/modals/ExtraFieldFormModalView.js:37
+#: apps/crm/templates/crm/js_templates/settings_templates.html:903
+msgid "Date and time"
+msgstr "Дата и время"
+
+#: apps/crm/static/crm/js/views/modals/ExtraFieldFormModalView.js:110
+msgid "Could not save the field. Please try again or contact support."
+msgstr "Ошибка при сохранении поля. Попробуйте еще раз или обратитесь в техподдержку."
+
+#: apps/crm/static/crm/js/views/modals/ImportContactsStep2ModalView.js:38
+msgid "companies and contacts"
+msgstr "компаний и контактных лиц"
+
+#: apps/crm/static/crm/js/views/modals/ImportContactsStep2ModalView.js:109
+msgid "Name is too long"
+msgstr "Слишком длинное название"
+
+#: apps/crm/static/crm/js/views/modals/PeriodicTaskFormModalView.js:56
+#: apps/crm/static/crm/js/views/modals/TaskFormModalView.js:55
+#: apps/crm/static/crm/js/views/tasks/PeriodicTasksView.js:134
+#: apps/crm/static/crm/js/views/tasks/TaskGridView.js:140
+#: apps/crm/templates/crm/js_templates/tasks_templates.html:397
+msgid "Deal"
+msgstr "Сделка"
+
+#: apps/crm/static/crm/js/views/modals/PeriodicTaskFormModalView.js:57
+#: apps/crm/static/crm/js/views/modals/TaskFormModalView.js:56
+msgid "Select a deal"
+msgstr "Выберите сделку"
+
+#: apps/crm/static/crm/js/views/modals/PeriodicTaskFormModalView.js:68
+#: apps/crm/static/crm/js/views/tasks/PeriodicTasksView.js:140
+msgid "Time"
+msgstr "Время"
+
+#: apps/crm/static/crm/js/views/modals/PeriodicTaskFormModalView.js:76
+#: apps/crm/static/crm/js/views/tasks/PeriodicTasksView.js:146
+msgid "Repeat"
+msgstr "Повторять"
+
+#: apps/crm/static/crm/js/views/modals/PeriodicTaskFormModalView.js:79
+msgid "Every week"
+msgstr "Каждую неделю"
+
+#: apps/crm/static/crm/js/views/modals/PeriodicTaskFormModalView.js:80
+msgid "By month"
+msgstr "По месяцам"
+
+#: apps/crm/static/crm/js/views/modals/PeriodicTaskFormModalView.js:88
+msgid "Weekday"
+msgstr "День недели"
+
+#: apps/crm/static/crm/js/views/modals/PeriodicTaskFormModalView.js:91
+msgid "Every day"
+msgstr "Каждый день"
+
+#: apps/crm/static/crm/js/views/modals/PeriodicTaskFormModalView.js:101
+msgid "Select weekdays"
+msgstr "Выберите дни недели"
+
+#: apps/crm/static/crm/js/views/modals/PeriodicTaskFormModalView.js:108
+msgid "Months"
+msgstr "Месяцы"
+
+#: apps/crm/static/crm/js/views/modals/PeriodicTaskFormModalView.js:111
+msgid "Every month"
+msgstr "Каждый месяц"
+
+#: apps/crm/static/crm/js/views/modals/PeriodicTaskFormModalView.js:126
+msgid "Select months"
+msgstr "Выберите месяцы"
+
+#: apps/crm/static/crm/js/views/modals/PeriodicTaskFormModalView.js:139
+msgid "Select days of month"
+msgstr "Выберите числа месяца"
+
+#: apps/crm/static/crm/js/views/modals/PeriodicTaskFormModalView.js:172
+#: apps/crm/static/crm/js/views/modals/TaskFormModalView.js:100
+#: apps/crm/static/crm/js/views/tasks/PeriodicTasksView.js:162
+#: apps/crm/static/crm/js/views/tasks/TaskGridView.js:168
+#: apps/crm/templates/crm/js_templates/settings_templates.html:914
+#: apps/crm/templates/crm/js_templates/tasks_templates.html:303
+msgid "Task description"
+msgstr "Описание задачи"
+
+#: apps/crm/static/crm/js/views/modals/PeriodicTaskFormModalView.js:237
+msgid "New recurring task added"
+msgstr "Новая периодическая задача добавлена"
+
+#: apps/crm/static/crm/js/views/modals/PermissionsFormModalView.js:57
+msgid "Remove"
+msgstr "Убрать"
+
+#: apps/crm/static/crm/js/views/modals/PermissionsFormModalView.js:57
+msgid "Select"
+msgstr "Выбрать"
+
+#: apps/crm/static/crm/js/views/modals/PermissionsFormModalView.js:86
+msgid "Permissions saved"
+msgstr "Права сохранены"
+
+#: apps/crm/static/crm/js/views/modals/PermissionsFormModalView.js:92
+msgid "Could not save the changes. Please try again or contact support."
+msgstr "Ошибка при сохранении. Попробуйте еще раз или обратитесь в техподдержку."
+
+#: apps/crm/static/crm/js/views/modals/PersonFormModalView.js:135
+msgid "New contact added"
+msgstr "Новое контактное лицо добавлено"
+
+#: apps/crm/static/crm/js/views/modals/PersonFormModalView.js:141
+msgid "Could not save the contact. Please try again or contact support."
+msgstr "Ошибка при сохранении контактного лица. Попробуйте еще раз или обратитесь в техподдержку."
+
+#: apps/crm/static/crm/js/views/modals/ResponsiblesModalView.js:33
+msgid "Assignees updated"
+msgstr "Ответственные обновлены"
+
+#: apps/crm/static/crm/js/views/modals/ResponsiblesModalView.js:38
+msgid "Could not update assignees"
+msgstr "Ошибка при редактировании ответственных"
+
+#: apps/crm/static/crm/js/views/modals/TagsModalView.js:34
+msgid "Tags updated"
+msgstr "Теги обновлены"
+
+#: apps/crm/static/crm/js/views/modals/TagsModalView.js:39
+msgid "Could not update tags"
+msgstr "Ошибка при редактировании тегов"
+
+#: apps/crm/static/crm/js/views/modals/TaskFormModalView.js:67
+#: apps/crm/static/crm/js/views/tasks/TaskFiltersFormView.js:24
+#: apps/crm/static/crm/js/views/tasks/TaskGridView.js:146
+#: apps/crm/templates/crm/js_templates/settings_templates.html:902
+#: apps/crm/templates/crm/js_templates/tasks_templates.html:307
+msgid "Due date"
+msgstr "Срок исполнения"
+
+#: apps/crm/static/crm/js/views/modals/TaskFormModalView.js:118
+msgid "File"
+msgstr "Файл"
+
+#: apps/crm/static/crm/js/views/modals/TaskFormModalView.js:196
+#: apps/crm/static/crm/js/views/modals/TaskFormModalView.js:214
+msgid "New task added"
+msgstr "Новая задача добавлена"
+
+#: apps/crm/static/crm/js/views/persons/PersonCardLayoutView.js:36
+#: apps/crm/templates/crm/js_templates/dashboard_templates.html:148
+#: apps/crm/templates/crm/js_templates/modals_templates.html:55
+#: apps/crm/templates/crm/js_templates/settings_templates.html:174
+#: apps/crm/templates/crm/js_templates/settings_templates.html:207
+#: apps/crm/templates/crm/js_templates/settings_templates.html:403
+msgid "contact"
+msgid_plural "contacts"
+msgstr[0] "контактное лицо"
+msgstr[1] "контактных лица"
+msgstr[2] "контактных лиц"
+msgstr[3] "контактного лица"
+
+#: apps/crm/static/crm/js/views/persons/PersonFiltersFormView.js:17
+msgid "With the same full name"
+msgstr "С одинаковым ФИО"
+
+#: apps/crm/static/crm/js/views/settings/SettingsCompanyFieldsLayoutView.js:59
+msgid "The field will be deleted from all companies. Are you sure?"
+msgstr "Поле будет удалено у всех компаний. Вы уверены, что хотите удалить поле?"
+
+#: apps/crm/static/crm/js/views/settings/SettingsCompanyFieldsLayoutView.js:78
+#: apps/crm/static/crm/js/views/settings/SettingsDealFieldsLayoutView.js:86
+#: apps/crm/static/crm/js/views/settings/SettingsPersonFieldsLayoutView.js:78
+#: apps/crm/static/crm/js/views/settings/SettingsTaskFieldsLayoutView.js:78
+msgid "Could not delete the field. Please try again or contact support."
+msgstr "Ошибка при удалении поля. Попробуйте еще раз или обратитесь в техподдержку"
+
+#: apps/crm/static/crm/js/views/settings/SettingsContactsImportLayoutView.js:27
+#: apps/crm/static/crm/js/views/settings/SettingsContactsImportLayoutView.js:35
+msgid "imported contacts"
+msgstr "импортированных контактов"
+
+#: apps/crm/static/crm/js/views/settings/SettingsDealFieldsLayoutView.js:67
+msgid "The field will be deleted from all deals. Are you sure?"
+msgstr "Поле будет удалено у всех сделок. Вы уверены, что хотите удалить поле?"
+
+#: apps/crm/static/crm/js/views/settings/SettingsPersonFieldsLayoutView.js:59
+msgid "The field will be deleted from all contacts. Are you sure?"
+msgstr "Поле будет удалено у всех контактных лиц. Вы уверены, что хотите удалить поле?"
+
+#: apps/crm/static/crm/js/views/settings/SettingsProfileLayoutView.js:108
+msgid "Current password is required"
+msgstr "Не указан текущий пароль"
+
+#: apps/crm/static/crm/js/views/settings/SettingsProfileLayoutView.js:113
+msgid "New password is required"
+msgstr "Не указан новый пароль"
+
+#: apps/crm/static/crm/js/views/settings/SettingsProfileLayoutView.js:140
+msgid "Password changed"
+msgstr "Пароль изменен"
+
+#: apps/crm/static/crm/js/views/settings/SettingsProfileLayoutView.js:255
+msgid "Notification settings saved"
+msgstr "Настройки уведомлений сохранены"
+
+#: apps/crm/static/crm/js/views/settings/SettingsTagsLayoutView.js:53
+msgid "Enter a tag name"
+msgstr "Укажите название тега"
+
+#: apps/crm/static/crm/js/views/settings/SettingsTagsLayoutView.js:72
+msgid "Tag created"
+msgstr "Тег создан"
+
+#: apps/crm/static/crm/js/views/settings/SettingsTagsLayoutView.js:77
+msgid "Could not create the tag"
+msgstr "Ошибка при создании тега"
+
+#: apps/crm/static/crm/js/views/settings/SettingsTagsLayoutView.js:89
+msgid "Tag deleted"
+msgstr "Тег удален"
+
+#: apps/crm/static/crm/js/views/settings/SettingsTagsLayoutView.js:92
+msgid "Could not delete the tag"
+msgstr "Ошибка при удалении тега"
+
+#: apps/crm/static/crm/js/views/settings/SettingsTaskFieldsLayoutView.js:59
+msgid "The field will be deleted from all tasks. Are you sure?"
+msgstr "Поле будет удалено у всех задач. Вы уверены, что хотите удалить поле?"
+
+#: apps/crm/static/crm/js/views/settings/SettingsUsersLayoutView.js:30
+#: apps/crm/templates/crm/js_templates/settings_templates.html:337
+msgid "Administrator"
+msgstr "Администратор"
+
+#: apps/crm/static/crm/js/views/settings/SettingsUsersLayoutView.js:31
+msgid "Manager"
+msgstr "Менеджер"
+
+#: apps/crm/static/crm/js/views/settings/SettingsUsersLayoutView.js:36
+#: apps/crm/templates/crm/js_templates/settings_templates.html:336
+msgid "Account owner"
+msgstr "Владелец аккаунта"
+
+#: apps/crm/static/crm/js/views/settings/SettingsUsersLayoutView.js:77
+msgid "Invitations sent."
+msgstr "Приглашения отправлены."
+
+#: apps/crm/static/crm/js/views/settings/SettingsUsersLayoutView.js:111
+#: apps/crm/templates/crm/js_templates/modals_templates.html:230
+#: apps/crm/templates/crm/js_templates/modals_templates.html:926
+#: apps/crm/templates/crm/js_templates/modals_templates.html:977
+msgid "Close"
+msgstr "Закрыть"
+
+#: apps/crm/static/crm/js/views/settings/SettingsUsersLayoutView.js:138
+msgid "Are you sure you want to transfer account ownership to "
+msgstr "Вы уверены, что хотите передать права владельца аккаунта пользователю "
+
+#: apps/crm/static/crm/js/views/settings/SettingsUsersLayoutView.js:139
+msgid "? You will retain administrator permissions."
+msgstr "? После этого у вас останутся права администратора."
+
+#: apps/crm/static/crm/js/views/settings/SettingsUsersLayoutView.js:150
+msgid "Make owner"
+msgstr "Сделать владельцем"
+
+#: apps/crm/static/crm/js/views/settings/SettingsUsersLayoutView.js:172
+msgid "Invitation email to "
+msgstr "Приглашение на почту "
+
+#: apps/crm/static/crm/js/views/settings/SettingsUsersLayoutView.js:172
+msgid " was sent successfully"
+msgstr " успешно отправлено"
+
+#: apps/crm/static/crm/js/views/tasks/PeriodicTasksView.js:172
+msgid "Are you sure you want to delete this recurring task?"
+msgstr "Вы уверены, что хотите удалить периодическую задачу?"
+
+#: apps/crm/static/crm/js/views/tasks/TaskCalendarView.js:71
+msgid "Task rescheduled"
+msgstr "Задача перенесена"
+
+#: apps/crm/static/crm/js/views/tasks/TaskCalendarView.js:75
+msgid "Could not reschedule the task. Please try again or contact support."
+msgstr "Ошибка при переносе задачи. Попробуйте еще раз или обратитесь в техподдержку."
+
+#: apps/crm/static/crm/js/views/tasks/TaskCardLayoutView.js:26
+#: apps/crm/static/crm/js/views/tasks/TaskGridView.js:31
+#: apps/crm/templates/crm/js_templates/dashboard_templates.html:95
+#: apps/crm/templates/crm/js_templates/dashboard_templates.html:154
+#: apps/crm/templates/crm/js_templates/modals_templates.html:158
+#: apps/crm/templates/crm/js_templates/settings_templates.html:182
+#: apps/crm/templates/crm/js_templates/settings_templates.html:215
+#: apps/crm/templates/crm/js_templates/settings_templates.html:405
+msgid "task"
+msgid_plural "tasks"
+msgstr[0] "задача"
+msgstr[1] "задачи"
+msgstr[2] "задач"
+msgstr[3] "задачи"
+
+#: apps/crm/static/crm/js/views/tasks/TaskCardLayoutView.js:80
+msgid "Task completed"
+msgstr "Задача завершена"
+
+#: apps/crm/static/crm/js/views/tasks/TaskCardLayoutView.js:86
+msgid "Could not complete the task"
+msgstr "Ошибка при завершении задачи"
+
+#: apps/crm/static/crm/js/views/tasks/TaskCardLayoutView.js:102
+msgid "Task reopened"
+msgstr "Задача возобновлена"
+
+#: apps/crm/static/crm/js/views/tasks/TaskCardLayoutView.js:108
+msgid "Could not reopen the task"
+msgstr "Ошибка при возобновлении задачи"
+
+#: apps/crm/static/crm/js/views/tasks/TaskFiltersFormView.js:13
+msgid "All tasks"
+msgstr "Все задачи"
+
+#: apps/crm/static/crm/js/views/tasks/TaskFiltersFormView.js:14
+msgid "Current"
+msgstr "Текущие"
+
+#: apps/crm/static/crm/js/views/tasks/TaskFiltersFormView.js:15
+#: apps/crm/templates/crm/js_templates/dashboard_templates.html:93
+msgid "Completed"
+msgstr "Выполнено"
+
+#: apps/crm/static/crm/js/views/tasks/TaskFiltersFormView.js:16
+msgid "Overdue"
+msgstr "Просроченные"
+
+#: apps/crm/static/crm/js/views/tasks/TaskGridView.js:50
+#: apps/crm/static/crm/js/views/tasks/TaskGridView.js:61
+msgid "tasks"
+msgstr "задачи"
+
+#: apps/crm/templates/crm/js_templates/common_templates.html:4
+#: apps/crm/templates/crm/js_templates/companies_templates.html:24
+#: apps/crm/templates/crm/js_templates/deals_templates.html:37
+#: apps/crm/templates/crm/js_templates/persons_templates.html:24
+#: apps/crm/templates/crm/js_templates/tasks_templates.html:24
+msgid "Filters"
+msgstr "Фильтры"
+
+#: apps/crm/templates/crm/js_templates/common_templates.html:18
+msgid "Reset"
+msgstr "Сбросить"
+
+#: apps/crm/templates/crm/js_templates/common_templates.html:33
+msgid "This company has no employees yet."
+msgstr "У данной компании пока нет ни одного сотрудника."
+
+#: apps/crm/templates/crm/js_templates/common_templates.html:56
+msgid "No deals are linked to this contact yet."
+msgstr "К данному контакту пока не привязана ни одна сделка."
+
+#: apps/crm/templates/crm/js_templates/common_templates.html:83
+msgid "No tasks."
+msgstr "Нет задач."
+
+#: apps/crm/templates/crm/js_templates/common_templates.html:113
+msgid "Attach a file to the note"
+msgstr "Прикрепить файл к заметке"
+
+#: apps/crm/templates/crm/js_templates/common_templates.html:114
+#: apps/crm/templates/crm/js_templates/common_templates.html:160
+msgid "Maximum file size is 20 MB"
+msgstr "Максимальный размер файла — 20 Мбайт"
+
+#: apps/crm/templates/crm/js_templates/common_templates.html:120
+msgid "Add note"
+msgstr "Добавить заметку"
+
+#: apps/crm/templates/crm/js_templates/common_templates.html:125
+msgid "There are no notes yet."
+msgstr "Здесь пока нет ни одной заметки."
+
+#: apps/crm/templates/crm/js_templates/common_templates.html:159
+msgid "Drag files here or click"
+msgstr "Перетащите файлы сюда или кликните"
+
+#: apps/crm/templates/crm/js_templates/common_templates.html:166
+msgid "No files are attached yet."
+msgstr "Здесь пока не прикреплён ни один файл."
+
+#: apps/crm/templates/crm/js_templates/companies_templates.html:31
+#: apps/crm/templates/crm/js_templates/dashboard_templates.html:25
+#: apps/crm/templates/crm/js_templates/deals_templates.html:62
+#: apps/crm/templates/crm/js_templates/persons_templates.html:31
+#: apps/crm/templates/crm/js_templates/tasks_templates.html:49
+msgid "Refresh data"
+msgstr "Обновить данные"
+
+#: apps/crm/templates/crm/js_templates/companies_templates.html:55
+msgid "New company"
+msgstr "Новая компания"
+
+#: apps/crm/templates/crm/js_templates/companies_templates.html:63
+#: apps/crm/templates/crm/js_templates/deals_templates.html:90
+#: apps/crm/templates/crm/js_templates/persons_templates.html:64
+#: apps/crm/templates/crm/js_templates/tasks_templates.html:77
+msgid "Actions"
+msgstr "Действия"
+
+#: apps/crm/templates/crm/js_templates/companies_templates.html:67
+#: apps/crm/templates/crm/js_templates/deals_templates.html:94
+#: apps/crm/templates/crm/js_templates/persons_templates.html:68
+#: apps/crm/templates/crm/js_templates/settings_templates.html:461
+#: apps/crm/templates/crm/js_templates/tasks_templates.html:81
+msgid "Manage assignees"
+msgstr "Настроить ответственных"
+
+#: apps/crm/templates/crm/js_templates/companies_templates.html:70
+#: apps/crm/templates/crm/js_templates/deals_templates.html:97
+#: apps/crm/templates/crm/js_templates/persons_templates.html:71
+#: apps/crm/templates/crm/js_templates/settings_templates.html:458
+#: apps/crm/templates/crm/js_templates/tasks_templates.html:84
+msgid "Set tags"
+msgstr "Задать теги"
+
+#: apps/crm/templates/crm/js_templates/companies_templates.html:73
+#: apps/crm/templates/crm/js_templates/deals_templates.html:100
+#: apps/crm/templates/crm/js_templates/persons_templates.html:74
+#: apps/crm/templates/crm/js_templates/tasks_templates.html:87
+msgid "Export"
+msgstr "Экспортировать"
+
+#: apps/crm/templates/crm/js_templates/companies_templates.html:85
+#: apps/crm/templates/crm/js_templates/deals_templates.html:112
+#: apps/crm/templates/crm/js_templates/modals_templates.html:204
+#: apps/crm/templates/crm/js_templates/persons_templates.html:86
+#: apps/crm/templates/crm/js_templates/tasks_templates.html:99
+#: apps/crm/templates/crm/js_templates/tasks_templates.html:482
+msgid "Table settings"
+msgstr "Настройка таблицы"
+
+#: apps/crm/templates/crm/js_templates/companies_templates.html:119
+msgid "The company list is empty."
+msgstr "Список компаний пуст."
+
+#: apps/crm/templates/crm/js_templates/companies_templates.html:228
+#: apps/crm/templates/crm/js_templates/deals_templates.html:339
+#: apps/crm/templates/crm/js_templates/deals_templates.html:375
+#: apps/crm/templates/crm/js_templates/modals_templates.html:10
+#: apps/crm/templates/crm/js_templates/modals_templates.html:55
+#: apps/crm/templates/crm/js_templates/modals_templates.html:104
+#: apps/crm/templates/crm/js_templates/modals_templates.html:158
+#: apps/crm/templates/crm/js_templates/modals_templates.html:366
+#: apps/crm/templates/crm/js_templates/modals_templates.html:619
+#: apps/crm/templates/crm/js_templates/persons_templates.html:229
+#: apps/crm/templates/crm/js_templates/settings_templates.html:592
+#: apps/crm/templates/crm/js_templates/settings_templates.html:713
+#: apps/crm/templates/crm/js_templates/settings_templates.html:842
+#: apps/crm/templates/crm/js_templates/settings_templates.html:941
+#: apps/crm/templates/crm/js_templates/tasks_templates.html:289
+msgid "Edit"
+msgstr "Редактировать"
+
+#: apps/crm/templates/crm/js_templates/companies_templates.html:322
+#: apps/crm/templates/crm/js_templates/deals_templates.html:562
+#: apps/crm/templates/crm/js_templates/persons_templates.html:320
+#: apps/crm/templates/crm/js_templates/tasks_templates.html:448
+msgid "Notes ("
+msgstr "Заметки ("
+
+#: apps/crm/templates/crm/js_templates/companies_templates.html:327
+msgid "Employees ("
+msgstr "Сотрудники ("
+
+#: apps/crm/templates/crm/js_templates/companies_templates.html:332
+#: apps/crm/templates/crm/js_templates/persons_templates.html:325
+msgid "Deals ("
+msgstr "Сделки ("
+
+#: apps/crm/templates/crm/js_templates/companies_templates.html:337
+#: apps/crm/templates/crm/js_templates/deals_templates.html:567
+#: apps/crm/templates/crm/js_templates/persons_templates.html:330
+msgid "Tasks ("
+msgstr "Задачи ("
+
+#: apps/crm/templates/crm/js_templates/companies_templates.html:342
+#: apps/crm/templates/crm/js_templates/deals_templates.html:572
+#: apps/crm/templates/crm/js_templates/persons_templates.html:335
+#: apps/crm/templates/crm/js_templates/tasks_templates.html:453
+msgid "Files ("
+msgstr "Файлы ("
+
+#: apps/crm/templates/crm/js_templates/companies_templates.html:353
+msgid "Add employee"
+msgstr "Добавить сотрудника"
+
+#: apps/crm/templates/crm/js_templates/companies_templates.html:362
+#: apps/crm/templates/crm/js_templates/persons_templates.html:346
+msgid "Add deal"
+msgstr "Добавить сделку"
+
+#: apps/crm/templates/crm/js_templates/companies_templates.html:371
+#: apps/crm/templates/crm/js_templates/deals_templates.html:583
+#: apps/crm/templates/crm/js_templates/persons_templates.html:355
+msgid "Add task"
+msgstr "Добавить задачу"
+
+#: apps/crm/templates/crm/js_templates/dashboard_templates.html:11
+msgid "Overview"
+msgstr "Обзор"
+
+#: apps/crm/templates/crm/js_templates/dashboard_templates.html:40
+#: apps/crm/templates/crm/js_templates/dashboard_templates.html:45
+msgid "Added"
+msgstr "Добавлено"
+
+#: apps/crm/templates/crm/js_templates/dashboard_templates.html:42
+msgid "new company"
+msgid_plural "new companies"
+msgstr[0] "Новая компания"
+msgstr[1] "Новые компании"
+msgstr[2] "Новых компаний"
+msgstr[3] "Новой компании"
+
+#: apps/crm/templates/crm/js_templates/dashboard_templates.html:47
+msgid "new contact"
+msgid_plural "new contacts"
+msgstr[0] "Новое контактное лицо"
+msgstr[1] "Новых контактных лица"
+msgstr[2] "Новых контактных лиц"
+msgstr[3] "Нового контактного лица"
+
+#: apps/crm/templates/crm/js_templates/dashboard_templates.html:60
+#: apps/crm/templates/crm/js_templates/dashboard_templates.html:88
+msgid "Created"
+msgstr "Создано"
+
+#: apps/crm/templates/crm/js_templates/dashboard_templates.html:62
+msgid "new deal"
+msgid_plural "new deals"
+msgstr[0] "Новая сделка"
+msgstr[1] "Новые сделки"
+msgstr[2] "Новых сделок"
+msgstr[3] "Новой сделки"
+
+#: apps/crm/templates/crm/js_templates/dashboard_templates.html:64
+#: apps/crm/templates/crm/js_templates/dashboard_templates.html:73
+msgid "worth"
+msgstr "на сумму"
+
+#: apps/crm/templates/crm/js_templates/dashboard_templates.html:69
+msgid "Currently open"
+msgstr "Сейчас открыто"
+
+#: apps/crm/templates/crm/js_templates/dashboard_templates.html:90
+msgid "new task"
+msgid_plural "new tasks"
+msgstr[0] "Новая задача"
+msgstr[1] "Новые задачи"
+msgstr[2] "Новых задач"
+msgstr[3] "Новой задачи"
+
+#: apps/crm/templates/crm/js_templates/dashboard_templates.html:106
+msgid "Activity feed"
+msgstr "Лента событий"
+
+#: apps/crm/templates/crm/js_templates/dashboard_templates.html:137
+msgid "There were no events in the selected period."
+msgstr "За выбранный период не было событий."
+
+#: apps/crm/templates/crm/js_templates/deals_templates.html:14
+msgid "Deals by stage"
+msgstr "Сделки по этапам"
+
+#: apps/crm/templates/crm/js_templates/deals_templates.html:19
+#: apps/crm/templates/crm/js_templates/deals_templates.html:55
+msgid "Sales funnel"
+msgstr "Воронка продаж"
+
+#: apps/crm/templates/crm/js_templates/deals_templates.html:45
+#: apps/crm/templates/crm/js_templates/tasks_templates.html:32
+msgid "Table"
+msgstr "Таблица"
+
+#: apps/crm/templates/crm/js_templates/deals_templates.html:50
+msgid "Stages"
+msgstr "Этапы"
+
+#: apps/crm/templates/crm/js_templates/deals_templates.html:86
+#: apps/crm/templates/crm/js_templates/deals_templates.html:293
+msgid "New deal"
+msgstr "Новая сделка"
+
+#: apps/crm/templates/crm/js_templates/deals_templates.html:146
+msgid "The deal list is empty."
+msgstr "Список сделок пуст."
+
+#: apps/crm/templates/crm/js_templates/deals_templates.html:236
+msgid "No closed deals."
+msgstr "Нет закрытых сделок."
+
+#: apps/crm/templates/crm/js_templates/deals_templates.html:250
+msgid "Deal count"
+msgstr "Количество сделок"
+
+#: apps/crm/templates/crm/js_templates/deals_templates.html:251
+msgid "Conversion"
+msgstr "Конверсия"
+
+#: apps/crm/templates/crm/js_templates/deals_templates.html:253
+msgid "Budget,"
+msgstr "Бюджет,"
+
+#: apps/crm/templates/crm/js_templates/deals_templates.html:269
+msgid "Total"
+msgstr "Итого"
+
+#: apps/crm/templates/crm/js_templates/deals_templates.html:299
+msgid "No open deals."
+msgstr "Нет открытых сделок."
+
+#: apps/crm/templates/crm/js_templates/deals_templates.html:306
+msgid "for"
+msgstr "на сумму"
+
+#: apps/crm/templates/crm/js_templates/deals_templates.html:312
+msgid "No deals"
+msgstr "Нет сделок"
+
+#: apps/crm/templates/crm/js_templates/deals_templates.html:329
+msgid "Complete stage"
+msgstr "Завершить этап"
+
+#: apps/crm/templates/crm/js_templates/deals_templates.html:432
+#: apps/crm/templates/crm/js_templates/tasks_templates.html:326
+msgid "Contact"
+msgstr "Контакт"
+
+#: apps/crm/templates/crm/js_templates/intro_templates.html:29
+msgid "Enter your details"
+msgstr "Укажите свои данные"
+
+#: apps/crm/templates/crm/js_templates/intro_templates.html:42
+msgid "Save profile and continue"
+msgstr "Сохранить профиль и продолжить"
+
+#: apps/crm/templates/crm/js_templates/intro_templates.html:51
+msgid "Invite your colleagues and employees"
+msgstr "Пригласите своих коллег и сотрудников"
+
+#: apps/crm/templates/crm/js_templates/intro_templates.html:63
+msgid "Add another user"
+msgstr "Добавить еще пользователя"
+
+#: apps/crm/templates/crm/js_templates/intro_templates.html:66
+msgid "Send invitations"
+msgstr "Отправить приглашения"
+
+#: apps/crm/templates/crm/js_templates/intro_templates.html:67
+#: apps/crm/templates/crm/js_templates/intro_templates.html:146
+#: apps/crm/templates/crm/js_templates/intro_templates.html:174
+#: apps/crm/templates/crm/js_templates/modals_templates.html:516
+msgid "or"
+msgstr "или"
+
+#: apps/crm/templates/crm/js_templates/intro_templates.html:68
+msgid "Skip"
+msgstr "Пропустить"
+
+#: apps/crm/templates/crm/js_templates/intro_templates.html:77
+msgid "Import your contact database"
+msgstr "Импортируйте свою базу контактов"
+
+#: apps/crm/templates/crm/js_templates/intro_templates.html:79
+msgid "You can upload an existing contact database from a CSV or Excel file."
+msgstr "Вы можете загрузить в CRM готовую базу контактов из CSV или Excel файла."
+
+#: apps/crm/templates/crm/js_templates/intro_templates.html:84
+#: apps/crm/templates/crm/js_templates/modals_templates.html:417
+msgid "Supported formats: CSV, XLS (Excel)"
+msgstr "Поддерживаемые форматы: CSV, XLS (Excel)"
+
+#: apps/crm/templates/crm/js_templates/intro_templates.html:92
+#: apps/crm/templates/crm/js_templates/modals_templates.html:425
+msgid "the first row contains field names"
+msgstr "первая строка файла содержит названия полей"
+
+#: apps/crm/templates/crm/js_templates/intro_templates.html:101
+#: apps/crm/templates/crm/js_templates/modals_templates.html:434
+msgid "merge matching contacts"
+msgstr "объединять одинаковые контакты"
+
+#: apps/crm/templates/crm/js_templates/intro_templates.html:110
+#: apps/crm/templates/crm/js_templates/modals_templates.html:443
+msgid "Configure contact matching"
+msgstr "Настроить сравнение контактов"
+
+#: apps/crm/templates/crm/js_templates/intro_templates.html:117
+#: apps/crm/templates/crm/js_templates/modals_templates.html:450
+msgid "Company comparison field"
+msgstr "Поле для сравнения компаний"
+
+#: apps/crm/templates/crm/js_templates/intro_templates.html:131
+#: apps/crm/templates/crm/js_templates/modals_templates.html:463
+msgid "Contact comparison field"
+msgstr "Поле для сравнения контактных лиц"
+
+#: apps/crm/templates/crm/js_templates/intro_templates.html:145
+#: apps/crm/templates/crm/js_templates/intro_templates.html:257
+#: apps/crm/templates/crm/js_templates/modals_templates.html:603
+msgid "Continue import"
+msgstr "Продолжить импорт"
+
+#: apps/crm/templates/crm/js_templates/intro_templates.html:147
+msgid "Skip and start working"
+msgstr "Пропустить и начать работу"
+
+#: apps/crm/templates/crm/js_templates/intro_templates.html:156
+#: apps/crm/templates/crm/js_templates/modals_templates.html:496
+msgid "Import settings"
+msgstr "Настройка импорта"
+
+#: apps/crm/templates/crm/js_templates/intro_templates.html:161
+#: apps/crm/templates/crm/js_templates/modals_templates.html:503
+msgid "The file contains"
+msgstr "В файле найдено"
+
+#: apps/crm/templates/crm/js_templates/intro_templates.html:161
+#: apps/crm/templates/crm/js_templates/intro_templates.html:165
+#: apps/crm/templates/crm/js_templates/modals_templates.html:503
+#: apps/crm/templates/crm/js_templates/modals_templates.html:507
+msgid "row"
+msgid_plural "rows"
+msgstr[0] "строка"
+msgstr[1] "строки"
+msgstr[2] "строк"
+msgstr[3] "строки"
+
+#: apps/crm/templates/crm/js_templates/intro_templates.html:162
+#: apps/crm/templates/crm/js_templates/modals_templates.html:504
+msgid "contain data."
+msgstr "с данными."
+
+#: apps/crm/templates/crm/js_templates/intro_templates.html:164
+#: apps/crm/templates/crm/js_templates/modals_templates.html:506
+msgid "Of these"
+msgstr "Из них"
+
+#: apps/crm/templates/crm/js_templates/intro_templates.html:166
+#: apps/crm/templates/crm/js_templates/modals_templates.html:508
+msgid "are duplicates."
+msgstr "это дубликаты."
+
+#: apps/crm/templates/crm/js_templates/intro_templates.html:170
+#: apps/crm/templates/crm/js_templates/modals_templates.html:512
+msgid "Match the columns in the file to Sails CRM fields."
+msgstr "Установите соответствие между колонками в файле и названиями полей в Sails CRM."
+
+#: apps/crm/templates/crm/js_templates/intro_templates.html:172
+#: apps/crm/templates/crm/js_templates/modals_templates.html:514
+msgid "A column will be ignored if no field is selected for it."
+msgstr "Если для колонки не выбрано поле, она будет проигнорирована."
+
+#: apps/crm/templates/crm/js_templates/intro_templates.html:174
+#: apps/crm/templates/crm/js_templates/modals_templates.html:516
+msgid "One of these two fields must be selected:"
+msgstr "Обязательно должно быть выбрано одно из двух полей:"
+
+#: apps/crm/templates/crm/js_templates/intro_templates.html:181
+#: apps/crm/templates/crm/js_templates/modals_templates.html:523
+msgid "Add new field"
+msgstr "Добавить новое поле"
+
+#: apps/crm/templates/crm/js_templates/intro_templates.html:188
+#: apps/crm/templates/crm/js_templates/modals_templates.html:530
+msgid "Field name"
+msgstr "Название поля"
+
+#: apps/crm/templates/crm/js_templates/intro_templates.html:195
+#: apps/crm/templates/crm/js_templates/modals_templates.html:540
+msgid "Use for"
+msgstr "Использовать для"
+
+#: apps/crm/templates/crm/js_templates/intro_templates.html:206
+#: apps/crm/templates/crm/js_templates/modals_templates.html:39
+#: apps/crm/templates/crm/js_templates/modals_templates.html:551
+#: apps/crm/templates/crm/js_templates/modals_templates.html:907
+#: apps/crm/templates/crm/js_templates/modals_templates.html:968
+#: apps/crm/templates/crm/js_templates/settings_templates.html:382
+msgid "Add"
+msgstr "Добавить"
+
+#: apps/crm/templates/crm/js_templates/intro_templates.html:223
+#: apps/crm/templates/crm/js_templates/modals_templates.html:568
+msgid "Select a field"
+msgstr "Выберите поле"
+
+#: apps/crm/templates/crm/js_templates/modals_templates.html:10
+#: apps/crm/templates/crm/js_templates/modals_templates.html:55
+#: apps/crm/templates/crm/js_templates/modals_templates.html:104
+#: apps/crm/templates/crm/js_templates/modals_templates.html:158
+#: apps/crm/templates/crm/js_templates/modals_templates.html:366
+#: apps/crm/templates/crm/js_templates/modals_templates.html:619
+msgid "Add new"
+msgstr "Добавить новую"
+
+#: apps/crm/templates/crm/js_templates/modals_templates.html:30
+#: apps/crm/templates/crm/js_templates/modals_templates.html:79
+#: apps/crm/templates/crm/js_templates/modals_templates.html:133
+#: apps/crm/templates/crm/js_templates/modals_templates.html:178
+#: apps/crm/templates/crm/js_templates/modals_templates.html:289
+#: apps/crm/templates/crm/js_templates/modals_templates.html:349
+#: apps/crm/templates/crm/js_templates/modals_templates.html:384
+#: apps/crm/templates/crm/js_templates/modals_templates.html:674
+#: apps/crm/templates/crm/js_templates/modals_templates.html:853
+msgid "Save"
+msgstr "Сохранить"
+
+#: apps/crm/templates/crm/js_templates/modals_templates.html:35
+#: apps/crm/templates/crm/js_templates/modals_templates.html:84
+#: apps/crm/templates/crm/js_templates/modals_templates.html:138
+#: apps/crm/templates/crm/js_templates/modals_templates.html:183
+msgid "and add another"
+msgstr "и добавить еще"
+
+#: apps/crm/templates/crm/js_templates/modals_templates.html:36
+msgid "and go to company"
+msgstr "и перейти к компании"
+
+#: apps/crm/templates/crm/js_templates/modals_templates.html:40
+#: apps/crm/templates/crm/js_templates/modals_templates.html:89
+#: apps/crm/templates/crm/js_templates/modals_templates.html:143
+#: apps/crm/templates/crm/js_templates/modals_templates.html:188
+#: apps/crm/templates/crm/js_templates/settings_templates.html:93
+msgid "Save changes"
+msgstr "Сохранить изменения"
+
+#: apps/crm/templates/crm/js_templates/modals_templates.html:67
+msgid "Add a new company"
+msgstr "Добавить новую компанию"
+
+#: apps/crm/templates/crm/js_templates/modals_templates.html:85
+msgid "and go to contact"
+msgstr "и перейти к контактному лицу"
+
+#: apps/crm/templates/crm/js_templates/modals_templates.html:139
+msgid "and go to deal"
+msgstr "и перейти к сделке"
+
+#: apps/crm/templates/crm/js_templates/modals_templates.html:184
+msgid "and go to task"
+msgstr "и перейти к задаче"
+
+#: apps/crm/templates/crm/js_templates/modals_templates.html:247
+msgid "Edit assignees"
+msgstr "Редактирование ответственных"
+
+#: apps/crm/templates/crm/js_templates/modals_templates.html:251
+msgid "Manage assignees for"
+msgstr "Ответственные для"
+
+#: apps/crm/templates/crm/js_templates/modals_templates.html:263
+#: apps/crm/templates/crm/js_templates/modals_templates.html:323
+msgid "Add to existing"
+msgstr "Добавить к существующим"
+
+#: apps/crm/templates/crm/js_templates/modals_templates.html:267
+#: apps/crm/templates/crm/js_templates/modals_templates.html:327
+msgid "Replace existing"
+msgstr "Вместо существующих"
+
+#: apps/crm/templates/crm/js_templates/modals_templates.html:271
+#: apps/crm/templates/crm/js_templates/modals_templates.html:331
+msgid "Remove from existing"
+msgstr "Убрать из существующих"
+
+#: apps/crm/templates/crm/js_templates/modals_templates.html:281
+#: apps/crm/templates/crm/js_templates/modals_templates.html:341
+msgid "Apply to"
+msgstr "Применить для"
+
+#: apps/crm/templates/crm/js_templates/modals_templates.html:284
+#: apps/crm/templates/crm/js_templates/modals_templates.html:344
+msgid "Selected ("
+msgstr "Выбранных ("
+
+#: apps/crm/templates/crm/js_templates/modals_templates.html:285
+#: apps/crm/templates/crm/js_templates/modals_templates.html:345
+msgid "All ("
+msgstr "Всех ("
+
+#: apps/crm/templates/crm/js_templates/modals_templates.html:307
+msgid "Edit tags"
+msgstr "Редактирование тегов"
+
+#: apps/crm/templates/crm/js_templates/modals_templates.html:311
+msgid "Set tags for"
+msgstr "Задайте теги для"
+
+#: apps/crm/templates/crm/js_templates/modals_templates.html:366
+msgid "field"
+msgstr "поле"
+
+#: apps/crm/templates/crm/js_templates/modals_templates.html:405
+msgid "You can upload your contact database from another application or an Excel file."
+msgstr "Вы можете загрузить свою базу контактов из другой программы или Excel файла."
+
+#: apps/crm/templates/crm/js_templates/modals_templates.html:408
+msgid "Upload a contact file and specify whether its first row contains field names."
+msgstr "Загрузите файл с контактами и укажите, содержит ли он названия полей в первой строке."
+
+#: apps/crm/templates/crm/js_templates/modals_templates.html:410
+msgid "Then click"
+msgstr "Затем нажмите кнопку"
+
+#: apps/crm/templates/crm/js_templates/modals_templates.html:410
+#: apps/crm/templates/crm/js_templates/modals_templates.html:479
+msgid "Import"
+msgstr "Импортировать"
+
+#: apps/crm/templates/crm/js_templates/modals_templates.html:619
+msgid "recurring task"
+msgstr "периодическую задачу"
+
+#: apps/crm/templates/crm/js_templates/modals_templates.html:624
+msgid "Add a template that will be used to create new tasks automatically."
+msgstr "Добавьте шаблон, по которому автоматически будет создаваться новая задача."
+
+#: apps/crm/templates/crm/js_templates/modals_templates.html:689
+msgid "User permissions for"
+msgstr "Права пользователя"
+
+#: apps/crm/templates/crm/js_templates/modals_templates.html:701
+#: apps/crm/templates/crm/js_templates/modals_templates.html:730
+#: apps/crm/templates/crm/js_templates/modals_templates.html:759
+#: apps/crm/templates/crm/js_templates/modals_templates.html:788
+#: apps/crm/templates/crm/js_templates/modals_templates.html:813
+#: apps/crm/templates/crm/js_templates/modals_templates.html:830
+msgid "Can add"
+msgstr "Может добавлять"
+
+#: apps/crm/templates/crm/js_templates/modals_templates.html:705
+#: apps/crm/templates/crm/js_templates/modals_templates.html:734
+#: apps/crm/templates/crm/js_templates/modals_templates.html:763
+#: apps/crm/templates/crm/js_templates/modals_templates.html:792
+#: apps/crm/templates/crm/js_templates/modals_templates.html:817
+#: apps/crm/templates/crm/js_templates/modals_templates.html:834
+msgid "Can view all"
+msgstr "Видит все"
+
+#: apps/crm/templates/crm/js_templates/modals_templates.html:709
+#: apps/crm/templates/crm/js_templates/modals_templates.html:738
+#: apps/crm/templates/crm/js_templates/modals_templates.html:767
+#: apps/crm/templates/crm/js_templates/modals_templates.html:796
+msgid "Can edit own"
+msgstr "Может редактировать свои"
+
+#: apps/crm/templates/crm/js_templates/modals_templates.html:713
+#: apps/crm/templates/crm/js_templates/modals_templates.html:742
+#: apps/crm/templates/crm/js_templates/modals_templates.html:771
+#: apps/crm/templates/crm/js_templates/modals_templates.html:800
+msgid "Can edit assigned"
+msgstr "Может редактировать назначенные"
+
+#: apps/crm/templates/crm/js_templates/modals_templates.html:717
+#: apps/crm/templates/crm/js_templates/modals_templates.html:746
+#: apps/crm/templates/crm/js_templates/modals_templates.html:775
+msgid "Can edit all"
+msgstr "Может редактировать все"
+
+#: apps/crm/templates/crm/js_templates/modals_templates.html:721
+#: apps/crm/templates/crm/js_templates/modals_templates.html:750
+#: apps/crm/templates/crm/js_templates/modals_templates.html:779
+#: apps/crm/templates/crm/js_templates/modals_templates.html:804
+#: apps/crm/templates/crm/js_templates/modals_templates.html:821
+#: apps/crm/templates/crm/js_templates/modals_templates.html:838
+msgid "Can delete own"
+msgstr "Может удалять свои"
+
+#: apps/crm/templates/crm/js_templates/modals_templates.html:845
+msgid "all"
+msgstr "все"
+
+#: apps/crm/templates/crm/js_templates/modals_templates.html:868
+msgid "Deal stage settings"
+msgstr "Настройка этапов сделки"
+
+#: apps/crm/templates/crm/js_templates/modals_templates.html:941
+msgid "Configure deal stages"
+msgstr "Настроить этапы сделки"
+
+#: apps/crm/templates/crm/js_templates/notifications_templates.html:11
+msgid "Notifications"
+msgstr "Уведомления"
+
+#: apps/crm/templates/crm/js_templates/notifications_templates.html:14
+msgid "Hide all"
+msgstr "Скрыть все"
+
+#: apps/crm/templates/crm/js_templates/notifications_templates.html:21
+msgid "You have no unread notifications"
+msgstr "У вас нет непрочитанных уведомлений"
+
+#: apps/crm/templates/crm/js_templates/persons_templates.html:56
+msgid "New contact"
+msgstr "Новое контактное лицо"
+
+#: apps/crm/templates/crm/js_templates/persons_templates.html:120
+msgid "The contact list is empty."
+msgstr "Список контактных лиц пуст."
+
+#: apps/crm/templates/crm/js_templates/settings_templates.html:11
+msgid "Settings"
+msgstr "Настройки"
+
+#: apps/crm/templates/crm/js_templates/settings_templates.html:16
+#: apps/crm/templates/crm/js_templates/settings_templates.html:235
+msgid "Profile"
+msgstr "Профиль"
+
+#: apps/crm/templates/crm/js_templates/settings_templates.html:17
+msgid "Users"
+msgstr "Пользователи"
+
+#: apps/crm/templates/crm/js_templates/settings_templates.html:19
+msgid "Field settings"
+msgstr "Настройка полей"
+
+#: apps/crm/templates/crm/js_templates/settings_templates.html:43
+msgid "Edit profile"
+msgstr "Редактирование профиля"
+
+#: apps/crm/templates/crm/js_templates/settings_templates.html:104
+#: apps/crm/templates/crm/js_templates/settings_templates.html:126
+msgid "Change password"
+msgstr "Изменить пароль"
+
+#: apps/crm/templates/crm/js_templates/settings_templates.html:107
+msgid "Current password"
+msgstr "Текущий пароль"
+
+#: apps/crm/templates/crm/js_templates/settings_templates.html:116
+msgid "New password"
+msgstr "Новый пароль"
+
+#: apps/crm/templates/crm/js_templates/settings_templates.html:137
+msgid "Notification settings"
+msgstr "Настройка уведомлений"
+
+#: apps/crm/templates/crm/js_templates/settings_templates.html:140
+msgid "Send task reminders by email"
+msgstr "Напоминать о задачах по электронной почте"
+
+#: apps/crm/templates/crm/js_templates/settings_templates.html:148
+msgid "Remind before"
+msgstr "Напоминать за"
+
+#: apps/crm/templates/crm/js_templates/settings_templates.html:152
+msgid "hr."
+msgstr "ч."
+
+#: apps/crm/templates/crm/js_templates/settings_templates.html:154
+msgid "min."
+msgstr "мин."
+
+#: apps/crm/templates/crm/js_templates/settings_templates.html:165
+msgid "Notify when assigned to"
+msgstr "Уведомлять, когда назначили ответственным за"
+
+#: apps/crm/templates/crm/js_templates/settings_templates.html:189
+msgid "Notify when a task is completed"
+msgstr "Уведомлять о завершении задачи"
+
+#: apps/crm/templates/crm/js_templates/settings_templates.html:198
+msgid "Notify about a new note on"
+msgstr "Уведомлять о новой заметке к"
+
+#: apps/crm/templates/crm/js_templates/settings_templates.html:223
+msgid "Save settings"
+msgstr "Сохранить настройки"
+
+#: apps/crm/templates/crm/js_templates/settings_templates.html:287
+msgid "Account users"
+msgstr "Пользователи аккаунта"
+
+#: apps/crm/templates/crm/js_templates/settings_templates.html:295
+msgid "Active only"
+msgstr "Только активные"
+
+#: apps/crm/templates/crm/js_templates/settings_templates.html:296
+msgid "All users"
+msgstr "Все пользователи"
+
+#: apps/crm/templates/crm/js_templates/settings_templates.html:308
+msgid "Active"
+msgstr "Активен"
+
+#: apps/crm/templates/crm/js_templates/settings_templates.html:312
+msgid "Role"
+msgstr "Роль"
+
+#: apps/crm/templates/crm/js_templates/settings_templates.html:320
+msgid "Invited"
+msgstr "Приглашен"
+
+#: apps/crm/templates/crm/js_templates/settings_templates.html:346
+msgid "Configure permissions"
+msgstr "Настроить права"
+
+#: apps/crm/templates/crm/js_templates/settings_templates.html:367
+msgid "Use tags to segment your contacts, deals, and tasks"
+msgstr "Используйте теги, чтобы сегментировать свои контакты, сделки и задачи"
+
+#: apps/crm/templates/crm/js_templates/settings_templates.html:382
+msgid "tag"
+msgstr "тег"
+
+#: apps/crm/templates/crm/js_templates/settings_templates.html:432
+msgid "If you have an XLS (Excel) or CSV contact file, you can import it"
+msgstr "Если у вас есть файл с контактами в формате XLS (Excel) или CSV, вы можете импортировать его"
+
+#: apps/crm/templates/crm/js_templates/settings_templates.html:434
+msgid "in"
+msgstr "в разделе"
+
+#: apps/crm/templates/crm/js_templates/settings_templates.html:434
+msgid "or in"
+msgstr "или в разделе"
+
+#: apps/crm/templates/crm/js_templates/settings_templates.html:446
+msgid "Import date"
+msgstr "Дата импорта"
+
+#: apps/crm/templates/crm/js_templates/settings_templates.html:480
+msgid "Company fields"
+msgstr "Поля компаний"
+
+#: apps/crm/templates/crm/js_templates/settings_templates.html:485
+#: apps/crm/templates/crm/js_templates/settings_templates.html:618
+#: apps/crm/templates/crm/js_templates/settings_templates.html:739
+#: apps/crm/templates/crm/js_templates/settings_templates.html:870
+msgid "Add field"
+msgstr "Добавить поле"
+
+#: apps/crm/templates/crm/js_templates/settings_templates.html:494
+#: apps/crm/templates/crm/js_templates/settings_templates.html:627
+#: apps/crm/templates/crm/js_templates/settings_templates.html:748
+#: apps/crm/templates/crm/js_templates/settings_templates.html:879
+msgid "Field"
+msgstr "Поле"
+
+#: apps/crm/templates/crm/js_templates/settings_templates.html:495
+#: apps/crm/templates/crm/js_templates/settings_templates.html:628
+#: apps/crm/templates/crm/js_templates/settings_templates.html:749
+#: apps/crm/templates/crm/js_templates/settings_templates.html:880
+msgid "Type"
+msgstr "Тип"
+
+#: apps/crm/templates/crm/js_templates/settings_templates.html:497
+#: apps/crm/templates/crm/js_templates/settings_templates.html:630
+#: apps/crm/templates/crm/js_templates/settings_templates.html:751
+#: apps/crm/templates/crm/js_templates/settings_templates.html:882
+msgid "Required"
+msgstr "Обязательное"
+
+#: apps/crm/templates/crm/js_templates/settings_templates.html:613
+msgid "Contact fields"
+msgstr "Поля контактных лиц"
+
+#: apps/crm/templates/crm/js_templates/settings_templates.html:734
+msgid "Deal fields"
+msgstr "Поля сделок"
+
+#: apps/crm/templates/crm/js_templates/settings_templates.html:794
+msgid "Configure currencies"
+msgstr "Настроить валюты"
+
+#: apps/crm/templates/crm/js_templates/settings_templates.html:810
+msgid "Configure stages"
+msgstr "Настроить этапы"
+
+#: apps/crm/templates/crm/js_templates/settings_templates.html:865
+msgid "Task fields"
+msgstr "Поля задач"
+
+#: apps/crm/templates/crm/js_templates/tasks_templates.html:37
+msgid "Calendar"
+msgstr "Календарь"
+
+#: apps/crm/templates/crm/js_templates/tasks_templates.html:42
+msgid "Recurring tasks"
+msgstr "Периодические задачи"
+
+#: apps/crm/templates/crm/js_templates/tasks_templates.html:72
+#: apps/crm/templates/crm/js_templates/tasks_templates.html:229
+msgid "New task"
+msgstr "Новая задача"
+
+#: apps/crm/templates/crm/js_templates/tasks_templates.html:133
+msgid "The task list is empty."
+msgstr "Список задач пуст."
+
+#: apps/crm/templates/crm/js_templates/tasks_templates.html:280
+msgid "Reopen task"
+msgstr "Возобновить задачу"
+
+#: apps/crm/templates/crm/js_templates/tasks_templates.html:284
+msgid "Complete task"
+msgstr "Завершить задачу"
+
+#: apps/crm/templates/crm/js_templates/tasks_templates.html:321
+msgid "Completion date"
+msgstr "Дата завершения"
+
+#: apps/crm/templates/crm/js_templates/tasks_templates.html:475
+msgid "New recurring task"
+msgstr "Новая периодическая задача"
+
+#: apps/crm/templates/crm/js_templates/tasks_templates.html:511
+msgid "The recurring task list is empty."
+msgstr "Список периодических задач пуст."
+
+#~ msgid "(GMT +02:00) Kaliningrad, Kyiv"
+#~ msgstr "(GMT +02:00) Калининград, Киев"
+
+#~ msgid "(GMT +03:00) Moscow, Minsk"
+#~ msgstr "(GMT +03:00) Москва, Минск"
+
+#~ msgid "(GMT +04:00) Samara"
+#~ msgstr "(GMT +04:00) Самара"
+
+#~ msgid "(GMT +05:00) Yekaterinburg"
+#~ msgstr "(GMT +05:00) Екатеринбург"
+
+#~ msgid "(GMT +06:00) Omsk, Almaty"
+#~ msgstr "(GMT +06:00) Омск, Алматы"
+
+#~ msgid "(GMT +07:00) Novosibirsk, Krasnoyarsk"
+#~ msgstr "(GMT +07:00) Новосибирск, Красноярск"
+
+#~ msgid "(GMT +08:00) Irkutsk"
+#~ msgstr "(GMT +08:00) Иркутск"
+
+#~ msgid "(GMT +09:00) Yakutsk"
+#~ msgstr "(GMT +09:00) Якутск"
+
+#~ msgid "(GMT +10:00) Vladivostok"
+#~ msgstr "(GMT +10:00) Владивосток"
+
+#~ msgid "(GMT +12:00) Kamchatka Territory"
+#~ msgstr "(GMT +12:00) Камчатский край"
+
+#~ msgid "City"
+#~ msgstr "Город"
+
+#~ msgid "Assignee"
+#~ msgstr "Ответственный"
+
+#~ msgid "Select an assignee"
+#~ msgstr "Выберите ответственного"
+
+#~ msgid "or contact support."
+#~ msgstr "или обратитесь в техподдержку."
+
+#~ msgid "Company type"
+#~ msgstr "Тип компании"
+
+#~ msgid "New client"
+#~ msgstr "Новый клиент"
+
+#~ msgid "Large"
+#~ msgstr "Крупная"
+
+#~ msgid "Small"
+#~ msgstr "Мелкая"
+
+#~ msgid "Contact #1"
+#~ msgstr "Контакт №1"
+
+#~ msgid "Contact #2"
+#~ msgstr "Контакт №2"
+
+#~ msgid "Table columns can be hidden and reordered."
+#~ msgstr "Колонки в таблице можно скрыть и поменять местами."
+
+#~ msgid "Table settings saved"
+#~ msgstr "Настройки таблицы сохранены"
+
+#~ msgid "Reset column settings"
+#~ msgstr "Сбросить настройки колонок"
+
+#~ msgid "Showing %(start)s-%(end)s of %(count)s"
+#~ msgstr "Показано %(start)s-%(end)s из %(count)s"
+
+#~ msgid "Configure table"
+#~ msgstr "Настроить таблицу"
+
+#~ msgid "Clear period"
+#~ msgstr "Сбросить период"
+
+#~ msgid "Hide filters"
+#~ msgstr "Скрыть фильтры"
+
+#~ msgid "Show filters"
+#~ msgstr "Показать фильтры"
+
+#~ msgid "Reset filters"
+#~ msgstr "Сбросить фильтры"
+
+#~ msgid "Collapse"
+#~ msgstr "Свернуть"
+
+#: apps/crm/templates/crm/js_templates/dashboard_templates.html:114
+msgid "All data"
+msgstr "Все данные"
+
+#: apps/crm/templates/crm/js_templates/deals_templates.html:21
+msgid "Closed deals only."
+msgstr "Только закрытые сделки."
+
+#: apps/crm/templates/crm/js_templates/intro_templates.html:234 apps/crm/templates/crm/js_templates/modals_templates.html:579
+msgid "Common fields"
+msgstr "Общие поля"
+
+#: apps/crm/templates/crm/js_templates/common_templates.html:206 apps/crm/templates/crm/js_templates/common_templates.html:212 apps/crm/templates/crm/js_templates/companies_templates.html:146 apps/crm/templates/crm/js_templates/companies_templates.html:152 apps/crm/templates/crm/js_templates/companies_templates.html:182 apps/crm/templates/crm/js_templates/companies_templates.html:188 apps/crm/templates/crm/js_templates/companies_templates.html:254 apps/crm/templates/crm/js_templates/companies_templates.html:264 apps/crm/templates/crm/js_templates/deals_templates.html:206 apps/crm/templates/crm/js_templates/deals_templates.html:212 apps/crm/templates/crm/js_templates/deals_templates.html:450 apps/crm/templates/crm/js_templates/deals_templates.html:458 apps/crm/templates/crm/js_templates/deals_templates.html:483 apps/crm/templates/crm/js_templates/deals_templates.html:491 apps/crm/templates/crm/js_templates/persons_templates.html:147 apps/crm/templates/crm/js_templates/persons_templates.html:153 apps/crm/templates/crm/js_templates/persons_templates.html:183 apps/crm/templates/crm/js_templates/persons_templates.html:189 apps/crm/templates/crm/js_templates/persons_templates.html:255 apps/crm/templates/crm/js_templates/persons_templates.html:264 apps/crm/templates/crm/js_templates/tasks_templates.html:195 apps/crm/templates/crm/js_templates/tasks_templates.html:201 apps/crm/templates/crm/js_templates/tasks_templates.html:344 apps/crm/templates/crm/js_templates/tasks_templates.html:352 apps/crm/templates/crm/js_templates/tasks_templates.html:378 apps/crm/templates/crm/js_templates/tasks_templates.html:386
+msgid "Copy"
+msgstr "Скопировать"
+
+#: apps/crm/templates/crm/js_templates/deals_templates.html:317
+msgid "Deal information"
+msgstr "Информация о сделке"
+
+#: apps/crm/templates/crm/js_templates/common_templates.html:62
+msgid "Deal stage"
+msgstr "Этап сделки"
+
+#: apps/core/templates/core/js_templates/grid_templates.html:19
+msgid "First"
+msgstr "Первая"
+
+#: apps/crm/templates/crm/js_templates/intro_templates.html:102 apps/crm/templates/crm/js_templates/modals_templates.html:435
+msgid "If an existing contact has the same comparison field value as an imported contact, they will be merged."
+msgstr "Если значение поля сравнения у существующего контакта совпадает со значением у импортируемого, контакты будут объединены."
+
+#: apps/core/templates/core/js_templates/grid_templates.html:37
+msgid "Last"
+msgstr "Последняя"
+
+#: apps/crm/templates/crm/js_templates/companies_templates.html:214 apps/crm/templates/crm/js_templates/companies_templates.html:3 apps/crm/templates/crm/js_templates/dashboard_templates.html:3 apps/crm/templates/crm/js_templates/deals_templates.html:3 apps/crm/templates/crm/js_templates/deals_templates.html:361 apps/crm/templates/crm/js_templates/intro_templates.html:3 apps/crm/templates/crm/js_templates/notifications_templates.html:3 apps/crm/templates/crm/js_templates/persons_templates.html:215 apps/crm/templates/crm/js_templates/persons_templates.html:3 apps/crm/templates/crm/js_templates/settings_templates.html:232 apps/crm/templates/crm/js_templates/settings_templates.html:275 apps/crm/templates/crm/js_templates/settings_templates.html:284 apps/crm/templates/crm/js_templates/settings_templates.html:359 apps/crm/templates/crm/js_templates/settings_templates.html:424 apps/crm/templates/crm/js_templates/settings_templates.html:477 apps/crm/templates/crm/js_templates/settings_templates.html:610 apps/crm/templates/crm/js_templates/settings_templates.html:731 apps/crm/templates/crm/js_templates/settings_templates.html:862 apps/crm/templates/crm/js_templates/tasks_templates.html:266 apps/crm/templates/crm/js_templates/tasks_templates.html:3
+msgid "Loading..."
+msgstr "Загрузка..."
+
+#: apps/core/templates/core/js_templates/grid_templates.html:32
+msgid "Next"
+msgstr "Следующая"
+
+#: apps/crm/templates/crm/js_templates/deals_templates.html:16
+msgid "Open deals only."
+msgstr "Только открытые сделки."
+
+#: apps/core/templates/core/js_templates/grid_templates.html:17
+msgid "Pagination"
+msgstr "Постраничная навигация"
+
+#: apps/core/templates/core/js_templates/grid_templates.html:24
+msgid "Previous"
+msgstr "Предыдущая"
+
+#: apps/crm/templates/crm/js_templates/settings_templates.html:322
+msgid "Resend invitation"
+msgstr "Отправить приглашение еще раз"
+
+#: apps/crm/templates/crm/js_templates/companies_templates.html:16
+msgid "Search companies"
+msgstr "Поиск по компаниям"
+
+#: apps/crm/templates/crm/js_templates/persons_templates.html:16
+msgid "Search contacts"
+msgstr "Поиск по контактным лицам"
+
+#: apps/crm/templates/crm/js_templates/deals_templates.html:29
+msgid "Search deals"
+msgstr "Поиск по сделкам"
+
+#: apps/crm/templates/crm/js_templates/tasks_templates.html:16
+msgid "Search tasks"
+msgstr "Поиск по задачам"
+
+#: apps/crm/templates/crm/js_templates/modals_templates.html:964
+msgid "Select a currency"
+msgstr "Выберите валюту"

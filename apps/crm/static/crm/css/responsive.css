@@ -1,0 +1,287 @@
+@media (min-width: 768px) and (max-width: 991px) {
+  .content .content-header .item-toolbar,
+  .content .content-header .items-view-toggle,
+  .content .content-header .toggle-filters {
+    margin-left: var(--space-2);
+  }
+  .content .content-header .content-title {
+    font-size: var(--font-size-lg);
+  }
+  .items-view-wrapper,
+  .dashboard-wrapper,
+  .card-content {
+    min-width: 0;
+  }
+}
+
+@media (max-width: 767px) {
+  .container-fluid > .row .content {
+    height: auto;
+    min-height: 100%;
+  }
+  .content {
+    min-width: 0;
+    padding-right: var(--space-3);
+    padding-left: var(--space-3);
+  }
+  .content-body .table {
+    display: block;
+    max-width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  .content-header .btn,
+  .content-header select,
+  .content-header input {
+    max-width: 100%;
+  }
+  .container-fluid .sidebar {
+    display: none;
+  }
+  .container-fluid .sidebar .menu-text {
+    display: inline;
+  }
+  .container-fluid .sidebar .bottom-sidebar-toggle {
+    display: none;
+  }
+  .container-fluid .content {
+    width: 100%;
+    padding-left: 0;
+  }
+  .container-fluid.sidebar-active .sidebar {
+    display: block;
+    width: var(--sidebar-width);
+  }
+  .container-fluid.sidebar-active .sidebar .bottom-menu {
+    width: var(--sidebar-width);
+  }
+  .container-fluid.sidebar-active .content {
+    width: 100%;
+    margin-left: 200px;
+  }
+  .settings-wrapper .settings-sidebar {
+    position: relative;
+    width: 100%;
+  }
+  .settings-wrapper .settings-sidebar h3 {
+    line-height: 37px;
+  }
+  .settings-wrapper .settings-content {
+    width: 100%;
+    margin-left: 0;
+    padding: 0 15px;
+  }
+  .invite-users-btn {
+    margin: 10px 0;
+    width: 100%;
+  }
+  .users-filter {
+    text-align: center;
+    margin-top: 10px;
+  }
+  .users-filter a {
+    margin: 0 10px;
+  }
+  .custom-field-column,
+  .extra-field-column {
+    margin-bottom: 50px;
+  }
+  .custom-field-form .form-control,
+  .custom-field-form .btn {
+    width: 100%;
+  }
+  .content .content-header .content-title {
+    font-size: 18px;
+    line-height: 37px;
+    margin-bottom: 10px;
+  }
+  .content .content-header .item-table-search {
+    margin: 10px 0;
+  }
+  .content .content-header .toggle-filters {
+    width: 100%;
+    margin: 10px 0;
+  }
+  .content .content-header .toggle-filters .btn {
+    width: 100%;
+  }
+  .content .content-header .items-view-toggle {
+    margin-top: 10px;
+    margin-right: 0;
+    margin-left: 0;
+    width: 100%;
+  }
+  .content .content-header .items-view-toggle .btn {
+    width: 50%;
+  }
+  .content .content-header .refresh-btn {
+    margin-top: 20px;
+    width: 100%;
+  }
+  .content .content-header .activity-form {
+    margin-top: 10px;
+    width: 100%;
+  }
+  .content .content-header .activity-form .form-group {
+    margin-left: 0;
+  }
+  .content .content-header .dashboard-filters-w .input-group {
+    width: 100%;
+  }
+  .content .content-body .filters,
+  .content .content-body .card-sidebar {
+    position: relative;
+    width: 100%;
+    top: 0;
+  }
+  .content .content-body .items-view-wrapper,
+  .content .content-body .dashboard-wrapper,
+  .content .content-body .card-content {
+    width: 100%;
+  }
+  .content .content-body .items-view-wrapper .table-actions .btn,
+  .content .content-body .dashboard-wrapper .table-actions .btn,
+  .content .content-body .card-content .table-actions .btn {
+    margin: 10px 0;
+    width: 100%;
+  }
+  .content .content-body .items-view-wrapper .table-actions .btn-group,
+  .content .content-body .dashboard-wrapper .table-actions .btn-group,
+  .content .content-body .card-content .table-actions .btn-group {
+    width: 100%;
+  }
+  .content .content-body .items-view-wrapper .grid-config-btn,
+  .content .content-body .dashboard-wrapper .grid-config-btn,
+  .content .content-body .card-content .grid-config-btn {
+    margin-top: 10px;
+    width: 100%;
+  }
+  .content .content-body .items-view-wrapper .grid-config-btn .btn,
+  .content .content-body .dashboard-wrapper .grid-config-btn .btn,
+  .content .content-body .card-content .grid-config-btn .btn {
+    width: 100%;
+  }
+  .content .content-body .items-view-wrapper .items-grid-page-size,
+  .content .content-body .dashboard-wrapper .items-grid-page-size,
+  .content .content-body .card-content .items-grid-page-size,
+  .content .content-body .items-view-wrapper .items-grid-pagination,
+  .content .content-body .dashboard-wrapper .items-grid-pagination,
+  .content .content-body .card-content .items-grid-pagination,
+  .content .content-body .items-view-wrapper .items-grid-pagination-info,
+  .content .content-body .dashboard-wrapper .items-grid-pagination-info,
+  .content .content-body .card-content .items-grid-pagination-info {
+    margin-top: 10px;
+    text-align: center;
+    width: 100%;
+  }
+  .content .content-body .items-view-wrapper .calendar-toolbar .add-item-btn,
+  .content .content-body .dashboard-wrapper .calendar-toolbar .add-item-btn,
+  .content .content-body .card-content .calendar-toolbar .add-item-btn {
+    margin-bottom: 10px;
+    width: 100%;
+  }
+  .content .content-body .items-view-wrapper .calendar-toolbar .calendar-controls,
+  .content .content-body .dashboard-wrapper .calendar-toolbar .calendar-controls,
+  .content .content-body .card-content .calendar-toolbar .calendar-controls {
+    margin: 10px 0;
+    width: 100%;
+  }
+  .content .content-body .items-view-wrapper .calendar-toolbar .calendar-controls .calendar-current-date,
+  .content .content-body .dashboard-wrapper .calendar-toolbar .calendar-controls .calendar-current-date,
+  .content .content-body .card-content .calendar-toolbar .calendar-controls .calendar-current-date {
+    width: 70%;
+  }
+  .content .content-body .items-view-wrapper .calendar-toolbar .calendar-controls .icon-btn,
+  .content .content-body .dashboard-wrapper .calendar-toolbar .calendar-controls .icon-btn,
+  .content .content-body .card-content .calendar-toolbar .calendar-controls .icon-btn {
+    width: 15%;
+  }
+  .content .content-body .items-view-wrapper .calendar-toolbar .calendar-view-toggle,
+  .content .content-body .dashboard-wrapper .calendar-toolbar .calendar-view-toggle,
+  .content .content-body .card-content .calendar-toolbar .calendar-view-toggle {
+    margin: 10px 0;
+    width: 100%;
+  }
+  .content .content-body .items-view-wrapper .calendar-toolbar .calendar-view-toggle .btn,
+  .content .content-body .dashboard-wrapper .calendar-toolbar .calendar-view-toggle .btn,
+  .content .content-body .card-content .calendar-toolbar .calendar-view-toggle .btn {
+    width: 33.3%;
+  }
+  .card-content .nav-tabs {
+    width: 100%;
+  }
+  .card-content .nav-tabs li {
+    float: none;
+  }
+  .card-content .nav-tabs li a {
+    padding: 10px 0;
+  }
+  .card-content .nav-tabs li.active a {
+    border-bottom: none;
+  }
+  .card-content .tab-content {
+    width: 100%;
+  }
+  .card-content .tab-content .btn,
+  .card-content .tab-content .add-note-form textarea {
+    width: 100%;
+  }
+  .card-content .tab-content table {
+    margin-top: 30px;
+  }
+  .loading {
+    display: none;
+  }
+  .fullwidth-xs {
+    width: 100% !important;
+  }
+  .btn-group.vertical-xs {
+    position: relative;
+    display: inline-block;
+    vertical-align: middle;
+    width: 100% !important;
+  }
+  .btn-group.vertical-xs > .btn {
+    position: relative;
+    float: left;
+  }
+  .btn-group.vertical-xs > .btn:hover,
+  .btn-group.vertical-xs > .btn:focus,
+  .btn-group.vertical-xs > .btn:active,
+  .btn-group.vertical-xs > .btn.active {
+    z-index: 2;
+  }
+  .btn-group.vertical-xs > .btn:focus {
+    outline: 0;
+  }
+  .btn-group.vertical-xs > .btn,
+  .btn-group.vertical-xs > .btn-group,
+  .btn-group.vertical-xs > .btn-group > .btn {
+    display: block;
+    float: none;
+    width: 100%;
+    max-width: 100%;
+  }
+  .btn-group.vertical-xs > .btn-group > .btn {
+    float: none;
+  }
+  .btn-group.vertical-xs > .btn + .btn,
+  .btn-group.vertical-xs > .btn + .btn-group,
+  .btn-group.vertical-xs > .btn-group + .btn,
+  .btn-group.vertical-xs > .btn-group + .btn-group {
+    margin-top: -1px;
+    margin-left: 0;
+  }
+  .btn-group.vertical-xs .btn {
+    width: 100% !important;
+  }
+  .btn-group.vertical-xs .btn:first-child {
+    border-radius: 4px 4px 0 0 !important;
+  }
+  .btn-group.vertical-xs .btn:last-child {
+    border-radius: 0 0 4px 4px !important;
+  }
+  .grid-config-modal .modal-dialog {
+    width: 94%;
+  }
+}

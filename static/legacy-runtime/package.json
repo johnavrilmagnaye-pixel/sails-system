@@ -1,0 +1,37 @@
+{
+  "name": "sails-crm-legacy-runtime",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Pinned npm sources for vendored Vue 1 CRM runtime assets",
+  "license": "MIT",
+  "dependencies": {
+    "bootbox": "4.4.0",
+    "bootstrap": "3.4.1",
+    "bootstrap-daterangepicker": "2.1.27",
+    "chart.js": "2.9.4",
+    "fullcalendar": "2.9.1",
+    "jquery": "1.12.4",
+    "lodash": "3.10.1",
+    "moment": "2.30.1",
+    "select2": "4.0.13",
+    "select2-bootstrap-theme": "0.1.0-beta.10",
+    "sortablejs": "1.15.6",
+    "vue": "1.0.28",
+    "vue-router": "0.7.13"
+  },
+  "vendored": {
+    "bootbox": {"component": "bootbox-4.4.0", "files": {"bootbox.js": "static/libs/bootbox/bootbox.js"}},
+    "bootstrap": {"component": "bootstrap-3.4.1", "files": {"dist/css/bootstrap.css": "static/libs/bootstrap/css/bootstrap.css", "dist/css/bootstrap.css.map": "static/libs/bootstrap/css/bootstrap.css.map", "dist/js/bootstrap.js": "static/libs/bootstrap/js/bootstrap.js", "dist/fonts/glyphicons-halflings-regular.ttf": "static/libs/bootstrap/fonts/glyphicons-halflings-regular.ttf", "dist/fonts/glyphicons-halflings-regular.woff": "static/libs/bootstrap/fonts/glyphicons-halflings-regular.woff", "dist/fonts/glyphicons-halflings-regular.woff2": "static/libs/bootstrap/fonts/glyphicons-halflings-regular.woff2"}},
+    "bootstrap-daterangepicker": {"component": "bootstrap-daterangepicker-2.1.27", "files": {"daterangepicker.css": "static/libs/bootstrap-daterangepicker/daterangepicker.css", "daterangepicker.js": "static/libs/bootstrap-daterangepicker/daterangepicker.js"}},
+    "chart.js": {"component": "chartjs-2.9.4", "files": {"dist/Chart.js": "static/libs/Chart.js/Chart.js"}},
+    "fullcalendar": {"component": "fullcalendar-standard-2.9.1", "files": {"dist/fullcalendar.css": "static/libs/fullcalendar/fullcalendar.css", "dist/fullcalendar.js": "static/libs/fullcalendar/fullcalendar.js"}},
+    "jquery": {"component": "jquery-1.12.4", "files": {"dist/jquery.js": "static/libs/jquery/jquery.js"}},
+    "lodash": {"component": "lodash-3.10.1-custom", "files": {"index.js": "static/libs/lodash/lodash.js"}},
+    "moment": {"component": "moment-2.30.1", "files": {"moment.js": "static/libs/moment/moment.js"}},
+    "select2": {"component": "select2-4.0.13", "files": {"dist/css/select2.css": "static/libs/select2/select2.css", "dist/js/select2.js": "static/libs/select2/select2.js"}},
+    "select2-bootstrap-theme": {"component": "select2-bootstrap-theme-0.1.0-beta.10", "files": {"dist/select2-bootstrap.css": "static/libs/select2-bootstrap-theme/select2-bootstrap.css"}},
+    "sortablejs": {"component": "sortablejs-1.15.6", "files": {"Sortable.js": "static/libs/Sortable/Sortable.js"}},
+    "vue": {"component": "vue-1.0.28", "files": {"dist/vue.min.js": "static/libs/vue/vue.min.js", "dist/vue.min.js.map": "static/libs/vue/vue.min.js.map"}},
+    "vue-router": {"component": "vue-router-0.7.13", "files": {"dist/vue-router.min.js": "static/libs/vue-router/vue-router.min.js"}}
+  }
+}

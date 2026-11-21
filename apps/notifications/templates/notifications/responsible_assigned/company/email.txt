@@ -1,0 +1,9 @@
+{% extends 'notifications/email_base.txt' %}
+{% load i18n %}
+
+{% block content %}
+{{ assigned_by_name }} {% translate "assigned you to a company." %}
+
+{% translate "Company:" %} {{ item.name|safe }}
+{% translate "Company link:" %} {{ item_url }}
+{% endblock %}

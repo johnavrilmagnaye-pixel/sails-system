@@ -1,0 +1,983 @@
+{% verbatim %}
+<script type="text/template" id="company-form-modal-tmpl">
+<div class="modal company-form-modal" v-el:modal>
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" @click="cancelModal" :aria-label="$root.i18n.gettext('Close')">
+                    <i class="fa fa-times" aria-hidden="true"></i>
+                </button>
+                <h4>{{ isEdit ? $root.i18n.gettext('Edit') : $root.i18n.gettext('Add new') }} {{ $root.i18n.gettext('company') }}</h4>
+            </div>
+
+            <div class="modal-body">
+                <form class="form-horizontal" @submit.prevent="submit">
+                    <div v-for="field in form">
+                        <div class="form-group {{ field.name }}-field-w" :class="{'has-error': !!field.error}">
+                            <label class="control-label col-md-4">{{ field.label }}</label>
+                            <div class="col-md-8">
+                                <component :is="field.editor" :field-data="field"></component>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" @click="cancelModal">{{ $root.i18n.gettext('Cancel') }}</button>
+
+                <div v-if="!isEdit && !isQuickForm" class="btn-group save-and success-dropdown-btn">
+                    <button type="button" class="btn btn-success" @click="submit" v-el:submit>{{ $root.i18n.gettext('Save') }}</button>
+                    <div class="btn btn-success dropdown-toggle" data-toggle="dropdown">
+                        <span class="caret"></span>
+                    </div>
+                    <ul class="dropdown-menu text-left modal-form-submit-options">
+                        <li><a href="#" @click.prevent="submitAndAddMore">{{ $root.i18n.gettext('and add another') }}</a></li>
+                        <li><a href="#" @click.prevent="submitAndGoTo">{{ $root.i18n.gettext('and go to company') }}</a></li>
+                    </ul>
+                </div>
+                <button type="button" v-if="isQuickForm" class="btn btn-success" @click="submit" v-el:submit>{{ $root.i18n.gettext('Add') }}</button>
+                <button type="button" v-if="isEdit" class="btn btn-success" @click="submit" v-el:submit>{{ $root.i18n.gettext('Save changes') }}</button>
+            </div>
+        </div>
+    </div>
+</div>
+</script>
+
+<script type="text/template" id="person-form-modal-tmpl">
+<div class="modal person-form-modal" v-el:modal>
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" @click="cancelModal" :aria-label="$root.i18n.gettext('Close')">
+                    <i class="fa fa-times" aria-hidden="true"></i>
+                </button>
+                <h4>{{ isEdit ? $root.i18n.gettext('Edit') : $root.i18n.gettext('Add new') }} {{ $root.i18n.gettext('contact') }}</h4>
+            </div>
+
+            <div class="modal-body">
+                <form class="form-horizontal" @submit.prevent="submit">
+                    <div v-for="field in form">
+                        <div class="form-group {{ field.name }}-field-w" :class="{'has-error': !!field.error}">
+                            <label class="control-label col-md-4">{{ field.label }}</label>
+                            <div class="col-md-8">
+                                <component :is="field.editor" :field-data="field"></component>
+                                <a v-if="field.name==='company' && !hideAddCompanyLink" href="#"
+                                   @click.prevent.stop="addCompany" class="pseudo-link quick-add-link">
+                                    {{ $root.i18n.gettext('Add a new company') }}
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" @click="cancelModal">{{ $root.i18n.gettext('Cancel') }}</button>
+
+                <div class="btn-group save-and success-dropdown-btn" v-if="!isEdit">
+                    <button type="button" class="btn btn-success" @click="submit" v-el:submit>{{ $root.i18n.gettext('Save') }}</button>
+                    <div class="btn btn-success dropdown-toggle" data-toggle="dropdown">
+                        <span class="caret"></span>
+                    </div>
+                    <ul class="dropdown-menu text-left modal-form-submit-options">
+                        <li><a href="#" @click.prevent="submitAndAddMore">{{ $root.i18n.gettext('and add another') }}</a></li>
+                        <li><a href="#" @click.prevent="submitAndGoTo">{{ $root.i18n.gettext('and go to contact') }}</a></li>
+                    </ul>
+                </div>
+
+                <button type="button" v-if="isEdit" class="btn btn-success" @click="submit" v-el:submit>{{ $root.i18n.gettext('Save changes') }}</button>
+            </div>
+        </div>
+    </div>
+</div>
+</script>
+
+<script type="text/template" id="deal-form-modal-tmpl">
+<div class="modal deal-form-modal" v-el:modal>
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" @click="cancelModal" :aria-label="$root.i18n.gettext('Close')">
+                    <i class="fa fa-times" aria-hidden="true"></i>
+                </button>
+                <h4>{{ isEdit ? $root.i18n.gettext('Edit') : $root.i18n.gettext('Add new') }} {{ $root.i18n.gettext('deal') }}</h4>
+            </div>
+
+            <div class="modal-body">
+                <form class="form-horizontal" @submit.prevent="submit">
+                    <div v-for="field in form">
+                        <div v-if="field.name === 'budget'" class="form-group {{ field.name }}-field-w" :class="{'has-error': !!field.error}">
+                            <label class="control-label col-md-4">{{ field.label }}</label>
+                            <div class="col-md-4">
+                                <component :is="field.editor" :field-data="field"></component>
+                            </div>
+                            <div class="col-md-4">
+                                <component :is="form.currency.editor" :field-data="form.currency"></component>
+                            </div>
+                        </div>
+                        <div v-if="['budget', 'currency'].indexOf(field.name) === -1" class="form-group {{ field.name }}-field-w" :class="{'has-error': !!field.error}">
+                            <label class="control-label col-md-4">{{ field.label }}</label>
+                            <div class="col-md-8">
+                                <component :is="field.editor" :field-data="field"></component>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" @click="cancelModal">{{ $root.i18n.gettext('Cancel') }}</button>
+
+                <div class="btn-group save-and success-dropdown-btn" v-if="!isEdit">
+                    <button type="button" class="btn btn-success" @click="submit" v-el:submit>{{ $root.i18n.gettext('Save') }}</button>
+                    <div class="btn btn-success dropdown-toggle" data-toggle="dropdown">
+                        <span class="caret"></span>
+                    </div>
+                    <ul class="dropdown-menu text-left modal-form-submit-options">
+                        <li><a href="#" @click.prevent="submitAndAddMore">{{ $root.i18n.gettext('and add another') }}</a></li>
+                        <li><a href="#" @click.prevent="submitAndGoTo">{{ $root.i18n.gettext('and go to deal') }}</a></li>
+                    </ul>
+                </div>
+
+                <button type="button" v-if="isEdit" class="btn btn-success" @click="submit" v-el:submit>{{ $root.i18n.gettext('Save changes') }}</button>
+            </div>
+        </div>
+    </div>
+</div>
+</script>
+
+<script type="text/template" id="task-form-modal-tmpl">
+<div class="modal task-form-modal" v-el:modal>
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" @click="cancelModal" :aria-label="$root.i18n.gettext('Close')">
+                    <i class="fa fa-times" aria-hidden="true"></i>
+                </button>
+                <h4>{{ isEdit ? $root.i18n.gettext('Edit') : $root.i18n.gettext('Add new') }} {{ $root.i18n.gettext('task') }}</h4>
+            </div>
+
+            <div class="modal-body">
+                <form class="form-horizontal" @submit.prevent="submit">
+                    <div v-for="field in form">
+                        <div class="form-group {{ field.name }}-field-w" :class="{'has-error': !!field.error}">
+                            <label class="control-label col-md-4">{{ field.label }}</label>
+                            <div class="col-md-8">
+                                <component :is="field.editor" :field-data="field"></component>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" @click="cancelModal">{{ $root.i18n.gettext('Cancel') }}</button>
+
+                <div class="btn-group save-and success-dropdown-btn" v-if="!isEdit">
+                    <button type="button" class="btn btn-success" @click="submit" v-el:submit>{{ $root.i18n.gettext('Save') }}</button>
+                    <div class="btn btn-success dropdown-toggle" data-toggle="dropdown">
+                        <span class="caret"></span>
+                    </div>
+                    <ul class="dropdown-menu text-left modal-form-submit-options">
+                        <li><a href="#" @click.prevent="submitAndAddMore">{{ $root.i18n.gettext('and add another') }}</a></li>
+                        <li><a href="#" @click.prevent="submitAndGoTo">{{ $root.i18n.gettext('and go to task') }}</a></li>
+                    </ul>
+                </div>
+
+                <button type="button" v-if="isEdit" class="btn btn-success" @click="submit" v-el:submit>{{ $root.i18n.gettext('Save changes') }}</button>
+            </div>
+        </div>
+    </div>
+</div>
+</script>
+
+<script type="text/template" id="grid-config-modal-tmpl">
+<div class="modal grid-config-modal" v-el:modal>
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form class="form form-horizontal" @submit.prevent="onSubmit">
+                <div class="modal-header">
+                    <button type="button" class="close" @click="cancelModal" :aria-label="$root.i18n.gettext('Close')">
+                        <i class="fa fa-times" aria-hidden="true"></i>
+                    </button>
+                    <h4>{{ $root.i18n.gettext('Table settings') }}</h4>
+                </div>
+
+                <div class="modal-body">
+                    <div class="form-group">
+                        <div class="col-md-12 checkbox checkbox-text">
+                            <input name="name" type="checkbox" id="name" checked disabled>
+                            <label for="name">{{ nameLabel }}</label>
+                        </div>
+                    </div>
+
+                    <div v-el:columns-list>
+                        <div class="form-group" v-for="column in columns">
+                            <div class="col-md-12 checkbox checkbox-text">
+                                <input :name="column.name" type="checkbox" :id="column.name" v-model="column.isVisible">
+                                <label :for="column.name">{{ column.label }}</label>
+
+                                <span class="drag-icon-w">
+                                    <i class="fa fa-bars"></i>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" @click="cancelModal">{{ $root.i18n.gettext('Close') }}</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</script>
+
+<script type="text/template" id="responsibles-modal-tmpl">
+<div class="modal responsibles-modal" v-el:modal>
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form class="form-horizontal" @submit.prevent="onSubmit">
+                <div class="modal-header">
+                    <button type="button" class="close" @click="cancelModal" :aria-label="$root.i18n.gettext('Close')">
+                        <i class="fa fa-times" aria-hidden="true"></i>
+                    </button>
+                    <h4>{{ $root.i18n.gettext('Edit assignees') }}</h4>
+                </div>
+
+                <div class="modal-body">
+                    <p>{{ $root.i18n.gettext('Manage assignees for') }} {{ targetLabel }}</p>
+
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            <select multiple name="responsibles" v-select2="form.responsibles" option-type="user"></select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            <div class="radio">
+                                <input id="action_add" name="action" type="radio" value="add" v-model="form.action">
+                                <label for="action_add">{{ $root.i18n.gettext('Add to existing') }}</label>
+                            </div>
+                            <div class="radio">
+                                <input id="action_set" name="action" type="radio" value="set" v-model="form.action">
+                                <label for="action_set">{{ $root.i18n.gettext('Replace existing') }}</label>
+                            </div>
+                            <div class="radio">
+                                <input id="action_remove" name="action" type="radio" value="remove" v-model="form.action">
+                                <label for="action_remove">{{ $root.i18n.gettext('Remove from existing') }}</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" @click="cancelModal">{{ $root.i18n.gettext('Cancel') }}</button>
+                    <div class="btn-group success-dropdown-btn" v-if="isGrid">
+                        <button class="btn btn-success dropdown-toggle" data-toggle="dropdown" v-el:submit>
+                            {{ $root.i18n.gettext('Apply to') }} <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu text-left">
+                            <li><a href="#" @click.prevent="save(true)">{{ $root.i18n.gettext('Selected (') }}{{ itemIds.length }})</a></li>
+                            <li><a href="#" @click.prevent="save(false)">{{ $root.i18n.gettext('All (') }}{{ filteredCnt }})</a></li>
+                        </ul>
+                    </div>
+                    <button class="btn btn-success" type="submit" v-if="!isGrid" v-el:submit>
+                        {{ $root.i18n.gettext('Save') }}
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</script>
+
+<script type="text/template" id="tags-modal-tmpl">
+<div class="modal tags-modal" v-el:modal>
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form class="form-horizontal" @submit.prevent="onSubmit">
+                <div class="modal-header">
+                    <button type="button" class="close" @click="cancelModal" :aria-label="$root.i18n.gettext('Close')">
+                        <i class="fa fa-times" aria-hidden="true"></i>
+                    </button>
+                    <h4>{{ $root.i18n.gettext('Edit tags') }}</h4>
+                </div>
+
+                <div class="modal-body">
+                    <p>{{ $root.i18n.gettext('Set tags for') }} {{ targetLabel }}</p>
+
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            <select multiple name="tags" v-select2="form.tags" option-type="tag" :tags="true"></select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            <div class="radio">
+                                <input id="action_add" name="action" type="radio" value="add" v-model="form.action">
+                                <label for="action_add">{{ $root.i18n.gettext('Add to existing') }}</label>
+                            </div>
+                            <div class="radio">
+                                <input id="action_set" name="action" type="radio" value="set" v-model="form.action">
+                                <label for="action_set">{{ $root.i18n.gettext('Replace existing') }}</label>
+                            </div>
+                            <div class="radio">
+                                <input id="action_remove" name="action" type="radio" value="remove" v-model="form.action">
+                                <label for="action_remove">{{ $root.i18n.gettext('Remove from existing') }}</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" @click="cancelModal">{{ $root.i18n.gettext('Cancel') }}</button>
+                    <div class="btn-group success-dropdown-btn" v-if="isGrid">
+                        <button class="btn btn-success dropdown-toggle" data-toggle="dropdown" v-el:submit>
+                            {{ $root.i18n.gettext('Apply to') }} <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu text-left">
+                            <li><a href="#" @click.prevent="save(true)">{{ $root.i18n.gettext('Selected (') }}{{ itemIds.length }})</a></li>
+                            <li><a href="#" @click.prevent="save(false)">{{ $root.i18n.gettext('All (') }}{{ filteredCnt }})</a></li>
+                        </ul>
+                    </div>
+                    <button class="btn btn-success" type="submit" v-if="!isGrid" v-el:submit>
+                        {{ $root.i18n.gettext('Save') }}
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</script>
+
+<script type="text/template" id="extra-field-form-modal-tmpl">
+<div class="modal extra-field-form-modal" v-el:modal>
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" @click="cancelModal" :aria-label="$root.i18n.gettext('Close')">
+                    <i class="fa fa-times" aria-hidden="true"></i>
+                </button>
+                <h4>{{ isEdit ? $root.i18n.gettext('Edit') : $root.i18n.gettext('Add new') }} {{ $root.i18n.gettext('field') }}</h4>
+            </div>
+
+            <div class="modal-body">
+                <form class="form-horizontal" @submit.prevent="submit">
+                    <div v-for="field in form" v-if="field.name !== 'select_options' || showSelectOptions">
+                        <div class="form-group {{ field.name }}-field-w" :class="{'has-error': !!field.error}">
+                            <label class="control-label col-md-4">{{ field.label }}</label>
+                            <div class="col-md-8">
+                                <component :is="field.editor" :field-data="field"></component>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" @click="cancelModal">{{ $root.i18n.gettext('Cancel') }}</button>
+                <button type="button" class="btn btn-success" @click="submit" v-el:submit>{{ $root.i18n.gettext('Save') }}</button>
+            </div>
+        </div>
+    </div>
+</div>
+</script>
+
+<script type="text/template" id="import-contacts-step1-modal-tmpl">
+<div class="modal contacts-import-step1-modal" v-el:modal>
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form class="form form-horizontal" @submit.prevent="onSubmit">
+                <div class="modal-header">
+                    <button type="button" class="close" @click="cancelModal" :aria-label="$root.i18n.gettext('Close')">
+                        <i class="fa fa-times" aria-hidden="true"></i>
+                    </button>
+                    <h4>{{ $root.i18n.gettext('Import contacts') }}</h4>
+                </div>
+
+                <div class="modal-body">
+                    <p>
+                        {{ $root.i18n.gettext('You can upload your contact database from another application or an Excel file.') }}
+                    </p>
+                    <p>
+                        {{ $root.i18n.gettext('Upload a contact file and specify whether its first row contains field names.') }}
+                        <br>
+                        {{ $root.i18n.gettext('Then click') }} <b>{{ $root.i18n.gettext('Import') }}</b>.
+                    </p>
+                    <br>
+
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            <input name="file" type="file" required="required" v-el:file-input>
+                            <p class="help-block">{{ $root.i18n.gettext('Supported formats: CSV, XLS (Excel)') }}</p>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            <div class="checkbox checkbox-text">
+                                <input name="has_header" type="checkbox" id="has_header" v-model="form.has_header">
+                                <label for="has_header">{{ $root.i18n.gettext('the first row contains field names') }}</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            <div class="checkbox checkbox-text">
+                                <input name="merge_contacts" type="checkbox" id="merge_contacts" v-model="form.merge_contacts">
+                                <label for="merge_contacts">{{ $root.i18n.gettext('merge matching contacts') }} <i v-popover class="ion-ios-information-outline"
+                                       :content="$root.i18n.gettext('If an existing contact has the same comparison field value as an imported contact, they will be merged.')"></i></label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            <a href="#" class="toggle-merge-fields" @click.prevent="showMergeFields=!showMergeFields">
+                                {{ $root.i18n.gettext('Configure contact matching') }}
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="form-group" :class="{'hidden': !showMergeFields}">
+                        <label for="company_merge_field" class="col-md-5 control-label text-left">
+                            {{ $root.i18n.gettext('Company comparison field') }}
+                        </label>
+                        <div class="col-md-5">
+                            <select name="company_merge_field" id="company_merge_field" class="form-control"
+                                    v-model="form.company_merge_field">
+                                <option v-for="option in companyFieldOptions" :value="option.value">
+                                    {{ option.text }}
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group" :class="{'hidden': !showMergeFields}">
+                        <label for="person_merge_field" class="col-md-5 control-label text-left">
+                            {{ $root.i18n.gettext('Contact comparison field') }}
+                        </label>
+                        <div class="col-md-5">
+                            <select name="person_merge_field" id="person_merge_field" class="form-control"
+                                    v-model="form.person_merge_field">
+                                <option v-for="option in personFieldOptions" :value="option.value">
+                                    {{ option.text }}
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" @click="cancelModal">{{ $root.i18n.gettext('Cancel') }}</button>
+                    <button class="btn btn-success" type="submit">
+                        {{ $root.i18n.gettext('Import') }}
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</script>
+
+<script type="text/template" id="import-contacts-step2-modal-tmpl">
+<div class="modal contacts-import-step2-modal" v-el:modal>
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" @click="cancelModal" :aria-label="$root.i18n.gettext('Close')">
+                    <i class="fa fa-times" aria-hidden="true"></i>
+                </button>
+                <h4>{{ $root.i18n.gettext('Import settings') }}</h4>
+            </div>
+
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <p>
+                            {{ $root.i18n.gettext('The file contains') }} <b>{{ rowsCnt }}</b> {{ $root.i18n.ngettext('row', 'rows', rowsCnt) }}
+                            {{ $root.i18n.gettext('contain data.') }}
+                            <span v-if="duplicatesCnt">
+                                {{ $root.i18n.gettext('Of these') }} <b>{{ duplicatesCnt }}</b>
+                                {{ $root.i18n.ngettext('row', 'rows', duplicatesCnt) }}
+                                {{ $root.i18n.gettext('are duplicates.') }}
+                            </span>
+                        </p>
+                        <p>
+                            {{ $root.i18n.gettext('Match the columns in the file to Sails CRM fields.') }}
+                            <br>
+                            {{ $root.i18n.gettext('A column will be ignored if no field is selected for it.') }}
+                            <br>
+                            {{ $root.i18n.gettext('One of these two fields must be selected:') }} <b>{{ $root.i18n.gettext('Full name') }}</b> {{ $root.i18n.gettext('or') }} <b>{{ $root.i18n.gettext('Company name') }}</b>.
+                        </p>
+                        <br>
+                    </div>
+                    <div class="col-md-offset-1 col-md-5">
+                        <p class="text-right">
+                            <a href="#" class="import-extra-field-form-toggle" @click.prevent="toggleExtraFieldForm">
+                                {{ $root.i18n.gettext('Add new field') }}
+                            </a>
+                        </p>
+
+                        <form class="form-horizontal import-extra-field-form hidden" v-el:extra-field-form
+                              @submit.prevent="addExtraField">
+                            <div class="form-group" :class="{'has-error': !!form.error}">
+                                <label class="control-label col-md-5">{{ $root.i18n.gettext('Field name') }}</label>
+                                <div class="col-md-7">
+                                    <input type="text" name="name" v-model="form.name" class="form-control">
+
+                                    <span class="help-block" v-show="!!form.error">
+                                        {{ form.error }}
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-5">{{ $root.i18n.gettext('Use for') }}</label>
+                                <div class="col-md-7">
+                                    <select type="text" name="content_type" v-model="form.contentType" class="form-control">
+                                        <option v-for="option in contentTypeOptions" :value="option.value">
+                                            {{ option.text }}
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-offset-5 col-md-7">
+                                    <button type="submit" class="btn btn-sm btn-success pull-right">{{ $root.i18n.gettext('Add') }}</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="overflow-wrapper">
+                    <table class="table table-hover fields-table" v-el:fields-table>
+                        <tbody>
+                            <tr class="active header-row" v-if="headerRow">
+                                <td v-for="cellData in headerRow">{{ cellData }}</td>
+                            </tr>
+                            <tr>
+                                <td v-for="index in fieldsRange">
+                                    <select :name="'field_' + index" v-model="fieldsMap['field_' + index]"
+                                            class="form-control">
+                                        <option value="">{{ $root.i18n.gettext('Select a field') }}</option>
+                                        <optgroup :label="$root.i18n.gettext('Company')">
+                                            <option v-for="fieldOption in companyFieldOptions" :value="fieldOption.value">
+                                                {{ fieldOption.text }}
+                                            </option>
+                                        </optgroup>
+                                        <optgroup :label="$root.i18n.gettext('Person')">
+                                            <option v-for="fieldOption in personFieldOptions" :value="fieldOption.value">
+                                                {{ fieldOption.text }}
+                                            </option>
+                                        </optgroup>
+                                        <optgroup :label="$root.i18n.gettext('Common fields')">
+                                            <option v-for="fieldOption in commonFieldOptions" :value="fieldOption.value">
+                                                {{ fieldOption.text }}
+                                            </option>
+                                        </optgroup>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr v-for="row in sampleRows">
+                                <td v-for="cellData in row">{{ cellData }}</td>
+                            </tr>
+                            <tr v-if="rowsCnt > sampleRows.length">
+                                <td v-for="field in fieldsRange" class="text-center">
+                                    <i class="fa fa-ellipsis-h"></i>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" @click="cancelModal">{{ $root.i18n.gettext('Cancel') }}</button>
+                <button class="btn btn-success" @click="onSubmit">
+                    {{ $root.i18n.gettext('Continue import') }}
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+</script>
+
+<script type="text/template" id="periodic-task-form-modal-tmpl">
+<div class="modal periodic-task-form-modal" v-el:modal>
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" @click="cancelModal" :aria-label="$root.i18n.gettext('Close')">
+                    <i class="fa fa-times" aria-hidden="true"></i>
+                </button>
+                <h4>{{ isEdit ? $root.i18n.gettext('Edit') : $root.i18n.gettext('Add new') }} {{ $root.i18n.gettext('recurring task') }}</h4>
+            </div>
+
+            <div class="modal-body">
+                <div class="alert alert-info" v-if="!isEdit">
+                    {{ $root.i18n.gettext('Add a template that will be used to create new tasks automatically.') }}
+                </div>
+
+                <form class="form-horizontal" @submit.prevent="submit">
+                    <div v-for="field in form" v-if="!field.hidden">
+                        <div class="form-group {{ field.name }}-field-w" :class="{'has-error': !!field.error}">
+                            <label class="control-label col-md-4">{{ field.label }}</label>
+                            <div class="col-md-8">
+                                <component :is="field.editor" :field-data="field"></component>
+                            </div>
+                        </div>
+                    </div>
+
+                    <br><br>
+
+                    <div class="form-group time-field-w" :class="{'has-error': !!form.time.error}">
+                        <label class="control-label col-md-4">{{ form.time.label }}</label>
+                        <div class="col-md-8">
+                            <component :is="form.time.editor" :field-data="form.time"></component>
+                        </div>
+                    </div>
+                    <div class="form-group period-field-w" :class="{'has-error': !!form.period.error}">
+                        <label class="control-label col-md-4">{{ form.period.label }}</label>
+                        <div class="col-md-8">
+                            <component :is="form.period.editor" :field-data="form.period"></component>
+                        </div>
+                    </div>
+                    <div class="form-group weekdays-field-w" :class="{'has-error': !!form.weekdays.error}" v-show="parseInt(form.period.value) === 3">
+                        <label class="control-label col-md-4">{{ form.weekdays.label }}</label>
+                        <div class="col-md-8">
+                            <component :is="form.weekdays.editor" :field-data="form.weekdays"></component>
+                        </div>
+                    </div>
+                    <div class="form-group months-field-w" :class="{'has-error': !!form.months.error}" v-show="parseInt(form.period.value) === 4">
+                        <label class="control-label col-md-4">{{ form.months.label }}</label>
+                        <div class="col-md-8">
+                            <component :is="form.months.editor" :field-data="form.months"></component>
+                        </div>
+                    </div>
+                    <div class="form-group monthdays-field-w" :class="{'has-error': !!form.monthdays.error}" v-show="parseInt(form.period.value) === 4">
+                        <label class="control-label col-md-4">{{ form.monthdays.label }}</label>
+                        <div class="col-md-8">
+                            <component :is="form.monthdays.editor" :field-data="form.monthdays"></component>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" @click="cancelModal">{{ $root.i18n.gettext('Cancel') }}</button>
+                <button type="button" class="btn btn-success" @click="submit" v-el:submit>{{ $root.i18n.gettext('Save') }}</button>
+            </div>
+        </div>
+    </div>
+</div>
+</script>
+
+<script type="text/template" id="permissions-form-modal-tmpl">
+<div class="modal permissions-form-modal" v-el:modal>
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" @click="cancelModal" :aria-label="$root.i18n.gettext('Close')">
+                    <i class="fa fa-times" aria-hidden="true"></i>
+                </button>
+                <h4>{{ $root.i18n.gettext('User permissions for') }} {{ user.name }}</h4>
+            </div>
+
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-8">
+
+                        <div class="permissions-w">
+                            <h4>{{ $root.i18n.gettext('Companies') }}</h4>
+
+                            <div class="checkbox checkbox-text">
+                                <input name="add_company" type="checkbox" id="add_company" v-model="perms.add_company">
+                                <label for="add_company">{{ $root.i18n.gettext('Can add') }}</label>
+                            </div>
+                            <div class="checkbox checkbox-text">
+                                <input name="view_all_company" type="checkbox" id="view_all_company" v-model="perms.view_all_company">
+                                <label for="view_all_company">{{ $root.i18n.gettext('Can view all') }}</label>
+                            </div>
+                            <div class="checkbox checkbox-text">
+                                <input name="change_own_company" type="checkbox" id="change_own_company" v-model="perms.change_own_company">
+                                <label for="change_own_company">{{ $root.i18n.gettext('Can edit own') }}</label>
+                            </div>
+                            <div class="checkbox checkbox-text">
+                                <input name="change_assigned_company" type="checkbox" id="change_assigned_company" v-model="perms.change_assigned_company">
+                                <label for="change_assigned_company">{{ $root.i18n.gettext('Can edit assigned') }}</label>
+                            </div>
+                            <div class="checkbox checkbox-text">
+                                <input name="change_all_company" type="checkbox" id="change_all_company" v-model="perms.change_all_company">
+                                <label for="change_all_company">{{ $root.i18n.gettext('Can edit all') }}</label>
+                            </div>
+                            <div class="checkbox checkbox-text">
+                                <input name="delete_own_company" type="checkbox" id="delete_own_company" v-model="perms.delete_own_company">
+                                <label for="delete_own_company">{{ $root.i18n.gettext('Can delete own') }}</label>
+                            </div>
+                        </div>
+
+                        <div class="permissions-w">
+                            <h4>{{ $root.i18n.gettext('Persons') }}</h4>
+
+                            <div class="checkbox checkbox-text">
+                                <input name="add_person" type="checkbox" id="add_person" v-model="perms.add_person">
+                                <label for="add_person">{{ $root.i18n.gettext('Can add') }}</label>
+                            </div>
+                            <div class="checkbox checkbox-text">
+                                <input name="view_all_person" type="checkbox" id="view_all_person" v-model="perms.view_all_person">
+                                <label for="view_all_person">{{ $root.i18n.gettext('Can view all') }}</label>
+                            </div>
+                            <div class="checkbox checkbox-text">
+                                <input name="change_own_person" type="checkbox" id="change_own_person" v-model="perms.change_own_person">
+                                <label for="change_own_person">{{ $root.i18n.gettext('Can edit own') }}</label>
+                            </div>
+                            <div class="checkbox checkbox-text">
+                                <input name="change_assigned_person" type="checkbox" id="change_assigned_person" v-model="perms.change_assigned_person">
+                                <label for="change_assigned_person">{{ $root.i18n.gettext('Can edit assigned') }}</label>
+                            </div>
+                            <div class="checkbox checkbox-text">
+                                <input name="change_all_person" type="checkbox" id="change_all_person" v-model="perms.change_all_person">
+                                <label for="change_all_person">{{ $root.i18n.gettext('Can edit all') }}</label>
+                            </div>
+                            <div class="checkbox checkbox-text">
+                                <input name="delete_own_person" type="checkbox" id="delete_own_person" v-model="perms.delete_own_person">
+                                <label for="delete_own_person">{{ $root.i18n.gettext('Can delete own') }}</label>
+                            </div>
+                        </div>
+
+                        <div class="permissions-w">
+                            <h4>{{ $root.i18n.gettext('Deals') }}</h4>
+
+                            <div class="checkbox checkbox-text">
+                                <input name="add_deal" type="checkbox" id="add_deal" v-model="perms.add_deal">
+                                <label for="add_deal">{{ $root.i18n.gettext('Can add') }}</label>
+                            </div>
+                            <div class="checkbox checkbox-text">
+                                <input name="view_all_deal" type="checkbox" id="view_all_deal" v-model="perms.view_all_deal">
+                                <label for="view_all_deal">{{ $root.i18n.gettext('Can view all') }}</label>
+                            </div>
+                            <div class="checkbox checkbox-text">
+                                <input name="change_own_deal" type="checkbox" id="change_own_deal" v-model="perms.change_own_deal">
+                                <label for="change_own_deal">{{ $root.i18n.gettext('Can edit own') }}</label>
+                            </div>
+                            <div class="checkbox checkbox-text">
+                                <input name="change_assigned_deal" type="checkbox" id="change_assigned_deal" v-model="perms.change_assigned_deal">
+                                <label for="change_assigned_deal">{{ $root.i18n.gettext('Can edit assigned') }}</label>
+                            </div>
+                            <div class="checkbox checkbox-text">
+                                <input name="change_all_deal" type="checkbox" id="change_all_deal" v-model="perms.change_all_deal">
+                                <label for="change_all_deal">{{ $root.i18n.gettext('Can edit all') }}</label>
+                            </div>
+                            <div class="checkbox checkbox-text">
+                                <input name="delete_own_deal" type="checkbox" id="delete_own_deal" v-model="perms.delete_own_deal">
+                                <label for="delete_own_deal">{{ $root.i18n.gettext('Can delete own') }}</label>
+                            </div>
+                        </div>
+
+                        <div class="permissions-w">
+                            <h4>{{ $root.i18n.gettext('Tasks') }}</h4>
+
+                            <div class="checkbox checkbox-text">
+                                <input name="add_task" type="checkbox" id="add_task" v-model="perms.add_task">
+                                <label for="add_task">{{ $root.i18n.gettext('Can add') }}</label>
+                            </div>
+                            <div class="checkbox checkbox-text">
+                                <input name="view_all_task" type="checkbox" id="view_all_task" v-model="perms.view_all_task">
+                                <label for="view_all_task">{{ $root.i18n.gettext('Can view all') }}</label>
+                            </div>
+                            <div class="checkbox checkbox-text">
+                                <input name="change_own_task" type="checkbox" id="change_own_task" v-model="perms.change_own_task">
+                                <label for="change_own_task">{{ $root.i18n.gettext('Can edit own') }}</label>
+                            </div>
+                            <div class="checkbox checkbox-text">
+                                <input name="change_assigned_task" type="checkbox" id="change_assigned_task" v-model="perms.change_assigned_task">
+                                <label for="change_assigned_task">{{ $root.i18n.gettext('Can edit assigned') }}</label>
+                            </div>
+                            <div class="checkbox checkbox-text">
+                                <input name="delete_own_task" type="checkbox" id="delete_own_task" v-model="perms.delete_own_task">
+                                <label for="delete_own_task">{{ $root.i18n.gettext('Can delete own') }}</label>
+                            </div>
+                        </div>
+
+                        <div class="permissions-w">
+                            <h4>{{ $root.i18n.gettext('Notes') }}</h4>
+
+                            <div class="checkbox checkbox-text">
+                                <input name="add_note" type="checkbox" id="add_note" v-model="perms.add_note">
+                                <label for="add_note">{{ $root.i18n.gettext('Can add') }}</label>
+                            </div>
+                            <div class="checkbox checkbox-text">
+                                <input name="view_all_note" type="checkbox" id="view_all_note" v-model="perms.view_all_note">
+                                <label for="view_all_note">{{ $root.i18n.gettext('Can view all') }}</label>
+                            </div>
+                            <div class="checkbox checkbox-text">
+                                <input name="delete_own_note" type="checkbox" id="delete_own_note" v-model="perms.delete_own_note">
+                                <label for="delete_own_note">{{ $root.i18n.gettext('Can delete own') }}</label>
+                            </div>
+                        </div>
+
+                        <div class="permissions-w">
+                            <h4>{{ $root.i18n.gettext('Files') }}</h4>
+
+                            <div class="checkbox checkbox-text">
+                                <input name="add_upload" type="checkbox" id="add_upload" v-model="perms.add_upload">
+                                <label for="add_upload">{{ $root.i18n.gettext('Can add') }}</label>
+                            </div>
+                            <div class="checkbox checkbox-text">
+                                <input name="view_all_upload" type="checkbox" id="view_all_upload" v-model="perms.view_all_upload">
+                                <label for="view_all_upload">{{ $root.i18n.gettext('Can view all') }}</label>
+                            </div>
+                            <div class="checkbox checkbox-text">
+                                <input name="delete_own_upload" type="checkbox" id="delete_own_upload" v-model="perms.delete_own_upload">
+                                <label for="delete_own_upload">{{ $root.i18n.gettext('Can delete own') }}</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <a href="#" class="toggle-all-link pull-right" @click.prevent="toggleAll">
+                            {{ toggleAllText }} {{ $root.i18n.gettext('all') }}
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" @click="cancelModal">{{ $root.i18n.gettext('Cancel') }}</button>
+                <button type="button" class="btn btn-success" @click="submit" v-el:submit>{{ $root.i18n.gettext('Save') }}</button>
+            </div>
+        </div>
+    </div>
+</div>
+</script>
+
+<script type="text/template" id="deal-stages-modal-tmpl">
+<div class="modal deal-stages-modal" v-el:modal>
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" @click="cancelModal" :aria-label="$root.i18n.gettext('Close')">
+                    <i class="fa fa-times" aria-hidden="true"></i>
+                </button>
+                    <h4>{{ $root.i18n.gettext('Deal stage settings') }}</h4>
+            </div>
+
+            <div class="modal-body">
+                <table class="table custom-field-table deal-status-table">
+                    <tbody>
+                        <tr>
+                            <td>{{ $root.i18n.gettext('In progress') }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <table v-sortable class="table custom-field-table deal-stages-table">
+                    <tbody>
+                        <tr v-for="dealStage in dealStages" transition="fade" :data-id="dealStage.id">
+                            <td>
+                                <span class="drag">::</span>
+                            </td>
+                            <td class="text-left edit-custom-field">
+                                <a v-editable href="#" :pk="dealStage.id" :value="dealStage.name"
+                                   :url="'/rest/deal_stages/' + dealStage.id + '/edit/'" :title="$root.i18n.gettext('Edit')">
+                                    {{ dealStage.name }}
+                                </a>
+                            </td>
+                            <td class="delete-custom-field">
+                                <span @click="deleteDealStage(dealStage)" :title="$root.i18n.gettext('Delete')">
+                                    <i class="fa fa-trash-o"></i>
+                                </span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <form class="custom-field-form" @submit.prevent="addDealStage($event)">
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-offset-1 col-md-6 col-xs-offset-1 col-xs-6">
+                                <input class="form-control" name="name" type="text">
+                            </div>
+                            <div class="col-md-5 col-xs-5">
+                                <button class="btn btn-success pull-right" type="submit">{{ $root.i18n.gettext('Add') }}</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+
+                <table class="table custom-field-table deal-status-table">
+                    <tbody>
+                        <tr>
+                            <td>{{ $root.i18n.gettext('Successfully completed') }}</td>
+                        </tr>
+                        <tr>
+                            <td>{{ $root.i18n.gettext('Lost') }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" @click="cancelModal">{{ $root.i18n.gettext('Close') }}</button>
+            </div>
+        </div>
+    </div>
+</div>
+</script>
+
+<script type="text/template" id="deal-currencies-modal-tmpl">
+<div class="modal deal-currencies-modal" v-el:modal>
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" @click="cancelModal" :aria-label="$root.i18n.gettext('Close')">
+                    <i class="fa fa-times" aria-hidden="true"></i>
+                </button>
+                <h4>{{ $root.i18n.gettext('Configure deal stages') }}</h4>
+            </div>
+
+            <div class="modal-body">
+                <table class="table custom-field-table">
+                    <tbody>
+                        <tr v-for="dealCurrency in dealCurrencies" transition="fade">
+                            <td class="text-left edit-custom-field">
+                                {{ dealCurrency.name }} ({{ dealCurrency.code }})
+                            </td>
+                            <td class="delete-custom-field">
+                                <span @click="deleteDealCurrency(dealCurrency)" :title="$root.i18n.gettext('Delete')">
+                                    <i class="fa fa-trash-o"></i>
+                                </span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <form class="custom-field-form" @submit.prevent="addDealCurrency($event)">
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-7 col-xs-7">
+                                <select class="form-control" name="name" v-select2="newDealCurrency" option-type="disabled_deal_currency" :placeholder="$root.i18n.gettext('Select a currency')"></select>
+                            </div>
+                            <div class="col-md-5 col-xs-5">
+                                <button class="btn btn-success pull-right" type="submit">
+                                    {{ $root.i18n.gettext('Add') }}
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" @click="cancelModal">{{ $root.i18n.gettext('Close') }}</button>
+            </div>
+        </div>
+    </div>
+</div>
+</script>
+{% endverbatim %}

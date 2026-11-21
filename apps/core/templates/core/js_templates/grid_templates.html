@@ -1,0 +1,47 @@
+{% verbatim %}
+<script type="text/template" id="grid-pagination-tmpl">
+<div class="row">
+    <div class="col-md-2" v-if="!!canChangePageSize">
+        <div class="items-grid-page-size">
+            <label>
+                {{ $root.i18n.gettext('Show') }}
+                <select class="form-control" v-model="paginationData.pageSize" @change="onPageSizeChange">
+                    <option v-for="pageSize in pageSizeList" :value="pageSize">{{ pageSize }}</option>
+                </select>
+            </label>
+        </div>
+    </div>
+
+    <div class="col-md-10" :class="{'col-md-offset-2': !canChangePageSize}">
+        <div class="items-grid-pagination">
+            <ul class="pagination" role="navigation" :aria-label="$root.i18n.gettext('Pagination')">
+                <li :class="{disabled: !paginationData.previous}" :aria-disabled="!paginationData.previous ? 'true' : 'false'">
+                    <a href="#" @click.prevent="paginationData.previous && onPaginationClick(1)" :title="$root.i18n.gettext('First')" :aria-label="$root.i18n.gettext('First')" :tabindex="paginationData.previous ? 0 : -1">
+                        <i class="fa fa-angle-double-left" aria-hidden="true"></i>
+                    </a>
+                </li>
+                <li :class="{disabled: !paginationData.previous}">
+                    <a href="#" @click.prevent="paginationData.previous && onPaginationClick(paginationData.page - 1)" :title="$root.i18n.gettext('Previous')" :aria-label="$root.i18n.gettext('Previous')" :tabindex="paginationData.previous ? 0 : -1">
+                        <i class="fa fa-angle-left" aria-hidden="true"></i>
+                    </a>
+                </li>
+                <li class="active" @click.prevent>
+                    <a href="#" aria-current="page">{{ paginationData.page }}</a>
+                </li>
+                <li :class="{disabled: !paginationData.next}">
+                    <a href="#" @click.prevent="paginationData.next && onPaginationClick(paginationData.page + 1)" :title="$root.i18n.gettext('Next')" :aria-label="$root.i18n.gettext('Next')" :tabindex="paginationData.next ? 0 : -1">
+                        <i class="fa fa-angle-right" aria-hidden="true"></i>
+                    </a>
+                </li>
+                <li :class="{disabled: !paginationData.next}">
+                    <a href="#" @click.prevent="paginationData.next && onPaginationClick(lastPage)" :title="$root.i18n.gettext('Last')" :aria-label="$root.i18n.gettext('Last')" :tabindex="paginationData.next ? 0 : -1">
+                        <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="items-grid-pagination-info">{{ start }}-{{ end }} {{ $root.i18n.gettext('of') }} {{ paginationData.count }}</div>
+    </div>
+</div>
+</script>
+{% endverbatim %}

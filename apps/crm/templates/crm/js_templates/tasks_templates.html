@@ -1,0 +1,578 @@
+{% verbatim %}
+<script type="text/template" id="task-list-layout-tmpl">
+<ui-state v-if="$loadingRouteData" kind="loading" :message="$root.i18n.gettext('Loading...')"></ui-state>
+
+<div v-if="!$loadingRouteData" class="route-wrapper">
+    <div class="content-header row">
+        <div class="toggle-sidebar visible-xs col-xs-2">
+            <i class="ion-navicon"></i>
+        </div>
+
+        <div class="content-title col-md-4 col-xs-10">{{ $root.i18n.gettext('Tasks') }}</div>
+
+        <div class="col-md-4 col-xs-12">
+            <div class="input-group item-table-search">
+                <span class="input-group-addon"><i class="fa fa-search"></i></span>
+                <input type="search" class="form-control" :placeholder="$root.i18n.gettext('Search tasks')"
+                       v-model="filters.data.search" debounce="500">
+            </div>
+        </div>
+
+        <div class="col-md-4 col-xs-12">
+            <div class="toggle-filters pull-right">
+                <div class="btn btn-default" @click="toggleFilters" v-show="showFilterToggle">
+                    <i class="fa fa-filter"></i> {{ $root.i18n.gettext('Filters') }}
+                </div>
+            </div>
+
+            <div class="btn-group items-view-toggle pull-right vertical-xs">
+                <button type="button" class="btn btn-default icon-btn" :class="{active: itemsView==='grid'}"
+                        @click="toggleView('grid')" :title="$root.i18n.gettext('Table')">
+                    <i class="fa fa-table"></i>
+                    <span class="visible-xs-inline">{{ $root.i18n.gettext('Table') }}</span>
+                </button>
+                <button type="button" class="btn btn-default icon-btn" :class="{active: itemsView==='calendar'}"
+                        @click="toggleView('calendar')" :title="$root.i18n.gettext('Calendar')">
+                    <i class="fa fa-calendar"></i>
+                    <span class="visible-xs-inline">{{ $root.i18n.gettext('Calendar') }}</span>
+                </button>
+                <button type="button" class="btn btn-default icon-btn" :class="{active: itemsView==='periodic'}"
+                        @click="toggleView('periodic')" :title="$root.i18n.gettext('Recurring tasks')" v-if="hasPerm('add_task') && !isGta()">
+                    <i class="fa fa-clock-o"></i>
+                    <span class="visible-xs-inline">{{ $root.i18n.gettext('Recurring tasks') }}</span>
+                </button>
+            </div>
+
+            <div class="btn btn-default refresh-btn icon-btn pull-right" @click.prevent="refresh"
+                 :title="$root.i18n.gettext('Refresh data')">
+                <i class="fa fa-refresh"></i>
+                <span class="visible-xs-inline">{{ $root.i18n.gettext('Refresh data') }}</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="content-body row">
+        <div class="col-md-2 filters" v-show="filters.show">
+            <component is="filters" :filters="filters.data" :extra-fields="extraFields" :items-view="itemsView"></component>
+        </div>
+
+        <div class="col-md-10 items-view-wrapper" :class="{'full-width': !filters.show}">
+            <component :is="itemsView" :filters="filters.data" :extra-fields="extraFields" v-ref:items-view></component>
+        </div>
+    </div>
+</div>
+</script>
+
+
+<script type="text/template" id="task-grid-tmpl">
+<div>
+    <div class="row">
+        <div class="col-md-6 table-actions">
+            <a class="btn btn-success" href="#" @click.prevent="toggleTaskFormModal(true)" v-if="hasPerm('add_task')">
+                <i class="fa fa-plus"></i> {{ $root.i18n.gettext('New task') }}
+            </a>
+            <div class="btn-group" v-if="isAdmin()">
+                <button class="btn btn-default dropdown-toggle" data-toggle="dropdown"
+                        :class="{disabled: !showActionsBtn}">
+                    {{ $root.i18n.gettext('Actions') }} <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu">
+                    <li>
+                        <a href="#" @click.prevent="toggleResponsiblesModal(true)">{{ $root.i18n.gettext('Manage assignees') }}</a>
+                    </li>
+                    <li>
+                        <a href="#" @click.prevent="toggleTagsModal(true)">{{ $root.i18n.gettext('Set tags') }}</a>
+                    </li>
+                    <li>
+                        <a href="/task/export/" class="show-modal-form" data-form="export">{{ $root.i18n.gettext('Export') }}</a>
+                    </li>
+                    <li>
+                        <a href="#" @click.prevent="deleteItems">{{ $root.i18n.gettext('Delete') }}</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-md-offset-4 col-md-2">
+            <div class="btn-group pull-right grid-config-btn">
+                <a href="#" class="btn btn-default icon-btn" @click.prevent="toggleGridConfigModal(true)">
+                    <i class="fa fa-cog"></i>
+                    <span class="visible-xs-inline">{{ $root.i18n.gettext('Table settings') }}</span>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="overflow-wrapper">
+        <table class="table table-hover item-table task-table">
+            <thead>
+                <tr>
+                    <th class="checkall" v-if="isAdmin()">
+                        <div class="checkbox">
+                            <input type="checkbox" id="checkbox0" v-model="checkedAll" @change="checkAll">
+                            <label for="checkbox0"></label>
+                        </div>
+                    </th>
+                    <th class="edit-cell"></th>
+                    <th class="text-left sortable" @click="sortTable('name')">
+                        {{ $root.i18n.gettext('Name') }}
+                        <i v-show="sortField==='name'" class="fa"
+                           :class="{'fa-caret-up': sortOrder==='', 'fa-caret-down': sortOrder==='-'}">
+                        </i>
+                    </th>
+                    <th v-for="column in columns | filterBy true in 'isVisible'"
+                        @click="sortTable(column.sortFieldName)"
+                        :class="{'sortable': !!column.sortFieldName}">
+                        {{ column.label }}
+                        <i v-show="sortField===column.sortFieldName" class="fa"
+                           :class="{'fa-caret-up': sortOrder==='', 'fa-caret-down': sortOrder==='-'}">
+                        </i>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-show="!items.length">
+                    <td :colspan="emptyTableColspan">{{ $root.i18n.gettext('The task list is empty.') }}</td>
+                </tr>
+                <tr v-for="task in items" track-by="id" @click="checkItem(task.id)">
+                    <td v-if="isAdmin()">
+                        <div class='checkbox'>
+                            <input type='checkbox' :value="task.id" :id="'checkbox' + task.id"
+                                   v-model="task.checked" @click.prevent.stop="checkItem()">
+                            <label :for="'checkbox' + task.id"></label>
+                        </div>
+                    </td>
+                    <td class="edit-cell">
+                        <a href="#" @click.prevent.stop="toggleTaskFormModal(true, task)"
+                           v-if="canEditItem('task', task)">
+                            <i class="fa fa-pencil"></i>
+                        </a>
+                    </td>
+                    <td class="text-left">
+                        <a v-link="task.url">{{ generateItemName(task) }}</a>
+                    </td>
+                    <td v-for="column in columns | filterBy true in 'isVisible'">
+                        <span v-if="column.name==='company' && task.company">
+                            <a v-link="task.company.url">{{ task.company.name }}</a>
+                        </span>
+                        <span v-if="column.name==='person' && task.person">
+                            <a v-link="task.person.url">{{ task.person.name }}</a>
+                        </span>
+                        <span v-if="column.name==='deal' && task.deal">
+                            <a v-link="task.deal.url">{{ task.deal.name }}</a>
+                        </span>
+                        <span v-if="column.name==='expire_date'">
+                            {{ task.expire_date | datetime }}
+                        </span>
+                        <span v-if="column.name==='state'">
+                            <span class="label" :class="{'label-primary': task.state === 1, 'label-success': task.state === 2, 'label-danger': task.state === 3}">
+                                {{ task.verbose_state }}
+                            </span>
+                        </span>
+                        <span v-if="column.name==='tags'" class="tags">
+                            <span v-for="tag in task.tags" class="badge tag">
+                                <i class="fa fa-tag"></i> {{ tag.name }}
+                            </span>
+                        </span>
+                        <span v-if="column.name==='responsibles'" class="tags">
+                            <span v-for="responsible in task.responsibles" class="badge tag tag-user">
+                                <i class="fa fa-user-o"></i> {{ responsible.name }}
+                            </span>
+                        </span>
+                        <span v-if="column.name==='details'">
+                            {{ task.details }}
+                        </span>
+                        <span v-if="column.name==='user'">
+                            {{ task.user.name }}
+                        </span>
+                        <span v-if="column.name==='created_at'">
+                            {{ task.created_at | datetime }}
+                        </span>
+                        <span v-if="column.name.indexOf('extra_field') > -1">
+                            <span v-if="!!column.isText">{{ task.extra_fields[column.name] }}</span>
+                            <span v-if="!!column.isNumber">{{ task.extra_fields[column.name] | money }}</span>
+                            <span v-if="!!column.isDate">{{ task.extra_fields[column.name] | date }}</span>
+                            <span v-if="!!column.isDatetime">{{ task.extra_fields[column.name] | datetime }}</span>
+                            <span v-if="!!column.isPhone" class="tags">
+                                <span v-for="phone in task.extra_fields[column.name]" class="badge tag tag-phone" :title="$root.i18n.gettext('Copy')"
+                                      @click.stop="copyText">
+                                    <i class="fa fa-phone"></i> {{ phone }}
+                                </span>
+                            </span>
+                            <span v-if="!!column.isEmail" class="tags">
+                                <span v-for="email in task.extra_fields[column.name]" class="badge tag tag-email" :title="$root.i18n.gettext('Copy')"
+                                      @click.stop="copyText">
+                                    <i class="fa fa-envelope-o"></i> {{ email }}
+                                </span>
+                            </span>
+                        </span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <component is="grid-pagination" :pagination-data="paginationData" :items-cnt="items.length"
+               :can-change-page-size="true"></component>
+    <component is="responsibles-modal" v-if="modals.responsibles.show" :modal-data="modals.responsibles.data"></component>
+    <component is="tags-modal" v-if="modals.tags.show" :modal-data="modals.tags.data"></component>
+    <component is="task-form-modal" v-if="modals.taskForm.show" :modal-data="modals.taskForm.data"></component>
+    <component is="grid-config-modal" v-if="modals.gridConfig.show" :modal-data="modals.gridConfig.data" :storage-key="columnsStorageKey"></component>
+</div>
+</script>
+
+
+<script type="text/template" id="task-calendar-tmpl">
+<div>
+    <div class="calendar-toolbar row">
+        <div class="col-md-4">
+            <a class="btn btn-success" href="#" @click.prevent="toggleTaskFormModal(true)"
+               v-if="hasPerm('add_task')">
+                <i class="fa fa-plus"></i> {{ $root.i18n.gettext('New task') }}
+            </a>
+        </div>
+        <div class="col-md-8">
+            <div class="btn-group calendar-controls pull-right">
+                <button type="button" class="btn btn-default icon-btn" @click="changeCalendarPage('prev')">
+                    <i class="fa fa-chevron-left"></i>
+                </button>
+                <button type="button" class="btn btn-default calendar-current-date" disabled>{{ currentDate }}</button>
+                <button type="button" class="btn btn-default icon-btn" @click="changeCalendarPage('next')">
+                    <i class="fa fa-chevron-right"></i>
+                </button>
+            </div>
+
+            <div class="btn-group calendar-view-toggle pull-right">
+                <button type="button" class="btn btn-default" :class="{active: calendarView==='month'}"
+                        @click="changeCalendarView('month')">
+                    {{ $root.i18n.gettext('Month') }}
+                </button>
+                <button type="button" class="btn btn-default" :class="{active: calendarView==='basicWeek'}"
+                        @click="changeCalendarView('basicWeek')">
+                    {{ $root.i18n.gettext('Week') }}
+                </button>
+                <button type="button" class="btn btn-default" :class="{active: calendarView==='basicDay'}"
+                        @click="changeCalendarView('basicDay')">
+                    {{ $root.i18n.gettext('Day') }}
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="tasks-calendar" v-el:calendar></div>
+    <component is="task-form-modal" v-if="modals.taskForm.show" :modal-data="modals.taskForm.data"></component>
+</div>
+</script>
+
+
+<script type="text/template" id="task-card-layout-tmpl">
+<ui-state v-if="$loadingRouteData" kind="loading" :message="$root.i18n.gettext('Loading...')"></ui-state>
+
+<div v-if="!$loadingRouteData" class="route-wrapper">
+    <div class="content-header row">
+        <div class="toggle-sidebar visible-xs col-xs-2">
+            <i class="ion-navicon"></i>
+        </div>
+
+        <div class="content-title col-md-7 col-xs-10">{{ generateItemName(item) }}</div>
+
+        <div class="col-md-5 col-xs-12">
+            <div class="item-toolbar btn-group pull-right vertical-xs">
+                <a v-if="item.state === 2 && canChangeTaskState(item)" class="btn btn-default complete-btn"
+                   @click="undoneTask">
+                    {{ $root.i18n.gettext('Reopen task') }}
+                </a>
+                <a v-if="item.state !== 2 && canChangeTaskState(item)"
+                   class="btn btn-default complete-btn" @click="completeTask">
+                    <i class="fa fa-check-square-o"></i> {{ $root.i18n.gettext('Complete task') }}
+                </a>
+
+                <a href="#" @click.prevent.stop="toggleTaskFormModal(true)"
+                   v-if="canEditItem('task', item)" class="btn btn-default">
+                    <i class="fa fa-pencil"></i> {{ $root.i18n.gettext('Edit') }}
+                </a>
+
+                <div v-if="canDeleteItem('task', item)" class="btn btn-default" @click="deleteItem">
+                    <i class="fa fa-trash-o"></i> {{ $root.i18n.gettext('Delete') }}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="content-body row">
+        <div class="col-md-3 card-sidebar">
+            <div class="card-info">
+                <div class="info-field" v-if="item.details">
+                    <div class="info-label">{{ $root.i18n.gettext('Task description') }}</div>
+                    <div class="info-value item-details">{{{ item.details | urlize | linebreaks }}}</div>
+                </div>
+                <div class="info-field" v-if="item.expire_date">
+                    <div class="info-label">{{ $root.i18n.gettext('Due date') }}</div>
+                    <div class="info-value">
+                        <span>{{ item.expire_date | datetime }}</span>
+                    </div>
+                </div>
+                <div class="info-field">
+                    <div class="info-label">{{ $root.i18n.gettext('Status') }}</div>
+                    <div class="info-value">
+                        <span class="label" :class="{'label-primary': item.state === 1, 'label-success': item.state === 2, 'label-danger': item.state === 3}">
+                            {{ item.verbose_state }}
+                        </span>
+                    </div>
+                </div>
+                <div class="info-field" v-if="item.state === 2">
+                    <div class="info-label">{{ $root.i18n.gettext('Completion date') }}</div>
+                    <div class="info-value">{{ item.completed_at | datetime }}</div>
+                </div>
+
+                <div class="info-field" v-if="(item.person || item.company)">
+                    <div class="info-label">{{ $root.i18n.gettext('Contact') }}</div>
+                    <div class="info-value" v-if="item.person">
+                        <a v-link="item.person.url">{{ item.person.name }}</a>
+                        <div class="contact-info">
+                            <div class="info-field" v-if="item.company">
+                                <div class="info-label">{{ $root.i18n.gettext('Company') }}</div>
+                                <div class="info-value">
+                                    <a v-link="item.company.url">{{ item.company.name }}</a>
+                                </div>
+                            </div>
+                            <div class="info-field" v-if="item.person.post">
+                                <div class="info-label">{{ $root.i18n.gettext('Job title') }}</div>
+                                <div class="info-value">{{ item.person.post }}</div>
+                            </div>
+                            <div class="info-field" v-if="item.person.phones.length">
+                                <div class="info-label">{{ $root.i18n.gettext('Phone') }}</div>
+                                <div class="info-value tags">
+                                    <span class="badge tag tag-phone" v-for="phone in item.person.phones"
+                                          :title="$root.i18n.gettext('Copy')" @click.stop="copyText">
+                                        <i class="fa fa-phone"></i> {{ phone }}
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="info-field" v-if="item.person.emails.length">
+                                <div class="info-label">{{ $root.i18n.gettext('Email address') }}</div>
+                                <div class="info-value tags">
+                                    <span class="badge tag tag-email" v-for="email in item.person.emails" :title="$root.i18n.gettext('Copy')"
+                                          @click.stop="copyText">
+                                        <i class="fa fa-envelope-o"></i> {{ email }}
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="info-value" v-if="!item.person && item.company">
+                        <a v-link="item.company.url">{{ item.company.name }}</a>
+                        <div class="contact-info">
+                            <div class="info-field" v-if="item.company.address">
+                                <div class="info-label">{{ $root.i18n.gettext('Address') }}</div>
+                                <div class="info-value">{{ item.company.address }}</div>
+                            </div>
+                            <div class="info-field" v-if="item.company.website">
+                                <div class="info-label">{{ $root.i18n.gettext('Website') }}</div>
+                                <div class="info-value">
+                                    <a :href="item.company.website" target="_blank">{{ item.company.website }}</a>
+                                </div>
+                            </div>
+                            <div class="info-field" v-if="item.company.phones.length">
+                                <div class="info-label">{{ $root.i18n.gettext('Phone') }}</div>
+                                <div class="info-value tags">
+                                    <span class="badge tag tag-phone" v-for="phone in item.company.phones"
+                                          :title="$root.i18n.gettext('Copy')" @click.stop="copyText">
+                                        <i class="fa fa-phone"></i> {{ phone }}
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="info-field" v-if="item.company.emails.length">
+                                <div class="info-label">{{ $root.i18n.gettext('Email address') }}</div>
+                                <div class="info-value tags">
+                                    <span class="badge tag tag-email" v-for="email in item.company.emails" :title="$root.i18n.gettext('Copy')"
+                                          @click.stop="copyText">
+                                        <i class="fa fa-envelope-o"></i> {{ email }}
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="info-field" v-if="item.deal">
+                    <div class="info-label">{{ $root.i18n.gettext('Deal') }}</div>
+                    <div class="info-value">
+                        <a v-link="item.deal.url">{{ item.deal.name }}</a>
+                    </div>
+                </div>
+                <div v-if="item.extra_fields">
+                    <component is="card-extra-fields" :extra-fields="extraFields" :item="item"></component>
+                </div>
+                <div class="info-field">
+                    <div class="info-label">
+                        {{ $root.i18n.gettext('Tags') }}
+                        <a v-if="!isGta()" v-tags :initial-value="item.tags" class="edit-tags" href="#">
+                            <i class="fa fa-edit"></i>
+                        </a>
+                    </div>
+                    <div class="info-value tags">
+                        <span v-if="!item.tags.length">{{ $root.i18n.gettext('No tags') }}</span>
+                        <span class="badge tag" v-for="tag in item.tags">
+                            <i class="fa fa-tag"></i> {{ tag.name }}
+                        </span>
+                    </div>
+                </div>
+                <div class="info-field" v-if="item.responsibles">
+                    <div class="info-label">
+                        {{ $root.i18n.gettext('Assignees') }}
+                        <a v-responsibles :initial-value="item.responsibles" class="edit-tags" href="#">
+                            <i class="fa fa-edit"></i>
+                        </a>
+                    </div>
+                    <div class="info-value tags">
+                        <span v-if="!item.responsibles.length">{{ $root.i18n.gettext('No assignees') }}</span>
+                        <span v-for="responsible in item.responsibles" class="badge tag tag-user">
+                            <i class="fa fa-user-o"></i> {{ responsible.name }}
+                        </span>
+                    </div>
+                </div>
+                <div class="info-field">
+                    <div class="info-label">{{ $root.i18n.gettext('Created by') }}</div>
+                    <div class="info-value">{{ item.user.name }}</div>
+                </div>
+                <div class="info-field">
+                    <div class="info-label">{{ $root.i18n.gettext('Date created') }}</div>
+                    <div class="info-value">{{ item.created_at | datetime }}</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-9 card-content">
+            <ul class="nav nav-tabs">
+                <li :class="{'active': cardTab === 'notes'}">
+                    <a href="#notes" data-toggle="tab" @click.prevent="saveCardTab('notes')">
+                        {{ $root.i18n.gettext('Notes (') }}{{ notes.length }})
+                    </a>
+                </li>
+                <li :class="{'active': cardTab === 'uploads'}">
+                    <a href="#uploads" data-toggle="tab" @click.prevent="saveCardTab('uploads')">
+                        {{ $root.i18n.gettext('Files (') }}{{ uploads.length }})
+                    </a>
+                </li>
+            </ul>
+
+            <div class="tab-content">
+                <component is="card-notes" :notes="notes" :item="item" :card-tab="cardTab"></component>
+                <component is="card-uploads" :uploads="uploads" :item="item" :card-tab="cardTab"></component>
+            </div>
+        </div>
+    </div>
+    <component is="task-form-modal" v-if="modals.taskForm.show" :modal-data="modals.taskForm.data"></component>
+</div>
+</script>
+
+
+<script type="text/template" id="periodic-tasks-tmpl">
+<div>
+    <div class="row">
+        <div class="col-md-6 table-actions">
+            <a class="btn btn-success" href="#" @click.prevent="togglePeriodicTaskFormModal(true)"
+               v-if="hasPerm('add_task')">
+                <i class="fa fa-plus"></i> {{ $root.i18n.gettext('New recurring task') }}
+            </a>
+        </div>
+        <div class="col-md-offset-4 col-md-2">
+            <div class="btn-group pull-right grid-config-btn">
+                <a href="#" class="btn btn-default icon-btn" @click.prevent="toggleGridConfigModal(true)">
+                    <i class="fa fa-cog"></i>
+                    <span class="visible-xs-inline">{{ $root.i18n.gettext('Table settings') }}</span>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="overflow-wrapper">
+        <table class="table table-hover item-table task-table">
+            <thead>
+                <tr>
+                    <th class="delete-cell"></th>
+                    <th class="edit-cell"></th>
+                    <th class="text-left sortable" @click="sortTable('name')">
+                        {{ $root.i18n.gettext('Name') }}
+                        <i v-show="sortField==='name'" class="fa"
+                           :class="{'fa-caret-up': sortOrder==='', 'fa-caret-down': sortOrder==='-'}">
+                        </i>
+                    </th>
+                    <th v-for="column in columns | filterBy true in 'isVisible'"
+                        @click="sortTable(column.sortFieldName)"
+                        :class="{'sortable': !!column.sortFieldName}">
+                        {{ column.label }}
+                        <i v-show="sortField===column.sortFieldName" class="fa"
+                           :class="{'fa-caret-up': sortOrder==='', 'fa-caret-down': sortOrder==='-'}">
+                        </i>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-show="!items.length">
+                    <td :colspan="emptyTableColspan">{{ $root.i18n.gettext('The recurring task list is empty.') }}</td>
+                </tr>
+                <tr v-for="task in items" track-by="id">
+                    <td class="delete-cell">
+                        <a href="#" v-if="canDeleteItem('task', task)" @click.prevent="deleteItem(task.id)">
+                            <i class="fa fa-trash-o"></i>
+                        </a>
+                    </td>
+                    <td class="edit-cell">
+                        <a href="#" @click.prevent.stop="togglePeriodicTaskFormModal(true, task)"
+                           v-if="canEditItem('task', task)">
+                            <i class="fa fa-pencil"></i>
+                        </a>
+                    </td>
+                    <td class="text-left">
+                        <a v-link="task.url">{{ task.name }}</a>
+                    </td>
+                    <td v-for="column in columns | filterBy true in 'isVisible'">
+                        <span v-if="column.name==='company' && task.company">
+                            <a v-link="task.company.url">{{ task.company.name }}</a>
+                        </span>
+                        <span v-if="column.name==='person' && task.person">
+                            <a v-link="task.person.url">{{ task.person.name }}</a>
+                        </span>
+                        <span v-if="column.name==='deal' && task.deal">
+                            <a v-link="task.deal.url">{{ task.deal.name }}</a>
+                        </span>
+                        <span v-if="column.name==='time'">
+                            {{ task.time | time }}
+                        </span>
+                        <span v-if="column.name==='period'">
+                            {{ task.verbose_period }}
+                        </span>
+                        <span v-if="column.name==='tags'" class="tags">
+                            <span v-for="tag in task.tags" class="badge tag">
+                                <i class="fa fa-tag"></i> {{ tag.name }}
+                            </span>
+                        </span>
+                        <span v-if="column.name==='responsibles'" class="tags">
+                            <span v-for="responsible in task.responsibles" class="badge tag tag-user">
+                                <i class="fa fa-user-o"></i> {{ responsible.name }}
+                            </span>
+                        </span>
+                        <span v-if="column.name==='details'">
+                            {{ task.details }}
+                        </span>
+                        <span v-if="column.name==='user'">
+                            {{ task.user.name }}
+                        </span>
+                        <span v-if="column.name.indexOf('extra_field') > -1">
+                            <span v-if="!!column.isText">{{ task.extra_fields[column.name] }}</span>
+                            <span v-if="!!column.isNumber">{{ task.extra_fields[column.name] | money }}</span>
+                            <span v-if="!!column.isDate">{{ task.extra_fields[column.name] | date }}</span>
+                            <span v-if="!!column.isDatetime">{{ task.extra_fields[column.name] | datetime }}</span>
+                        </span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <component is="grid-pagination" :pagination-data="paginationData" :items-cnt="items.length"
+               :can-change-page-size="true"></component>
+    <component is="periodic-task-form-modal" v-if="modals.periodicTaskForm.show" :modal-data="modals.periodicTaskForm.data"></component>
+    <component is="grid-config-modal" v-if="modals.gridConfig.show" :modal-data="modals.gridConfig.data" :storage-key="columnsStorageKey"></component>
+</div>
+</script>
+{% endverbatim %}

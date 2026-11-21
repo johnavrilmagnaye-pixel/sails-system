@@ -1,0 +1,14 @@
+{% extends 'notifications/email_base.txt' %}
+{% load i18n %}
+
+{% block content %}
+{% translate "User" %} {{ note_user_name }} {% translate "added a note:" %}
+
+{{ note.text|safe|linebreaksbr }}
+
+{% translate "Deal:" %} {{ item.name|safe }}
+{% translate "Deal link:" %} {{ item_url }}
+{% translate "Budget:" %} {{ item.verbose_budget }}
+{% if item.person %}{% translate "Contact:" %} {{ item.person|safe }}{% if item.company %} ({{ item.company|safe }}){% endif %}{% elif item.company %}{% translate "Contact:" %} {{ item.company|safe }}{% endif %}
+{% if item.details %}{% translate "Deal description:" %} {{ item.details|safe|linebreaksbr }}{% endif %}
+{% endblock %}

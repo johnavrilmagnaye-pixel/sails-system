@@ -1,0 +1,184 @@
+{% verbatim %}
+<script type="text/template" id="dashboard-layout-tmpl">
+<ui-state v-if="$loadingRouteData" kind="loading" :message="$root.i18n.gettext('Loading...')"></ui-state>
+
+<div v-if="!$loadingRouteData" class="route-wrapper">
+    <div class="content-header row">
+        <div class="toggle-sidebar visible-xs col-xs-2">
+            <i class="ion-navicon"></i>
+        </div>
+
+        <div class="content-title col-md-4 col-xs-10">{{ $root.i18n.gettext('Overview') }}</div>
+
+        <div class="col-md-8 col-xs-12 dashboard-filters-w">
+            <div class="input-group pull-right">
+                <span class="input-group-addon">
+                    <i class="fa fa-calendar"></i>
+                </span>
+                <input v-daterangepicker type="text" name="period" class="form-control" v-model="filters.created_at"
+                       :max-date="maxDate">
+            </div>
+
+            <div class="btn btn-default refresh-btn icon-btn pull-right" @click.prevent="fetchData(true)"
+                 :title="$root.i18n.gettext('Refresh data')">
+                <i class="fa fa-refresh"></i>
+                <span class="visible-xs-inline">{{ $root.i18n.gettext('Refresh data') }}</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="content-body row">
+        <div class="col-md-12 dashboard-wrapper">
+            <div class="row">
+                <div class="col-md-4 col-xs-12">
+                    <div class="panel panel-default dashboard-stats-w">
+                        <div class="panel-heading">
+                            <h3 class="panel-title stats-title">{{ $root.i18n.gettext('Persons') }}</h3>
+                        </div>
+                        <div class="panel-body">
+                            <div class="stat-w">
+                                {{ $root.i18n.gettext('Added') }}
+                                <span class="stat-value">{{ stats.new_companies_cnt }}</span>
+                                {{ $root.i18n.ngettext('new company', 'new companies', stats.new_companies_cnt) }}
+                            </div>
+                            <div class="stat-w">
+                                {{ $root.i18n.gettext('Added') }}
+                                <span class="stat-value">{{ stats.new_persons_cnt }}</span>
+                                {{ $root.i18n.ngettext('new contact', 'new contacts', stats.new_persons_cnt) }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4 col-xs-12">
+                    <div class="panel panel-default dashboard-stats-w">
+                        <div class="panel-heading">
+                            <h3 class="panel-title stats-title">{{ $root.i18n.gettext('Deals') }}</h3>
+                        </div>
+                        <div class="panel-body">
+                            <p class="stat-w">
+                                {{ $root.i18n.gettext('Created') }}
+                                <span class="stat-value">{{ stats.new_deals_cnt }}</span>
+                                {{ $root.i18n.ngettext('new deal', 'new deals', stats.new_deals_cnt) }}
+                                <span v-if="!!stats.new_deals_budget">
+                                    <br> {{ $root.i18n.gettext('worth') }}
+                                    <span class="stat-value">{{ stats.new_deals_budget }}</span>
+                                </span>
+                            </p>
+                            <p class="stat-w">
+                                {{ $root.i18n.gettext('Currently open') }}
+                                <span class="stat-value">{{ stats.pending_deals_cnt }}</span>
+                                {{ $root.i18n.ngettext('deal', 'deals', stats.pending_deals_cnt) }}
+                                <span v-if="!!stats.pending_deals_budget">
+                                    <br> {{ $root.i18n.gettext('worth') }}
+                                    <span class="stat-value">{{ stats.pending_deals_budget }}</span>
+                                </span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4 col-xs-12">
+                    <div class="panel panel-default dashboard-stats-w">
+                        <div class="panel-heading">
+                            <h3 class="panel-title stats-title">{{ $root.i18n.gettext('Tasks') }}</h3>
+                        </div>
+                        <div class="panel-body">
+                            <div class="stat-w">
+                                {{ $root.i18n.gettext('Created') }}
+                                <span class="stat-value">{{ stats.new_tasks_cnt }}</span>
+                                {{ $root.i18n.ngettext('new task', 'new tasks', stats.new_tasks_cnt) }}
+                            </div>
+                            <div class="stat-w">
+                                {{ $root.i18n.gettext('Completed') }}
+                                <span class="stat-value">{{ stats.completed_tasks_cnt }}</span>
+                                {{ $root.i18n.ngettext('task', 'tasks', stats.completed_tasks_cnt) }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="row">
+                        <div class="col-md-4 col-xs-12">
+                            <h4>{{ $root.i18n.gettext('Activity feed') }}</h4>
+                        </div>
+                        <div class="col-md-8 col-xs-12 dashboard-filters-w">
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                    <i class="fa fa-filter"></i>
+                                </span>
+                                <select name="content_type" v-select2="filters.content_type" :options="contentTypes"
+                                        :placeholder="$root.i18n.gettext('All data')" :allow-clear="true" class="pull-right">
+                                    <option v-for="option in contentTypes" :value="option.id">{{ option.text }}</option>
+                                </select>
+                            </div>
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                    <i class="fa fa-user"></i>
+                                </span>
+                                <select name="user" class="form-control" v-select2="filters.user" option-type="user"
+                                        :placeholder="$root.i18n.gettext('All users')" :allow-clear="true"></select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <table class="table table-bordered activity-table">
+                        <thead class="hidden">
+                            <tr>
+                                <th></th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr v-show="!activity.length">
+                                <td colspan="2">{{ $root.i18n.gettext('There were no events in the selected period.') }}</td>
+                            </tr>
+                            <tr v-for="action in activity" track-by="id">
+                                <td class="col-md-10 text-left">
+                                    <div class="activity-type">
+                                        <span class="activity-type-name">{{ action.title }}</span>
+                                        <span v-if="action.content_type==='note' || action.content_type==='upload'">
+                                            <span v-if="action.item.parent.content_type==='company'">
+                                                {{ $root.i18n.gettext('company') }}
+                                            </span>
+                                            <span v-if="action.item.parent.content_type==='person'">
+                                                {{ $root.i18n.gettext('contact') }}
+                                            </span>
+                                            <span v-if="action.item.parent.content_type==='deal'">
+                                                {{ $root.i18n.gettext('deal') }}
+                                            </span>
+                                            <span v-if="action.item.parent.content_type==='task'">
+                                                {{ $root.i18n.gettext('task') }}
+                                            </span>
+                                            <a v-link="action.item.parent.url">{{ action.item.parent.name }}</a>
+                                        </span>
+                                    </div>
+                                    <div class="activity-item" v-if="action.content_type==='note'">
+                                        {{{ action.item.text | linebreaks | urlize }}}
+                                    </div>
+                                    <div class="activity-item" v-if="action.content_type==='task'">
+                                        <a :href="action.item.url">{{ generateItemName(action.item) }}</a>
+                                    </div>
+                                    <div class="activity-item" v-if="action.content_type!=='note' && action.content_type!=='task'">
+                                        <a v-link="action.item.url">{{ action.item.name }}</a>
+                                    </div>
+                                </td>
+                                <td class="col-md-2 text-right activity-sign">
+                                    <div class="activity-user">{{ action.user }}</div>
+                                    <div class="activity-created-at">{{ action.created_at | datetime }}</div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <component is="grid-pagination" :pagination-data="paginationData" :items-cnt="activity.length"></component>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</script>
+{% endverbatim %}

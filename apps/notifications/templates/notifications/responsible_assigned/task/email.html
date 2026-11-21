@@ -1,0 +1,37 @@
+{% extends 'notifications/email_base.html' %}
+
+{% load tz i18n %}
+
+{% block content %}
+    <p style="margin-bottom: 25px; line-height: 21px;">
+        {{ assigned_by_name }} {% translate "assigned you to a task." %}
+    </p>
+
+    <p style="margin-bottom: 25px; line-height: 21px;">
+        {% translate "Task:" %} <a href="{{ item_url }}">{{ item.name|safe }}</a>
+        {% if item.expire_date %}
+            <br>
+            {% translate "Due date:" %} <b>{{ item.expire_date|timezone:user_link.timezone }}</b>
+        {% endif %}
+
+        {% if item.person or item.company %}
+            <br>
+            {% translate "Contact:" %}
+            {% if item.person %}
+                <b>{{ item.person|safe }}{% if item.company %} ({{ item.company|safe }}){% endif %}</b>
+            {% elif item.company %}
+                <b>{{ item.company|safe }}</b>
+            {% endif %}
+        {% endif %}
+
+        {% if task.deal %}
+            <br>
+            {% translate "Deal:" %} <b>{{ task.deal|safe }}</b>
+        {% endif %}
+
+        {% if item.details %}
+            <br>
+            {% translate "Task description:" %} {{ item.details|safe|linebreaksbr }}
+        {% endif %}
+    </p>
+{% endblock %}

@@ -1,0 +1,49 @@
+{% load widget_tweaks i18n %}
+
+<form class="form-horizontal items-export-form" method="POST" action="/items_export/">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4>{% translate "Export" %} {% if model_name == 'deal' %}{% translate "deals" %}{% elif model_name == 'task' %}{% translate "tasks" %}{% else %}{% translate "contacts" %}{% endif %}</h4>
+    </div>
+
+    <div class="modal-body">
+        {% csrf_token %}
+
+        <div class="form-group {% if form.extension.errors %}has-error{% endif %}">
+            <label for="id_extension" class="control-label col-sm-4 col-lg-4">{{ form.extension.label }}</label>
+            <div class="col-sm-8 col-lg-8">
+                {% for choice in form.extension %}
+                    <div class="radio">
+                        <label>
+                            {{ choice.tag }}
+                            {{ choice.choice_label }}
+                        </label>
+                    </div>
+                {% endfor %}
+
+                {% for error in form.extension.errors %}
+                    <span class="help-block">{{ error }}</span>
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="hidden">
+            <select name="items" multiple></select>
+            <input name="query">
+            <input type="text" name="model_name" value="{{ model_name }}">
+        </div>
+    </div>
+
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">{% translate "Cancel" %}</button>
+        <div class="btn-group success-dropdown-btn">
+            <button class="btn btn-success dropdown-toggle" data-toggle="dropdown">
+                {% translate "Export" %} <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu text-left">
+                <li><a href="#" class="submit-btn" data-select="checked">{% translate "Selected" %}</a></li>
+                <li><a href="#" class="submit-btn" data-select="all">{% translate "All" %}</a></li>
+            </ul>
+        </div>
+    </div>
+</form>

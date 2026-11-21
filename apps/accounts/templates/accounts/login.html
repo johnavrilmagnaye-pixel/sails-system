@@ -1,0 +1,121 @@
+{% extends 'accounts/base.html' %}
+
+{% load widget_tweaks i18n %}
+
+{% block title %}{% translate "Sign in" %}{% endblock %}
+
+{% block content %}
+    <div class="panel-body">
+        <div class="auth-header">
+            <h2>Sails CRM</h2>
+            <p>{% translate "Sign in to your workspace or create a new one" %}</p>
+        </div>
+
+        <div id="login-panel" class="auth-panel"{% if show_signup %} hidden{% endif %}>
+        <h3>{% translate "Sign in" %}</h3>
+        <form action="" method="POST">
+            {% if reset_password_done %}
+                <div class="alert alert-success" role="status">
+                    {% translate "Password reset instructions were sent to your email address." %}
+                </div>
+            {% endif %}
+
+            {% if reset_password_complete %}
+                <div class="alert alert-success" role="status">
+                    {% translate "Your new password has been saved. You can now sign in." %}
+                </div>
+            {% endif %}
+
+            {% csrf_token %}
+            <input type="hidden" name="next" value="{{ next }}">
+            <input type="hidden" name="action" value="login">
+
+            {% if form.non_field_errors %}
+                <div class="alert alert-danger alert-dismissable" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="{% translate 'Close' %}"><span aria-hidden="true">&times;</span></button>
+                    {% for non_field_error in form.non_field_errors %}
+                         {{ non_field_error }}
+                    {% endfor %}
+                </div>
+            {% endif %}
+
+            <div class="form-group {% if form.username.errors %}has-error{% endif %}">
+                <label for="{{ form.username.id_for_label }}">{{ form.username.label }}</label>
+                {{ form.username|add_class:'form-control input-lg' }}
+
+                {% for error in form.username.errors %}
+                    <span class="help-block">{{ error }}</span>
+                {% endfor %}
+            </div>
+
+            <div class="form-group {% if form.password.errors %}has-error{% endif %}">
+                <div>
+                    <label for="{{ form.password.id_for_label }}">{{ form.password.label }}</label>
+                    <a href="{% url 'password_reset' %}" class="reset-password pull-right">{% translate "Forgot your password?" %}</a>
+                </div>
+
+                {{ form.password|add_class:'form-control input-lg' }}
+
+                {% for error in form.password.errors %}
+                    <span class="help-block">{{ error }}</span>
+                {% endfor %}
+            </div>
+
+            <button class="btn btn-success btn-lg btn-block" type="submit">{% translate "Sign in" %}</button>
+        </form>
+        <p class="auth-switch-prompt">
+            {% translate "Don't have an account?" %}
+            <button class="auth-switch" type="button" data-show-auth-panel="signup-panel">{% translate "Create account" %}</button>
+        </p>
+        </div>
+
+        <div id="signup-panel" class="auth-panel"{% if not show_signup %} hidden{% endif %}>
+        <h3>{% translate "Create account" %}</h3>
+        <form action="" method="POST">
+            {% csrf_token %}
+            <input type="hidden" name="next" value="{{ next }}">
+            <input type="hidden" name="action" value="signup">
+
+            {% if signup_form.non_field_errors %}
+                <div class="alert alert-danger" role="alert">{{ signup_form.non_field_errors }}</div>
+            {% endif %}
+
+            {% for field in signup_form %}
+                <div class="form-group {% if field.errors %}has-error{% endif %}">
+                    <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                    {{ field|add_class:'form-control input-lg' }}
+                    {% for error in field.errors %}<span class="help-block">{{ error }}</span>{% endfor %}
+                </div>
+            {% endfor %}
+
+            <button class="btn btn-primary btn-lg btn-block" type="submit">{% translate "Create account" %}</button>
+        </form>
+        <p class="auth-switch-prompt">
+            {% translate "Already have an account?" %}
+            <button class="auth-switch" type="button" data-show-auth-panel="login-panel">{% translate "Sign in" %}</button>
+        </p>
+        </div>
+    </div>
+{% endblock %}
+
+{% block extra_js %}
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var panels = document.querySelectorAll('.auth-panel');
+            var switches = document.querySelectorAll('[data-show-auth-panel]');
+
+            Array.prototype.forEach.call(switches, function (authSwitch) {
+                authSwitch.addEventListener('click', function () {
+                    var targetId = authSwitch.getAttribute('data-show-auth-panel');
+
+                    Array.prototype.forEach.call(panels, function (panel) {
+                        panel.hidden = panel.id !== targetId;
+                    });
+
+                    var firstInput = document.querySelector('#' + targetId + ' input:not([type="hidden"]), #' + targetId + ' select');
+                    if (firstInput) firstInput.focus();
+                });
+            });
+        });
+    </script>
+{% endblock %}

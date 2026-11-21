@@ -1,0 +1,38 @@
+# core
+Django==4.2.30
+requests==2.32.5
+pytz==2026.3.post1
+pillow==10.4.0  # for ImageField
+python-dateutil==2.9.0.post0
+
+# db
+psycopg2-binary==2.9.12
+redis>=6.1.0
+
+# celery
+celery==5.3.6
+
+# web server
+gunicorn==22.0.0
+whitenoise==6.8.2
+
+# rest api
+djangorestframework==3.15.2
+
+# django batteries
+django-compressor==4.5.1
+django-extensions==3.2.3
+django-filter==24.3
+django-hosts==6.0
+django-positions==0.6.0
+django-timezone-field==6.1.0
+django-widget-tweaks==1.5.1
+django-appconf==1.0.6
+
+# for csv/excel export and import
+unicodecsv==0.14.1
+openpyxl==3.1.5
+
+# dev tools
+ipython==8.18.1
+ipdb==0.13.13

@@ -1,0 +1,10 @@
+{% extends 'notifications/email_base.txt' %}
+{% load i18n %}
+
+{% block content %}
+{{ assigned_by_name }} {% translate "assigned you to a contact." %}
+
+{% translate "Person:" %} {{ item.name|safe }}
+{% translate "Person link:" %} {{ item_url }}
+{% if item.company %}{% translate "Company:" %} {{ item.company.name|safe }}{% endif %}
+{% endblock %}

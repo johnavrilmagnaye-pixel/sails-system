@@ -1,0 +1,125 @@
+services:
+  db:
+    image: postgres:15
+    restart: unless-stopped
+    ports:
+      - "5433:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_DB=sails_crm
+      - POSTGRES_USER=sails_crm
+      - POSTGRES_PASSWORD=sails_crm
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U sails_crm -d sails_crm"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  redis:
+    image: redis:7
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+  web:
+    build: .
+    image: sails-crm-web
+    restart: unless-stopped
+    command: sh -c "python manage.py migrate && python manage.py collectstatic --noinput && python manage.py compress --force && gunicorn --bind 0.0.0.0:8000 project.wsgi:application"
+    volumes:
+      - .:/app
+    ports:
+      - "8000:8000"
+    environment:
+      - DEBUG=True
+      - DB_NAME=sails_crm
+      - DB_USER=sails_crm
+      - DB_PASSWORD=sails_crm
+      - DB_HOST=db
+      - DB_PORT=5432
+      - REDIS_URL=redis://redis:6379/0
+      - REDIS_CACHE_URL=redis://redis:6379/1
+      - ALLOWED_HOSTS=*
+      - LANGUAGE_CODE=en
+      - TIME_ZONE=UTC
+      - SECRET_KEY=unsafe-docker-development-key
+      - SUPPORT_EMAIL=${SUPPORT_EMAIL:-}
+      - ADMIN_EMAIL=${ADMIN_EMAIL:-}
+      - DEFAULT_FROM_EMAIL=${DEFAULT_FROM_EMAIL:-}
+      - WELCOME_FROM_EMAIL=${WELCOME_FROM_EMAIL:-}
+      - NOTIFY_FROM_EMAIL=${NOTIFY_FROM_EMAIL:-}
+      - REMIND_FROM_EMAIL=${REMIND_FROM_EMAIL:-}
+      - SERVER_EMAIL=${SERVER_EMAIL:-}
+      - APP_URL=${APP_URL:-http://localhost:8000}
+      - EMAIL_HOST=${EMAIL_HOST:-}
+      - EMAIL_PORT=${EMAIL_PORT:-587}
+      - EMAIL_USE_TLS=${EMAIL_USE_TLS:-True}
+      - EMAIL_HOST_USER=${EMAIL_HOST_USER:-}
+      - EMAIL_HOST_PASSWORD=${EMAIL_HOST_PASSWORD:-}
+    depends_on:
+      db:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+
+  celery:
+    build: .
+    image: sails-crm-web
+    restart: unless-stopped
+    command: celery -A project worker -l info -Q celery,crm,emails,periodic_starters
+    volumes:
+      - .:/app
+    environment:
+      - DB_NAME=sails_crm
+      - DB_USER=sails_crm
+      - DB_PASSWORD=sails_crm
+      - DB_HOST=db
+      - DB_PORT=5432
+      - REDIS_URL=redis://redis:6379/0
+      - REDIS_CACHE_URL=redis://redis:6379/1
+      - LANGUAGE_CODE=en
+      - TIME_ZONE=UTC
+      - SECRET_KEY=unsafe-docker-development-key
+      - SUPPORT_EMAIL=${SUPPORT_EMAIL:-}
+      - ADMIN_EMAIL=${ADMIN_EMAIL:-}
+      - DEFAULT_FROM_EMAIL=${DEFAULT_FROM_EMAIL:-}
+      - WELCOME_FROM_EMAIL=${WELCOME_FROM_EMAIL:-}
+      - NOTIFY_FROM_EMAIL=${NOTIFY_FROM_EMAIL:-}
+      - REMIND_FROM_EMAIL=${REMIND_FROM_EMAIL:-}
+      - SERVER_EMAIL=${SERVER_EMAIL:-}
+      - APP_URL=${APP_URL:-http://localhost:8000}
+      - EMAIL_HOST=${EMAIL_HOST:-}
+      - EMAIL_PORT=${EMAIL_PORT:-587}
+      - EMAIL_USE_TLS=${EMAIL_USE_TLS:-True}
+      - EMAIL_HOST_USER=${EMAIL_HOST_USER:-}
+      - EMAIL_HOST_PASSWORD=${EMAIL_HOST_PASSWORD:-}
+    depends_on:
+      db:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+
+  test:
+    build: .
+    image: sails-crm-web
+    profiles: ["test"]
+    command: python manage.py test --settings=project.settings_test
+    environment:
+      - TEST_DB_NAME=sails_crm
+      - TEST_DB_USER=sails_crm
+      - TEST_DB_PASSWORD=sails_crm
+      - TEST_DB_HOST=db
+      - TEST_DB_PORT=5432
+      - REDIS_URL=redis://redis:6379/0
+      - REDIS_CACHE_URL=redis://redis:6379/1
+      - SECRET_KEY=unsafe-docker-test-key
+    depends_on:
+      db:
+        condition: service_healthy
+
+volumes:
+  postgres_data:

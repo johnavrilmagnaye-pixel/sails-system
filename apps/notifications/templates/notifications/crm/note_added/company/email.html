@@ -1,0 +1,17 @@
+{% extends 'notifications/email_base.html' %}
+
+{% load tz i18n %}
+
+{% block content %}
+    <p style="margin-bottom: 25px; line-height: 21px;">
+        {% translate "User" %} <b>{{ note_user_name }}</b> {% translate "added a note:" %}
+    </p>
+
+    <p style="margin-bottom: 25px; line-height: 21px;">
+        {{ note.text|safe|linebreaksbr }}
+    </p>
+
+    <p style="margin-bottom: 25px; line-height: 21px;">
+        {% translate "Company:" %} <a href="{{ item_url }}">{{ item.name|safe }}</a>
+    </p>
+{% endblock %}

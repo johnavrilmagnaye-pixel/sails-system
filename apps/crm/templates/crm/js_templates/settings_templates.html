@@ -1,0 +1,952 @@
+﻿{% verbatim %}
+<script type="text/template" id="settings-layout-tmpl">
+<div class="settings-wrapper row">
+    <div class="col-md-2 settings-sidebar">
+        <div class="row">
+            <div class="toggle-sidebar visible-xs col-xs-2">
+                <i class="ion-navicon"></i>
+            </div>
+
+            <div class="col-md-8 col-xs-10">
+                <h3>{{ $root.i18n.gettext('Settings') }}</h3>
+            </div>
+        </div>
+
+        <ul class="nav">
+            <li><a v-link.literal="/settings/profile/">{{ $root.i18n.gettext('Profile') }}</a></li>
+            <li v-if="isAdmin()"><a v-link.literal="/settings/users/">{{ $root.i18n.gettext('Users') }}</a></li>
+            <li v-if="isAdmin()">
+                <p>{{ $root.i18n.gettext('Field settings') }}</p>
+
+                <ul>
+                    <li><a v-link.literal="/settings/company_fields/">{{ $root.i18n.gettext('Companies') }}</a></li>
+                    <li><a v-link.literal="/settings/person_fields/">{{ $root.i18n.gettext('Persons') }}</a></li>
+                    <li><a v-link.literal="/settings/deal_fields/">{{ $root.i18n.gettext('Deals') }}</a></li>
+                    <li><a v-link.literal="/settings/task_fields/">{{ $root.i18n.gettext('Tasks') }}</a></li>
+                </ul>
+            </li>
+            <li v-if="isAdmin()"><a v-link.literal="/settings/tags/">{{ $root.i18n.gettext('Tags') }}</a></li>
+            <li v-if="isAdmin()"><a v-link.literal="/settings/contacts_imports/">{{ $root.i18n.gettext('Import contacts') }}</a></li>
+        </ul>
+    </div>
+
+    <div class="col-md-offset-2 col-md-10 settings-content">
+        <router-view transition-mode="out-in"></router-view>
+    </div>
+</div>
+</script>
+
+
+<script type="text/template" id="edit-profile-form-tmpl">
+    <form class="form-horizontal edit-profile-form" @submit.prevent="onSubmit">
+        <fieldset>
+            <legend>{{ $root.i18n.gettext('Edit profile') }}</legend>
+
+            <div class="form-group" :class="{'has-error': !!form.email.error}">
+                <label class="control-label col-md-5">{{ $root.i18n.gettext('Email address') }}</label>
+                <div class="col-md-7">
+                    <input class="form-control" maxlength="255" name="email" type="email" v-model="form.email.value">
+                    <span class="help-block" v-show="!!form.email.error">{{ form.email.error }}</span>
+                </div>
+            </div>
+
+            <div class="form-group" :class="{'has-error': !!form.first_name.error}">
+                <label class="control-label col-md-5">{{ $root.i18n.gettext('First name') }}</label>
+                <div class="col-md-7">
+                    <input class="form-control" maxlength="30" name="first_name" type="text"
+                           v-model="form.first_name.value">
+                    <span class="help-block" v-show="!!form.first_name.error">{{ form.first_name.error }}</span>
+                </div>
+            </div>
+
+            <div class="form-group" :class="{'has-error': !!form.last_name.error}">
+                <label class="control-label col-md-5">{{ $root.i18n.gettext('Last name') }}</label>
+                <div class="col-md-7">
+                    <input class="form-control" maxlength="30" name="last_name" type="text"
+                           v-model="form.last_name.value">
+                    <span class="help-block" v-show="!!form.last_name.error">{{ form.last_name.error }}</span>
+                </div>
+            </div>
+
+            <div class="form-group" :class="{'has-error': !!form.timezone.error}">
+                <label class="control-label col-md-5">{{ $root.i18n.gettext('Time zone') }}</label>
+                <div class="col-md-7">
+                    <select name="timezone" v-select2="form.timezone.value" :options="timezones" :allow-clear="false">
+                        <option v-for="timezone in timezones" :value="timezone.id">{{ timezone.text }}</option>
+                    </select>
+                    <span class="help-block" v-show="!!form.timezone.error">{{ form.timezone.error }}</span>
+                </div>
+            </div>
+
+            <div class="form-group" :class="{'has-error': !!form.language.error}">
+                <label class="control-label col-md-5">{{ $root.i18n.gettext('Interface language') }}</label>
+                <div class="col-md-7">
+                    <select name="language" v-select2="form.language.value" :options="languages" :allow-clear="false">
+                        <option v-for="language in languages" :value="language.id">{{ language.text }}</option>
+                    </select>
+                    <span class="help-block" v-show="!!form.language.error">{{ form.language.error }}</span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-5 col-md-7">
+                    <button type="submit" class="btn btn-success">{{ $root.i18n.gettext('Save changes') }}</button>
+                </div>
+            </div>
+        </fieldset>
+    </form>
+</script>
+
+
+<script type="text/template" id="change-password-form-tmpl">
+    <form class="form-horizontal change-password-form" @submit.prevent="onSubmit">
+        <fieldset>
+            <legend>{{ $root.i18n.gettext('Change password') }}</legend>
+
+            <div class="form-group" :class="{'has-error': !!form.current_password.error}">
+                <label class="control-label col-md-5">{{ $root.i18n.gettext('Current password') }}</label>
+                <div class="col-md-7">
+                    <input class="form-control" name="current_password" type="password"
+                           v-model="form.current_password.value">
+                    <span class="help-block" v-show="!!form.current_password.error">{{ form.current_password.error }}</span>
+                </div>
+            </div>
+
+            <div class="form-group" :class="{'has-error': !!form.new_password.error}">
+                <label class="control-label col-md-5">{{ $root.i18n.gettext('New password') }}</label>
+                <div class="col-md-7">
+                    <input class="form-control" name="new_password" type="password"
+                           v-model="form.new_password.value">
+                    <span class="help-block" v-show="!!form.new_password.error">{{ form.new_password.error }}</span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-5 col-md-7">
+                    <button type="submit" class="btn btn-success">{{ $root.i18n.gettext('Change password') }}</button>
+                </div>
+            </div>
+        </fieldset>
+    </form>
+</script>
+
+
+<script type="text/template" id="notification-settings-form-tmpl">
+    <form class="form-horizontal notification-settings-form" @submit.prevent="onSubmit">
+        <fieldset>
+            <legend>{{ $root.i18n.gettext('Notification settings') }}</legend>
+
+            <div class="form-group">
+                <label class="control-label col-md-5">{{ $root.i18n.gettext('Send task reminders by email') }}</label>
+                <div class="col-md-7 checkbox">
+                    <input name="remind_task" type="checkbox" id="remind_task" v-model="form.remind_task.value">
+                    <label for="remind_task"></label>
+                </div>
+            </div>
+
+            <div class="form-group" :class="{'has-error': !!form.remind_task_before_hours.error}">
+                <label class="control-label col-md-5">{{ $root.i18n.gettext('Remind before') }}</label>
+                <div class="col-md-7 remind-before">
+                    <div id="id_remind_task_before">
+                        <input class="form-control" name="remind_task_before_hours" type="number" min="0"
+                               v-model="form.remind_task_before_hours.value"> {{ $root.i18n.gettext('hr.') }}
+                        <input class="form-control" name="remind_task_before_minutes" type="number" min="0"
+                               v-model="form.remind_task_before_minutes.value"> {{ $root.i18n.gettext('min.') }}
+                    </div>
+                    <span class="help-block" v-show="!!form.remind_task_before_hours.error">
+                        {{ form.remind_task_before_hours.error }}
+                    </span>
+                </div>
+            </div>
+
+            <hr>
+
+            <div class="form-group">
+                <label class="control-label col-md-5">{{ $root.i18n.gettext('Notify when assigned to') }}</label>
+                <div class="col-md-7">
+                    <div class="checkbox checkbox-text notify-item-responsibles-w">
+                        <input name="notify_company_responsibles" type="checkbox"
+                               id="notify_company_responsibles" v-model="form.notify_company_responsibles.value">
+                        <label for="notify_company_responsibles">{{ $root.i18n.gettext('company') }}</label>
+                        <br>
+                        <input name="notify_person_responsibles" type="checkbox"
+                               id="notify_person_responsibles" v-model="form.notify_person_responsibles.value">
+                        <label for="notify_person_responsibles">{{ $root.i18n.gettext('contact') }}</label>
+                        <br>
+                        <input name="notify_deal_responsibles" type="checkbox"
+                               id="notify_deal_responsibles" v-model="form.notify_deal_responsibles.value">
+                        <label for="notify_deal_responsibles">{{ $root.i18n.gettext('deal') }}</label>
+                        <br>
+                        <input name="notify_task_responsibles" type="checkbox"
+                               id="notify_task_responsibles" v-model="form.notify_task_responsibles.value">
+                        <label for="notify_task_responsibles">{{ $root.i18n.gettext('task') }}</label>
+                        <br>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-md-5">{{ $root.i18n.gettext('Notify when a task is completed') }}</label>
+                <div class="col-md-7 checkbox">
+                    <input name="notify_task_completed" type="checkbox"
+                           id="notify_task_completed" v-model="form.notify_task_completed.value">
+                    <label for="notify_task_completed"></label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-md-5">{{ $root.i18n.gettext('Notify about a new note on') }}</label>
+                <div class="col-md-7">
+                    <div class="checkbox checkbox-text notify-item-note-w">
+                        <input name="notify_company_note" type="checkbox"
+                               id="notify_company_note" v-model="form.notify_company_note.value">
+                        <label for="notify_company_note">{{ $root.i18n.gettext('company') }}</label>
+                        <br>
+                        <input name="notify_person_note" type="checkbox"
+                               id="notify_person_note" v-model="form.notify_person_note.value">
+                        <label for="notify_person_note">{{ $root.i18n.gettext('contact') }}</label>
+                        <br>
+                        <input name="notify_deal_note" type="checkbox"
+                               id="notify_deal_note" v-model="form.notify_deal_note.value">
+                        <label for="notify_deal_note">{{ $root.i18n.gettext('deal') }}</label>
+                        <br>
+                        <input name="notify_task_note" type="checkbox"
+                               id="notify_task_note" v-model="form.notify_task_note.value">
+                        <label for="notify_task_note">{{ $root.i18n.gettext('task') }}</label>
+                        <br>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-5 col-md-7">
+                    <button type="submit" class="btn btn-success">{{ $root.i18n.gettext('Save settings') }}</button>
+                </div>
+            </div>
+        </fieldset>
+    </form>
+</script>
+
+
+<script type="text/template" id="settings-profile-layout-tmpl">
+<ui-state v-if="$loadingRouteData" kind="loading" :message="$root.i18n.gettext('Loading...')"></ui-state>
+
+<div v-if="!$loadingRouteData" class="route-wrapper">
+    <h3 class="settings-title">{{ $root.i18n.gettext('Profile') }}</h3>
+
+    <div v-if="$root.accounts.length > 1" class="row">
+        <div class="col-md-8">
+            <div class="form-horizontal account-switcher">
+                <div class="form-group">
+                    <label class="control-label col-md-5">{{ $root.i18n.gettext('Account') }}</label>
+                    <div class="col-md-7">
+                        <select name="account" v-select2="$root.selectedAccountId" :allow-clear="false"
+                                :disabled="$root.accountSwitching">
+                            <option v-for="account in $root.accounts" :value="account.id">{{ account.name }}</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-8">
+            <component is="editProfileForm"></component>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-8">
+            <component is="changePasswordForm"></component>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-8">
+            <component is="notificationSettingsForm" :notification-settings="notificationSettings"></component>
+        </div>
+    </div>
+</div>
+</script>
+
+
+<script type="text/template" id="settings-account-layout-tmpl">
+<ui-state v-if="$loadingRouteData" kind="loading" :message="$root.i18n.gettext('Loading...')"></ui-state>
+
+<div v-if="!$loadingRouteData" class="route-wrapper">
+    <h3 class="settings-title">{{ $root.i18n.gettext('Account') }}</h3>
+</div>
+</script>
+
+
+<script type="text/template" id="settings-users-layout-tmpl">
+<ui-state v-if="$loadingRouteData" kind="loading" :message="$root.i18n.gettext('Loading...')"></ui-state>
+
+<div v-if="!$loadingRouteData" class="route-wrapper">
+    <h3 class="settings-title">{{ $root.i18n.gettext('Account users') }}</h3>
+
+    <div class="row users-table-action-row">
+        <div class="col-md-12">
+            <a class="btn btn-success show-modal-form invite-users-btn" href="/user/invite/" data-form="invite-user">
+                <i class="fa fa-plus"></i> {{ $root.i18n.gettext('Invite users') }}
+            </a>
+            <div class="users-filter fullwidth-xs">
+                <a href="#" :class="{active: !onlyActive}" @click.prevent="toggleOnlyActive(true)">{{ $root.i18n.gettext('Active only') }}</a>
+                <a href="#" :class="{active: onlyActive}" @click.prevent="toggleOnlyActive(false)">{{ $root.i18n.gettext('All users') }}</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="overflow-wrapper">
+        <table class="table table-hover users-table">
+            <thead>
+                <tr>
+                    <th class="text-left">{{ $root.i18n.gettext('Email address') }}</th>
+                    <th>{{ $root.i18n.gettext('Name') }}</th>
+                    <th>{{ $root.i18n.gettext('Active') }}</th>
+                    <th>{{ $root.i18n.gettext('Role') }}</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="user in users" :class="{inactive: !user.is_active}" v-show="user.is_active || !onlyActive">
+                    <td class="text-left">
+                        {{ user.email }}
+                        <span v-if="user.is_invited" class="label label-primary">{{ $root.i18n.gettext('Invited') }}</span>
+                        <a href="#" class="resend-invite-btn" v-if="user.is_invited" @click.prevent="resendInvite(user)"
+                           :title="$root.i18n.gettext('Resend invitation')" v-tooltip>
+                            <i class="fa fa-refresh"></i>
+                        </a>
+                    </td>
+                    <td>{{ user.name }}</td>
+                    <td>
+                        <div class="checkbox">
+                            <input type="checkbox" :id="'checkbox' + user.id" name="user_status" v-model="user.is_active"
+                                   @change="changeUserStatus(user)"
+                                   :disabled="user.id===currentUser.id || user.is_owner">
+                            <label :for="'checkbox' + user.id"></label>
+                        </div>
+                    </td>
+                    <td>
+                        <span v-if="user.is_owner">{{ $root.i18n.gettext('Account owner') }}</span>
+                        <span v-if="!user.is_owner && user.id===currentUser.id">{{ $root.i18n.gettext('Administrator') }}</span>
+                        <select v-if="!user.is_owner && user.id!==currentUser.id" name="user_role" class="form-control"
+                                v-model="user.role" @change="changeUserRole(user)">
+                            <option v-for="userRole in userRoles" :value="userRole.value">{{ userRole.text }}</option>
+                        </select>
+                    </td>
+                    <td>
+                        <a class="btn btn-default" :href="#" @click.prevent="togglePermissionsFormModal(true, user)"
+                           v-if="user.role==='manager'">
+                            {{ $root.i18n.gettext('Configure permissions') }}
+                        </a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <component is="permissions-form-modal" v-if="modals.permissionsForm.show" :modal-data="modals.permissionsForm.data"></component>
+</div>
+</script>
+
+
+<script type="text/template" id="settings-tags-layout-tmpl">
+<ui-state v-if="$loadingRouteData" kind="loading" :message="$root.i18n.gettext('Loading...')"></ui-state>
+
+<div v-if="!$loadingRouteData" class="route-wrapper">
+    <h3 class="settings-title">{{ $root.i18n.gettext('Tags') }}</h3>
+
+    <div class="row">
+        <div class="col-md-12">
+            <p class="settings-description">
+                {{ $root.i18n.gettext('Use tags to segment your contacts, deals, and tasks') }}
+            </p>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-7">
+            <form class="custom-field-form" @submit.prevent="addTag($event)">
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-md-7 col-xs-7">
+                            <input class="form-control" id="id_name" name="name" type="text">
+                        </div>
+                        <div class="col-md-5 col-xs-5">
+                            <button class="btn btn-success" type="submit">
+                                {{ $root.i18n.gettext('Add') }} <span class="hidden-xs">{{ $root.i18n.gettext('tag') }}</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="overflow-wrapper" v-if="items.length">
+        <table class="table table-hover custom-field-table">
+            <tbody>
+                <tr v-for="tag in items">
+                    <td class="text-left edit-custom-field">
+                        <a v-editable href="#" :pk="tag.id" :value="tag.name" :title="$root.i18n.gettext('Edit')"
+                           :url="'/rest/tags/' + tag.id + '/edit/'">
+                            {{ tag.name }}
+                        </a>
+                    </td>
+                    <td>
+                        <b>{{ tag.companies_cnt }}</b> {{ $root.i18n.ngettext('company', 'companies', tag.companies_cnt) }},
+                        <b>{{ tag.persons_cnt }}</b> {{ $root.i18n.ngettext('contact', 'contacts', tag.persons_cnt) }},
+                        <b>{{ tag.deals_cnt }}</b> {{ $root.i18n.ngettext('deal', 'deals', tag.deals_cnt) }},
+                        <b>{{ tag.tasks_cnt }}</b> {{ $root.i18n.ngettext('task', 'tasks', tag.tasks_cnt) }}
+                    </td>
+                    <td class="delete-custom-field">
+                        <span @click="deleteTag(tag)" :title="$root.i18n.gettext('Delete')">
+                            <i class="fa fa-trash-o"></i>
+                        </span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <component is="grid-pagination" :pagination-data="paginationData" :items-cnt="items.length"
+               v-show="paginationData.count > paginationData.pageSize"></component>
+</div>
+</script>
+
+
+<script type="text/template" id="settings-contacts-import-layout-tmpl">
+<ui-state v-if="$loadingRouteData" kind="loading" :message="$root.i18n.gettext('Loading...')"></ui-state>
+
+<div v-if="!$loadingRouteData" class="route-wrapper">
+    <h3 class="settings-title">{{ $root.i18n.gettext('Import contacts') }}</h3>
+
+    <div class="row">
+        <div class="col-md-12">
+            <p class="settings-description">
+                {{ $root.i18n.gettext('If you have an XLS (Excel) or CSV contact file, you can import it') }}
+                <br>
+                {{ $root.i18n.gettext('in') }} <a v-link.literal="/companies/" :title="$root.i18n.gettext('Companies')">{{ $root.i18n.gettext('Companies') }}</a> {{ $root.i18n.gettext('or in') }} <a v-link.literal="/persons/" :title="$root.i18n.gettext('Persons')">{{ $root.i18n.gettext('Persons') }}</a>
+            </p>
+        </div>
+    </div>
+
+    <div class="overflow-wrapper" v-if="items.length">
+        <table class="table table-hover contacts-import-table">
+            <thead>
+                <tr>
+                    <th class="text-left">{{ $root.i18n.gettext('Name') }}</th>
+                    <th>{{ $root.i18n.gettext('Companies') }}</th>
+                    <th>{{ $root.i18n.gettext('Persons') }}</th>
+                    <th>{{ $root.i18n.gettext('Import date') }}</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="item in items">
+                    <td class="text-left">{{ item.name }}</td>
+                    <td>{{ item.companies_cnt }}</td>
+                    <td>{{ item.persons_cnt }}</td>
+                    <td>{{ item.completed_at | datetime }}</td>
+                    <td>
+                        <a href="#" @click.prevent="toggleTagsModal(true, item.id)">{{ $root.i18n.gettext('Set tags') }}</a>
+                    </td>
+                    <td>
+                        <a href="#" @click.prevent="toggleResponsiblesModal(true, item.id)">{{ $root.i18n.gettext('Manage assignees') }}</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <component is="grid-pagination" :pagination-data="paginationData" :items-cnt="items.length"
+               v-show="paginationData.count > paginationData.pageSize"></component>
+    <component is="responsibles-modal" v-if="modals.responsibles.show" :modal-data="modals.responsibles.data"></component>
+    <component is="tags-modal" v-if="modals.tags.show" :modal-data="modals.tags.data"></component>
+</div>
+</script>
+
+
+<script type="text/template" id="settings-company-fields-layout-tmpl">
+<ui-state v-if="$loadingRouteData" kind="loading" :message="$root.i18n.gettext('Loading...')"></ui-state>
+
+<div v-if="!$loadingRouteData" class="route-wrapper">
+    <h3 class="settings-title">{{ $root.i18n.gettext('Company fields') }}</h3>
+
+    <div class="row">
+        <div class="col-md-12">
+            <a class="btn btn-success add-field-btn" @click.prevent="toggleExtraFieldFormModal(true)">
+                <i class="fa fa-plus"></i> {{ $root.i18n.gettext('Add field') }}
+            </a>
+        </div>
+    </div>
+
+    <div class="overflow-wrapper">
+        <table class="table table-hover extra-fields-table">
+            <thead>
+                <tr>
+                    <th class="text-left">{{ $root.i18n.gettext('Field') }}</th>
+                    <th>{{ $root.i18n.gettext('Type') }}</th>
+                    <th>
+                        {{ $root.i18n.gettext('Required') }}
+                    </th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="text-left">{{ $root.i18n.gettext('Name') }}</td>
+                    <td>{{ $root.i18n.gettext('String') }}</td>
+                    <td>
+                        <div class="checkbox">
+                            <input type="checkbox" id="name" name="name" checked disabled>
+                            <label for="name"></label>
+                        </div>
+                    </td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td class="text-left">{{ $root.i18n.gettext('Address') }}</td>
+                    <td>{{ $root.i18n.gettext('String') }}</td>
+                    <td>
+                        <div class="checkbox">
+                            <input type="checkbox" id="address" name="address" disabled>
+                            <label for="address"></label>
+                        </div>
+                    </td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td class="text-left">{{ $root.i18n.gettext('Website') }}</td>
+                    <td>{{ $root.i18n.gettext('String') }}</td>
+                    <td>
+                        <div class="checkbox">
+                            <input type="checkbox" id="website" name="website" disabled>
+                            <label for="website"></label>
+                        </div>
+                    </td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td class="text-left">{{ $root.i18n.gettext('Phone') }}</td>
+                    <td>{{ $root.i18n.gettext('List') }}</td>
+                    <td>
+                        <div class="checkbox">
+                            <input type="checkbox" id="phone" name="phone" disabled>
+                            <label for="phone"></label>
+                        </div>
+                    </td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td class="text-left">{{ $root.i18n.gettext('Email address') }}</td>
+                    <td>{{ $root.i18n.gettext('List') }}</td>
+                    <td>
+                        <div class="checkbox">
+                            <input type="checkbox" id="emai" name="emails" disabled>
+                            <label for="email"></label>
+                        </div>
+                    </td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td class="text-left">{{ $root.i18n.gettext('Additional information') }}</td>
+                    <td>{{ $root.i18n.gettext('Text') }}</td>
+                    <td>
+                        <div class="checkbox">
+                            <input type="checkbox" id="details" name="details" disabled>
+                            <label for="details"></label>
+                        </div>
+                    </td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr v-for="extraField in extraFields">
+                    <td class="text-left">
+                        {{ extraField.name }}
+                    </td>
+                    <td>
+                        {{ extraField.type_label }}
+                    </td>
+                    <td>
+                        <div class="checkbox">
+                            <input type="checkbox" :id="'is_required' + extraField.id" v-model="extraField.is_required"
+                                   :name="'is_required' + extraField.id" @change="changeIsRequired(extraField)">
+                            <label :for="'is_required' + extraField.id"></label>
+                        </div>
+                    </td>
+                    <td>
+                        <a href="#" @click.prevent="toggleExtraFieldFormModal(true, extraField)" class="btn btn-default">
+                            <i class="fa fa-pencil"></i> {{ $root.i18n.gettext('Edit') }}
+                        </a>
+                    </td>
+                    <td>
+                        <a href="#" @click.prevent="deleteExtraField(extraField)" class="btn btn-default">
+                            <i class="fa fa-trash-o"></i> {{ $root.i18n.gettext('Delete') }}
+                        </a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <component is="extra-field-form-modal" v-if="modals.extraFieldForm.show" :modal-data="modals.extraFieldForm.data"></component>
+</div>
+</script>
+
+
+<script type="text/template" id="settings-person-fields-layout-tmpl">
+<ui-state v-if="$loadingRouteData" kind="loading" :message="$root.i18n.gettext('Loading...')"></ui-state>
+
+<div v-if="!$loadingRouteData" class="route-wrapper">
+    <h3 class="settings-title">{{ $root.i18n.gettext('Contact fields') }}</h3>
+
+    <div class="row">
+        <div class="col-md-12">
+            <a class="btn btn-success add-field-btn" @click.prevent="toggleExtraFieldFormModal(true)">
+                <i class="fa fa-plus"></i> {{ $root.i18n.gettext('Add field') }}
+            </a>
+        </div>
+    </div>
+
+    <div class="overflow-wrapper">
+        <table class="table table-hover extra-fields-table">
+            <thead>
+                <tr>
+                    <th class="text-left">{{ $root.i18n.gettext('Field') }}</th>
+                    <th>{{ $root.i18n.gettext('Type') }}</th>
+                    <th>
+                        {{ $root.i18n.gettext('Required') }}
+                    </th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="text-left">{{ $root.i18n.gettext('Full name') }}</td>
+                    <td>{{ $root.i18n.gettext('String') }}</td>
+                    <td>
+                        <div class="checkbox">
+                            <input type="checkbox" id="name" name="name" checked disabled>
+                            <label for="name"></label>
+                        </div>
+                    </td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td class="text-left">{{ $root.i18n.gettext('Job title') }}</td>
+                    <td>{{ $root.i18n.gettext('String') }}</td>
+                    <td>
+                        <div class="checkbox">
+                            <input type="checkbox" id="post" name="post" disabled>
+                            <label for="post"></label>
+                        </div>
+                    </td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td class="text-left">{{ $root.i18n.gettext('Phone') }}</td>
+                    <td>{{ $root.i18n.gettext('List') }}</td>
+                    <td>
+                        <div class="checkbox">
+                            <input type="checkbox" id="phone" name="phone" disabled>
+                            <label for="phone"></label>
+                        </div>
+                    </td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td class="text-left">{{ $root.i18n.gettext('Email address') }}</td>
+                    <td>{{ $root.i18n.gettext('List') }}</td>
+                    <td>
+                        <div class="checkbox">
+                            <input type="checkbox" id="emai" name="emails" disabled>
+                            <label for="email"></label>
+                        </div>
+                    </td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td class="text-left">{{ $root.i18n.gettext('Additional information') }}</td>
+                    <td>{{ $root.i18n.gettext('Text') }}</td>
+                    <td>
+                        <div class="checkbox">
+                            <input type="checkbox" id="details" name="details" disabled>
+                            <label for="details"></label>
+                        </div>
+                    </td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr v-for="extraField in extraFields">
+                    <td class="text-left">
+                        {{ extraField.name }}
+                    </td>
+                    <td>
+                        {{ extraField.type_label }}
+                    </td>
+                    <td>
+                        <div class="checkbox">
+                            <input type="checkbox" :id="'is_required' + extraField.id" v-model="extraField.is_required"
+                                   :name="'is_required' + extraField.id" @change="changeIsRequired(extraField)">
+                            <label :for="'is_required' + extraField.id"></label>
+                        </div>
+                    </td>
+                    <td>
+                        <a href="#" @click.prevent="toggleExtraFieldFormModal(true, extraField)" class="btn btn-default">
+                            <i class="fa fa-pencil"></i> {{ $root.i18n.gettext('Edit') }}
+                        </a>
+                    </td>
+                    <td>
+                        <a href="#" @click.prevent="deleteExtraField(extraField)" class="btn btn-default">
+                            <i class="fa fa-trash-o"></i> {{ $root.i18n.gettext('Delete') }}
+                        </a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <component is="extra-field-form-modal" v-if="modals.extraFieldForm.show" :modal-data="modals.extraFieldForm.data"></component>
+</div>
+</script>
+
+
+<script type="text/template" id="settings-deal-fields-layout-tmpl">
+<ui-state v-if="$loadingRouteData" kind="loading" :message="$root.i18n.gettext('Loading...')"></ui-state>
+
+<div v-if="!$loadingRouteData" class="route-wrapper">
+    <h3 class="settings-title">{{ $root.i18n.gettext('Deal fields') }}</h3>
+
+    <div class="row">
+        <div class="col-md-12">
+            <a class="btn btn-success add-field-btn" @click.prevent="toggleExtraFieldFormModal(true)">
+                <i class="fa fa-plus"></i> {{ $root.i18n.gettext('Add field') }}
+            </a>
+        </div>
+    </div>
+
+    <div class="overflow-wrapper">
+        <table class="table table-hover extra-fields-table">
+            <thead>
+                <tr>
+                    <th class="text-left">{{ $root.i18n.gettext('Field') }}</th>
+                    <th>{{ $root.i18n.gettext('Type') }}</th>
+                    <th>
+                        {{ $root.i18n.gettext('Required') }}
+                    </th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="text-left">{{ $root.i18n.gettext('Name') }}</td>
+                    <td>{{ $root.i18n.gettext('String') }}</td>
+                    <td>
+                        <div class="checkbox">
+                            <input type="checkbox" id="name" name="name" checked disabled>
+                            <label for="name"></label>
+                        </div>
+                    </td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td class="text-left">{{ $root.i18n.gettext('Budget') }}</td>
+                    <td>{{ $root.i18n.gettext('Number') }}</td>
+                    <td>
+                        <div class="checkbox">
+                            <input type="checkbox" id="budget" name="budget" checked disabled>
+                            <label for="budget"></label>
+                        </div>
+                    </td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td class="text-left">{{ $root.i18n.gettext('Currency') }}</td>
+                    <td>{{ $root.i18n.gettext('List') }}</td>
+                    <td>
+                        <div class="checkbox">
+                            <input type="checkbox" id="currency" name="currency" checked disabled>
+                            <label for="currency"></label>
+                        </div>
+                    </td>
+                    <td></td>
+                    <td>
+                        <a href="#" class="btn btn-default" @click.prevent="toggleDealCurrenciesModal(true)">
+                            <i class="fa fa-cog"></i> {{ $root.i18n.gettext('Configure currencies') }}
+                        </a>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="text-left">{{ $root.i18n.gettext('Stage') }}</td>
+                    <td>{{ $root.i18n.gettext('List') }}</td>
+                    <td>
+                        <div class="checkbox">
+                            <input type="checkbox" id="stage" name="stage" checked disabled>
+                            <label for="stage"></label>
+                        </div>
+                    </td>
+                    <td></td>
+                    <td>
+                        <a href="#" class="btn btn-default" @click.prevent="toggleDealStagesModal(true)">
+                            <i class="fa fa-cog"></i> {{ $root.i18n.gettext('Configure stages') }}
+                        </a>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="text-left">{{ $root.i18n.gettext('Deal description') }}</td>
+                    <td>{{ $root.i18n.gettext('Text') }}</td>
+                    <td>
+                        <div class="checkbox">
+                            <input type="checkbox" id="details" name="details" disabled>
+                            <label for="details"></label>
+                        </div>
+                    </td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr v-for="extraField in extraFields">
+                    <td class="text-left">
+                        {{ extraField.name }}
+                    </td>
+                    <td>
+                        {{ extraField.type_label }}
+                    </td>
+                    <td>
+                        <div class="checkbox">
+                            <input type="checkbox" :id="'is_required' + extraField.id" v-model="extraField.is_required"
+                                   :name="'is_required' + extraField.id" @change="changeIsRequired(extraField)">
+                            <label :for="'is_required' + extraField.id"></label>
+                        </div>
+                    </td>
+                    <td>
+                        <a href="#" @click.prevent="toggleExtraFieldFormModal(true, extraField)" class="btn btn-default">
+                            <i class="fa fa-pencil"></i> {{ $root.i18n.gettext('Edit') }}
+                        </a>
+                    </td>
+                    <td>
+                        <a href="#" @click.prevent="deleteExtraField(extraField)" class="btn btn-default">
+                            <i class="fa fa-trash-o"></i> {{ $root.i18n.gettext('Delete') }}
+                        </a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <component is="extra-field-form-modal" v-if="modals.extraFieldForm.show" :modal-data="modals.extraFieldForm.data"></component>
+    <component is="deal-stages-modal" v-if="modals.dealStages.show"></component>
+    <component is="deal-currencies-modal" v-if="modals.dealCurrencies.show"></component>
+</div>
+</script>
+
+
+<script type="text/template" id="settings-task-fields-layout-tmpl">
+<ui-state v-if="$loadingRouteData" kind="loading" :message="$root.i18n.gettext('Loading...')"></ui-state>
+
+<div v-if="!$loadingRouteData" class="route-wrapper">
+    <h3 class="settings-title">{{ $root.i18n.gettext('Task fields') }}</h3>
+
+    <div class="row">
+        <div class="col-md-12">
+            <a class="btn btn-success add-field-btn" @click.prevent="toggleExtraFieldFormModal(true)">
+                <i class="fa fa-plus"></i> {{ $root.i18n.gettext('Add field') }}
+            </a>
+        </div>
+    </div>
+
+    <div class="overflow-wrapper">
+        <table class="table table-hover extra-fields-table">
+            <thead>
+                <tr>
+                    <th class="text-left">{{ $root.i18n.gettext('Field') }}</th>
+                    <th>{{ $root.i18n.gettext('Type') }}</th>
+                    <th>
+                        {{ $root.i18n.gettext('Required') }}
+                    </th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="text-left">{{ $root.i18n.gettext('Name') }}</td>
+                    <td>{{ $root.i18n.gettext('String') }}</td>
+                    <td>
+                        <div class="checkbox">
+                            <input type="checkbox" id="name" name="name" checked disabled>
+                            <label for="name"></label>
+                        </div>
+                    </td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td class="text-left">{{ $root.i18n.gettext('Due date') }}</td>
+                    <td>{{ $root.i18n.gettext('Date and time') }}</td>
+                    <td>
+                        <div class="checkbox">
+                            <input type="checkbox" id="expire_date" name="expire_date" disabled>
+                            <label for="expire_date"></label>
+                        </div>
+                    </td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td class="text-left">{{ $root.i18n.gettext('Task description') }}</td>
+                    <td>{{ $root.i18n.gettext('Text') }}</td>
+                    <td>
+                        <div class="checkbox">
+                            <input type="checkbox" id="details" name="details" disabled>
+                            <label for="details"></label>
+                        </div>
+                    </td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr v-for="extraField in extraFields">
+                    <td class="text-left">
+                        {{ extraField.name }}
+                    </td>
+                    <td>
+                        {{ extraField.type_label }}
+                    </td>
+                    <td>
+                        <div class="checkbox">
+                            <input type="checkbox" :id="'is_required' + extraField.id" v-model="extraField.is_required"
+                                   :name="'is_required' + extraField.id" @change="changeIsRequired(extraField)">
+                            <label :for="'is_required' + extraField.id"></label>
+                        </div>
+                    </td>
+                    <td>
+                        <a href="#" @click.prevent="toggleExtraFieldFormModal(true, extraField)" class="btn btn-default">
+                            <i class="fa fa-pencil"></i> {{ $root.i18n.gettext('Edit') }}
+                        </a>
+                    </td>
+                    <td>
+                        <a href="#" @click.prevent="deleteExtraField(extraField)" class="btn btn-default">
+                            <i class="fa fa-trash-o"></i> {{ $root.i18n.gettext('Delete') }}
+                        </a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <component is="extra-field-form-modal" v-if="modals.extraFieldForm.show" :modal-data="modals.extraFieldForm.data"></component>
+</div>
+</script>
+{% endverbatim %}

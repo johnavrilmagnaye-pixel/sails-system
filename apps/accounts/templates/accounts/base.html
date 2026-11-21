@@ -1,0 +1,27 @@
+{% load static i18n %}
+
+<!DOCTYPE html>
+<html lang="{{ LANGUAGE_CODE|default:'en' }}">
+<head>
+    <title>{% block title %}{% endblock %} | Sails CRM</title>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="shortcut icon" type="image/ico" href="{% static 'favicon.ico' %}">
+    <link rel="stylesheet" href="{% static 'libs/bootstrap/css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'libs/fontawesome/css/font-awesome.css' %}">
+    <link rel="stylesheet" href="{% static 'accounts/css/auth.css' %}">
+
+    {% block extra_js %}{% endblock %}
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-offset-4 col-md-4">
+                <div class="panel panel-default login-form-wrapper">{% block content %}{% endblock %}</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

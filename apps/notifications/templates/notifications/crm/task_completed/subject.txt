@@ -1,0 +1,1 @@
+{% load i18n %}{% translate "Task completed:" %} {{ task.numbered_name|safe }}

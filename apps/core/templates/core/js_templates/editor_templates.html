@@ -1,0 +1,134 @@
+{% verbatim %}
+<script type="text/template" id="text-editor-tmpl">
+<div>
+    <input class="form-control" :name="name" :type="inputType || 'text'" v-model="value" :debounce="debounce || 0"
+           autocomplete="off">
+    <span class="help-block" v-show="!!help">{{ help }}</span>
+    <span class="help-block" v-show="!!error">{{ error }}</span>
+</div>
+</script>
+
+
+<script type="text/template" id="text-area-editor-tmpl">
+<div>
+    <textarea class="form-control" :name="name" v-model="value" :debounce="debounce || 0" :cols="cols" :rows="rows">
+    </textarea>
+    <span class="help-block" v-show="!!error">{{ error }}</span>
+</div>
+</script>
+
+
+<script type="text/template" id="select-editor-tmpl">
+<div>
+    <select v-if="!multiple" class="form-control" :name="name" v-select2="value" :query-params="queryParams"
+            :option-type="optionType" :placeholder="placeholder" :allow-clear="allowClear" :min-input="minInput"
+            :disabled="!!disabled">
+        <option value=""></option>
+        <option v-for="option in options" :value="option.id">{{ option.text }}</option>
+    </select>
+    <select v-if="!!multiple" multiple class="form-control" :name="name" v-select2="value" :tags="true"
+            :option-type="optionType" :placeholder="placeholder" :min-input="minInput">
+        <option v-for="option in options" :value="option.id">{{ option.text }}</option>
+    </select>
+    <span class="help-block" v-show="!!error">{{ error }}</span>
+</div>
+</script>
+
+
+<script type="text/template" id="date-editor-tmpl">
+<div>
+    <input class="form-control" autocomplete="off" :name="name" type="text" v-model="value" debounce="500" v-datepicker>
+    <span class="help-block" v-show="!!error">{{ error }}</span>
+</div>
+</script>
+
+
+<script type="text/template" id="date-time-editor-tmpl">
+<div>
+    <input class="form-control" :name="name" type="text" v-model="value" debounce="500" :min-view="minView"
+           :fixed-time="fixedTime" autocomplete="off" v-datetimepicker>
+    <span class="help-block" v-show="!!error">{{ error }}</span>
+</div>
+</script>
+
+
+<script type="text/template" id="time-editor-tmpl">
+<div>
+    <input class="form-control" autocomplete="off" :name="name" type="text" v-model="value" debounce="500" v-timepicker>
+    <span class="help-block" v-show="!!error">{{ error }}</span>
+</div>
+</script>
+
+
+<script type="text/template" id="date-range-editor-tmpl">
+<div>
+    <div class="input-group">
+        <span class="input-group-addon">
+            <i class="fa fa-calendar"></i>
+        </span>
+        <input v-daterangepicker type="text" :name="name" class="form-control" v-model="value" autocomplete="off"
+               :start-date="startDate" :end-date="endDate" :max-date="maxDate" :allow-clear="allowClear">
+    </div>
+    <span class="help-block" v-show="!!error">{{ error }}</span>
+</div>
+</script>
+
+
+<script type="text/template" id="number-range-editor-tmpl">
+<div>
+    <input class="form-control range-input" :name="name" type="number" v-model="valueStart" :debounce="debounce || 0"
+           autocomplete="off">
+    <div class="range-divider">-</div>
+    <input class="form-control range-input" :name="name" type="number" v-model="valueEnd" :debounce="debounce || 0"
+           autocomplete="off">
+</div>
+</script>
+
+
+<script type="text/template" id="list-editor-tmpl">
+<div class="list-editor-items-w">
+    <div class="list-editor-item" v-for="item in items" transition="fade">
+        <input :type="inputType || 'text'" :name="name + '_' + item.id" v-model="item.value" :value="item.value"
+               class="form-control" autocomplete="off" :class="inputClass">
+        <a href="#" class="remove-item" @click.prevent="removeItem(item)" v-show="$index > 0">
+            <i class="fa fa-times"></i>
+        </a>
+    </div>
+    <span class="help-block" v-show="!!error">{{ error }}</span>
+
+    <a href="#" class="add-item" @click.prevent="addItem()" v-show="showAddMore">{{ addMoreText }}</a>
+</div>
+</script>
+
+
+<script type="text/template" id="dropzone-editor-tmpl">
+<div class="dropzone-w" v-dropzone :value="value">
+    <input type="file" :name="name" multiple>
+    <div class="dropzone-icon">
+        <i class="fa fa-cloud-upload"></i>
+    </div>
+    <div class="dropzone-text">
+        <div class="empty-text" v-show="!value">{{ $root.i18n.gettext('Drag files here') }} <span>{{ $root.i18n.gettext('(or just click)') }}</span></div>
+        <div class="value" v-if="!!value">
+            <p v-for="v in value">{{ v.name }}</p>
+        </div>
+    </div>
+</div>
+</script>
+
+
+<script type="text/template" id="phone-list-editor-tmpl">
+<div class="list-editor-items-w">
+    <div class="list-editor-item" v-for="item in items" transition="fade">
+        <input type="text" :name="name + '_' + item.id" v-model="item.value" :value="item.value"
+               class="form-control" autocomplete="off" :class="inputClass" v-phone>
+        <a href="#" class="remove-item" @click.prevent="removeItem(item)" v-show="$index > 0">
+            <i class="fa fa-times"></i>
+        </a>
+    </div>
+    <span class="help-block" v-show="!!error">{{ error }}</span>
+
+    <a href="#" class="add-item" @click.prevent="addItem()" v-show="showAddMore">{{ addMoreText }}</a>
+</div>
+</script>
+{% endverbatim %}

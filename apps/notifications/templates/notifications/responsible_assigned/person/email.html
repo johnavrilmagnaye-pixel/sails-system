@@ -1,0 +1,18 @@
+{% extends 'notifications/email_base.html' %}
+
+{% load tz i18n %}
+
+{% block content %}
+    <p style="margin-bottom: 25px; line-height: 21px;">
+        {{ assigned_by_name }} {% translate "assigned you to a contact." %}
+    </p>
+
+    <p style="margin-bottom: 25px; line-height: 21px;">
+        {% translate "Person:" %} <a href="{{ item_url }}">{{ item.name|safe }}</a>
+
+        {% if item.company %}
+            <br>
+            {% translate "Company:" %} <b>{{ item.company.name|safe }}</b>
+        {% endif %}
+    </p>
+{% endblock %}

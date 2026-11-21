@@ -1,0 +1,26 @@
+# python byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+
+
+# static files
+static/CACHE/
+staticroot/
+
+errors.log
+
+# misc
+.idea
+.DS_Store
+*.db
+*.orig
+
+
+# project
+project/settings_local.py
+project/celeryconfig/local.py
+celerybeat-schedule
+media/
+
+.env
+.env.production

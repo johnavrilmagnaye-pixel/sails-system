@@ -1,0 +1,33 @@
+{% extends 'notifications/email_base.html' %}
+{% load i18n %}
+
+{% block content %}
+    <p style="margin-bottom: 25px; line-height: 21px;">
+        {% translate "User" %} <b>{{ note_user_name }}</b> {% translate "added a note:" %}
+    </p>
+
+    <p style="margin-bottom: 25px; line-height: 21px;">
+        {{ note.text|safe|linebreaksbr }}
+    </p>
+
+    <p style="margin-bottom: 25px; line-height: 21px;">
+        {% translate "Deal:" %} <a href="{{ item_url }}">{{ item.name|safe }}</a>
+        <br>
+        {% translate "Budget:" %} <b>{{ item.verbose_budget }}</b>
+
+        {% if item.person or item.company %}
+            <br>
+            {% translate "Contact:" %}
+            {% if item.person %}
+                <b>{{ item.person|safe }}{% if item.company %} ({{ item.company|safe }}){% endif %}</b>
+            {% elif item.company %}
+                <b>{{ item.company|safe }}</b>
+            {% endif %}
+        {% endif %}
+
+        {% if item.details %}
+            <br>
+            {% translate "Deal description:" %} {{ item.details|safe|linebreaksbr }}
+        {% endif %}
+    </p>
+{% endblock %}

@@ -1,0 +1,30 @@
+{% extends 'notifications/email_base.html' %}
+{% load i18n %}
+
+{% block content %}
+    <p style="margin-bottom: 25px; line-height: 21px;">
+        {% translate "Hello!" %}
+        <br>
+        {% translate "Welcome to Sails CRM." %}
+    </p>
+
+    <p style="margin-bottom: 25px; line-height: 21px;">
+        {% translate "You were invited to the account" %} <b>{{ account.name }}</b>{% translate ". Follow this link to activate your account:" %}
+    </p>
+
+    <p style="margin-bottom: 25px; line-height: 21px;">
+        <a href="{{ activation_url }}">{{ activation_url }}</a>
+    </p>
+
+    <p style="margin-bottom: 25px; line-height: 21px;">
+        <b>{% translate "Account information" %}</b>
+        <br>
+        {% translate "After activation, select the account" %} <b>{{ account.name }}</b> {% translate "on the sign-in page." %}
+    </p>
+
+    <p style="margin-bottom: 25px; line-height: 21px;">
+        <b>{% translate "Help" %}</b>
+        <br>
+        {% translate "If you have any questions, reply to this email." %}
+    </p>
+{% endblock %}

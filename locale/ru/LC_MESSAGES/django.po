@@ -1,0 +1,1556 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Sails CRM\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-08-23 09:44+0000\n"
+"PO-Revision-Date: 2026-08-04 16:17+0000\n"
+"Last-Translator: Sails CRM contributors\n"
+"Language-Team: Russian\n"
+"Language: ru\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || "
+"(n%100>=11 && n%100<=14) ? 2 : 3);\n"
+
+#: apps/accounts/api.py:70
+msgid "Enter the correct password"
+msgstr "Введите корректный пароль"
+
+#: apps/accounts/api.py:78
+msgid "Password cannot be empty"
+msgstr "Пароль не может быть пустым"
+
+#: apps/accounts/api.py:95
+msgid "No user specified"
+msgstr "Не указан пользователь"
+
+#: apps/accounts/api.py:102
+msgid "This user does not exist"
+msgstr "Такого пользователя не существует"
+
+#: apps/accounts/const.py:7
+msgid "Negotiation"
+msgstr "Переговоры"
+
+#: apps/accounts/const.py:8
+msgid "Proposal"
+msgstr "Коммерческое предложение"
+
+#: apps/accounts/const.py:9
+msgid "Contract"
+msgstr "Договор"
+
+#: apps/accounts/const.py:10
+msgid "Invoice"
+msgstr "Счет"
+
+#: apps/accounts/const.py:11
+msgid "Payment"
+msgstr "Оплата"
+
+#: apps/accounts/const.py:12
+msgid "Closing documents"
+msgstr "Акт"
+
+#: apps/accounts/const.py:16
+msgid "US dollar"
+msgstr "Доллар США"
+
+#: apps/accounts/const.py:17
+msgid "Euro"
+msgstr "Евро"
+
+#: apps/accounts/const.py:18
+msgid "Pound sterling"
+msgstr "Фунт стерлингов"
+
+#: apps/accounts/const.py:19
+msgid "Swiss franc"
+msgstr "Швейцарский франк"
+
+#: apps/accounts/const.py:20
+msgid "Yuan"
+msgstr "Юань"
+
+#: apps/accounts/const.py:21
+msgid "Hong Kong dollar"
+msgstr "Гонконгский доллар"
+
+#: apps/accounts/const.py:22
+msgid "Canadian dollar"
+msgstr "Канадский доллар"
+
+#: apps/accounts/const.py:23
+msgid "Hryvnia"
+msgstr "Гривна"
+
+#: apps/accounts/const.py:24
+msgid "Russian ruble"
+msgstr "Российский рубль"
+
+#: apps/accounts/const.py:25
+msgid "Belarusian ruble"
+msgstr "Белорусский рубль"
+
+#: apps/accounts/const.py:26
+msgid "Tenge"
+msgstr "Тенге"
+
+#: apps/accounts/const.py:27
+msgid "Yen"
+msgstr "Иена"
+
+#: apps/accounts/const.py:28
+msgid "Danish krone"
+msgstr "Датская крона"
+
+#: apps/accounts/const.py:29
+msgid "Norwegian krone"
+msgstr "Норвежская крона"
+
+#: apps/accounts/const.py:30
+msgid "Swedish krona"
+msgstr "Шведская крона"
+
+#: apps/accounts/const.py:31
+msgid "Czech koruna"
+msgstr "Чешская крона"
+
+#: apps/accounts/const.py:32
+msgid "Bulgarian lev"
+msgstr "Болгарский лев"
+
+#: apps/accounts/const.py:33
+msgid "Azerbaijani manat"
+msgstr "Азербайджанский манат"
+
+#: apps/accounts/const.py:34
+msgid "Armenian dram"
+msgstr "Армянский драм"
+
+#: apps/accounts/const.py:35
+msgid "Estonian kroon"
+msgstr "Эстонская крона"
+
+#: apps/accounts/const.py:36
+msgid "Lari"
+msgstr "Лари"
+
+#: apps/accounts/const.py:37
+msgid "New Israeli shekel"
+msgstr "Новый израильский шекель"
+
+#: apps/accounts/const.py:38
+msgid "Som"
+msgstr "Сом"
+
+#: apps/accounts/const.py:39
+msgid "Won"
+msgstr "Вона"
+
+#: apps/accounts/const.py:40
+msgid "Lithuanian litas"
+msgstr "Литовский лит"
+
+#: apps/accounts/const.py:41
+msgid "Latvian lats"
+msgstr "Латвийский лат"
+
+#: apps/accounts/const.py:42
+msgid "Moldovan leu"
+msgstr "Молдавский лей"
+
+#: apps/accounts/const.py:43
+msgid "Zloty"
+msgstr "Злотый"
+
+#: apps/accounts/const.py:44
+msgid "Baht"
+msgstr "Бат"
+
+#: apps/accounts/const.py:45
+msgid "Turkmenistan manat"
+msgstr "Новый туркменский манат"
+
+#: apps/accounts/const.py:46
+msgid "Uzbekistani sum"
+msgstr "Узбекский сум"
+
+#: apps/accounts/const.py:47
+msgid "Dong"
+msgstr "Донг"
+
+#: apps/accounts/const.py:48
+msgid "Somoni"
+msgstr "Сомони"
+
+#: apps/accounts/const.py:49
+msgid "Item count"
+msgstr "Количество штук"
+
+#: apps/accounts/forms.py:19
+msgid "Invalid email address or password."
+msgstr "Неверная электронная почта или пароль."
+
+#: apps/accounts/forms.py:20
+msgid "Your browser does not support cookies."
+msgstr "Ваш браузер не поддерживает cookie."
+
+#: apps/accounts/forms.py:21
+msgid "This account is inactive."
+msgstr "Этот аккаунт неактивен."
+
+#: apps/accounts/forms.py:24 apps/accounts/forms.py:30
+#: apps/accounts/forms.py:51 apps/accounts/forms.py:79
+#: apps/crm/models/contacts.py:75 apps/crm/models/contacts.py:173
+#: apps/crm/models/misc.py:292
+msgid "Email address"
+msgstr "Электронная почта"
+
+#: apps/accounts/forms.py:25 apps/accounts/forms.py:31
+#: apps/accounts/forms.py:82
+msgid "Password"
+msgstr "Пароль"
+
+#: apps/accounts/forms.py:29
+msgid "Account name"
+msgstr "Название аккаунта"
+
+#: apps/accounts/forms.py:36 apps/accounts/rest_views.py:79
+msgid "An account with this name already exists."
+msgstr "Аккаунт с таким названием уже существует."
+
+#: apps/accounts/forms.py:42
+msgid "A user with this email address already exists."
+msgstr "Пользователь с такой электронной почтой уже существует."
+
+#: apps/accounts/forms.py:48
+msgid "No user with this email address exists."
+msgstr "Пользователя с таким адресом электронной почты не существует."
+
+#: apps/accounts/forms.py:62
+msgid "New password"
+msgstr "Новый пароль"
+
+#: apps/accounts/forms.py:80
+msgid "First name"
+msgstr "Имя"
+
+#: apps/accounts/forms.py:81
+msgid "Last name"
+msgstr "Фамилия"
+
+#: apps/accounts/forms.py:93
+msgid "Leave blank to keep the password for your existing account."
+msgstr "Оставьте поле пустым, чтобы сохранить пароль существующего аккаунта."
+
+#: apps/accounts/forms.py:113
+msgid "Enter at least one email address"
+msgstr "Укажите хотя бы одну электронную почту"
+
+#: apps/accounts/forms.py:119
+msgid "The form must not contain duplicate values"
+msgstr "В форме не должно быть повторяющихся значений"
+
+#: apps/accounts/models.py:61
+msgid "Role"
+msgstr "Роль"
+
+#: apps/accounts/models.py:62
+#: apps/crm/templates/crm/includes/modal_forms/export.html:44
+msgid "Selected"
+msgstr "Выбранные"
+
+#: apps/accounts/models.py:63
+msgid "Active"
+msgstr "Активен"
+
+#: apps/accounts/models.py:64
+msgid "Invited"
+msgstr "Приглашен"
+
+#: apps/accounts/models.py:67
+msgid "Time zone"
+msgstr "Часовой пояс"
+
+#: apps/accounts/models.py:72
+msgid "Interface language"
+msgstr "Язык интерфейса"
+
+#: apps/accounts/rest_views.py:32
+msgid "No active account is selected."
+msgstr "Не выбран активный аккаунт."
+
+#: apps/accounts/rest_views.py:43 apps/accounts/rest_views.py:71
+msgid "This field is required."
+msgstr "Это поле обязательно."
+
+#: apps/accounts/rest_views.py:55
+msgid "Account not found."
+msgstr "Аккаунт не найден."
+
+#: apps/accounts/templates/accounts/activation.html:5
+#: apps/accounts/templates/accounts/activation.html:10
+#: apps/accounts/templates/accounts/activation.html:62
+msgid "Activate account"
+msgstr "Активировать учетную запись"
+
+#: apps/accounts/templates/accounts/activation.html:19
+#: apps/accounts/templates/accounts/login.html:35
+#: apps/accounts/templates/accounts/password_reset_confirm.html:19
+#: apps/accounts/templates/accounts/password_reset_form.html:22
+msgid "Close"
+msgstr "Закрыть"
+
+#: apps/accounts/templates/accounts/activation.html:67
+msgid "Activation failed"
+msgstr "Неудачная активация"
+
+#: apps/accounts/templates/accounts/activation.html:71
+msgid "This account activation link has already been used."
+msgstr "Эта ссылка для активации учетной записи уже была использована."
+
+#: apps/accounts/templates/accounts/login.html:5
+#: apps/accounts/templates/accounts/login.html:15
+#: apps/accounts/templates/accounts/login.html:64
+#: apps/accounts/templates/accounts/login.html:95
+msgid "Sign in"
+msgstr "Войти в аккаунт"
+
+#: apps/accounts/templates/accounts/login.html:11
+msgid "Sign in to your workspace or create a new one"
+msgstr "Войдите в рабочее пространство или создайте новое"
+
+#: apps/accounts/templates/accounts/login.html:19
+msgid "Password reset instructions were sent to your email address."
+msgstr "На указанную электронную почту отправлена инструкция по сбросу пароля."
+
+#: apps/accounts/templates/accounts/login.html:25
+msgid "Your new password has been saved. You can now sign in."
+msgstr "Новый пароль сохранен. Теперь вы можете войти в аккаунт."
+
+#: apps/accounts/templates/accounts/login.html:54
+msgid "Forgot your password?"
+msgstr "Забыли пароль?"
+
+#: apps/accounts/templates/accounts/login.html:67
+msgid "Don't have an account?"
+msgstr "Нет аккаунта?"
+
+#: apps/accounts/templates/accounts/login.html:68
+#: apps/accounts/templates/accounts/login.html:73
+#: apps/accounts/templates/accounts/login.html:91
+msgid "Create account"
+msgstr "Создать аккаунт"
+
+#: apps/accounts/templates/accounts/login.html:94
+msgid "Already have an account?"
+msgstr "Уже есть аккаунт?"
+
+#: apps/accounts/templates/accounts/password_reset_confirm.html:5
+#: apps/accounts/templates/accounts/password_reset_confirm.html:10
+msgid "Set a new password"
+msgstr "Установка нового пароля"
+
+#: apps/accounts/templates/accounts/password_reset_confirm.html:35
+msgid "Set new password"
+msgstr "Установить новый пароль"
+
+#: apps/accounts/templates/accounts/password_reset_confirm.html:40
+msgid "Password reset failed"
+msgstr "Неудачный сброс пароля"
+
+#: apps/accounts/templates/accounts/password_reset_confirm.html:45
+msgid "This password reset link has already been used."
+msgstr "Эта ссылка для сброса пароля уже была использована."
+
+#: apps/accounts/templates/accounts/password_reset_confirm.html:47
+msgid "Please request a new"
+msgstr "Пожалуйста, запросите новую"
+
+#: apps/accounts/templates/accounts/password_reset_confirm.html:47
+msgid "password reset link"
+msgstr "ссылку для сброса пароля"
+
+#: apps/accounts/templates/accounts/password_reset_email.html:1
+msgid "Follow this link to set a new password:"
+msgstr "Перейдите по этой ссылке, чтобы установить новый пароль:"
+
+#: apps/accounts/templates/accounts/password_reset_form.html:5
+#: apps/accounts/templates/accounts/password_reset_form.html:9
+msgid "Reset password"
+msgstr "Сброс пароля"
+
+#: apps/accounts/templates/accounts/password_reset_form.html:15
+msgid "Enter your email address to receive password reset instructions."
+msgstr "Укажите вашу электронную почту, чтобы получить инструкцию по сбросу пароля."
+
+#: apps/accounts/templates/accounts/password_reset_form.html:38
+msgid "Send instructions"
+msgstr "Отправить инструкцию"
+
+#: apps/accounts/templates/accounts/password_reset_form.html:39
+msgid "Back to sign in"
+msgstr "Вернуться ко входу"
+
+#: apps/accounts/templates/accounts/password_reset_subject.txt:1
+msgid "Reset your Sails CRM password"
+msgstr "Сброс пароля в Sails CRM"
+
+#: apps/accounts/views.py:94
+#, python-brace-format
+msgid "User ({name}) joined the account"
+msgstr "Пользователь ({name}) присоединился к аккаунту"
+
+#: apps/accounts/viewsets.py:38 apps/crm/mixins.py:36 apps/crm/mixins.py:51
+#: apps/crm/models/links.py:33 apps/crm/viewsets/base.py:41
+#: apps/crm/viewsets/base.py:368 apps/crm/viewsets/deals.py:217
+#: apps/crm/viewsets/deals.py:237 apps/crm/viewsets/deals.py:275
+#: apps/crm/viewsets/deals.py:283 apps/crm/viewsets/misc.py:234
+#: apps/crm/viewsets/misc.py:256
+msgid "Invalid request"
+msgstr "Некорректный запрос"
+
+#: apps/accounts/viewsets.py:42
+msgid "The user's email address must be different from yours"
+msgstr "Адрес электронной почты пользователя не должен совпадать с вашим"
+
+#: apps/accounts/viewsets.py:106
+msgid "This field must be a list."
+msgstr "Значение этого поля должно быть списком."
+
+#: apps/accounts/viewsets.py:111 apps/accounts/viewsets.py:118
+msgid "Invalid permissions."
+msgstr "Недопустимые права доступа."
+
+#: apps/crm/forms/misc.py:20
+msgid "File format"
+msgstr "Формат файла"
+
+#: apps/crm/forms/misc.py:40
+msgid "An extra field with this name already exists."
+msgstr "Дополнительное поле с таким названием уже существует."
+
+#: apps/crm/forms/misc.py:44
+msgid "A field with this name already exists."
+msgstr "Поле с таким названием уже существует."
+
+#: apps/crm/models/contacts.py:64
+msgctxt "grammatical genitive"
+msgid "company"
+msgstr "компании"
+
+#: apps/crm/models/contacts.py:65
+msgctxt "grammatical dative"
+msgid "company"
+msgstr "компании"
+
+#: apps/crm/models/contacts.py:66
+msgctxt "grammatical accusative"
+msgid "company"
+msgstr "компанию"
+
+#: apps/crm/models/contacts.py:68 apps/crm/models/deals.py:136
+#: apps/crm/models/tasks.py:263
+msgid "Name"
+msgstr "Название"
+
+#: apps/crm/models/contacts.py:69 apps/crm/models/contacts.py:167
+msgid "Additional information"
+msgstr "Дополнительная информация"
+
+#: apps/crm/models/contacts.py:71
+msgid "Address"
+msgstr "Адрес"
+
+#: apps/crm/models/contacts.py:72
+msgid "Website"
+msgstr "Сайт"
+
+#: apps/crm/models/contacts.py:74 apps/crm/models/contacts.py:172
+#: apps/crm/models/misc.py:291
+msgid "Phone"
+msgstr "Телефон"
+
+#: apps/crm/models/contacts.py:81 apps/crm/models/contacts.py:169
+#: apps/crm/models/deals.py:133 apps/crm/models/tasks.py:259
+msgid "Company"
+msgstr "Компания"
+
+#: apps/crm/models/contacts.py:82 apps/crm/templates/crm/app.html:55
+#: apps/crm/templates/crm/app.html:57
+msgid "Companies"
+msgstr "Компании"
+
+#: apps/crm/models/contacts.py:162
+msgctxt "grammatical genitive"
+msgid "contact"
+msgstr "контактного лица"
+
+#: apps/crm/models/contacts.py:163
+msgctxt "grammatical dative"
+msgid "contact"
+msgstr "контактному лицу"
+
+#: apps/crm/models/contacts.py:164
+msgctxt "grammatical accusative"
+msgid "contact"
+msgstr "контактное лицо"
+
+#: apps/crm/models/contacts.py:166
+msgid "Full name"
+msgstr "ФИО"
+
+#: apps/crm/models/contacts.py:170
+msgid "Job title"
+msgstr "Должность"
+
+#: apps/crm/models/contacts.py:179 apps/crm/models/deals.py:134
+#: apps/crm/models/tasks.py:260
+msgid "Person"
+msgstr "Контактное лицо"
+
+#: apps/crm/models/contacts.py:180 apps/crm/templates/crm/app.html:61
+#: apps/crm/templates/crm/app.html:63
+msgid "Persons"
+msgstr "Контактные лица"
+
+#: apps/crm/models/deals.py:119
+msgctxt "grammatical genitive"
+msgid "deal"
+msgstr "сделки"
+
+#: apps/crm/models/deals.py:120
+msgctxt "grammatical dative"
+msgid "deal"
+msgstr "сделке"
+
+#: apps/crm/models/deals.py:121
+msgctxt "grammatical accusative"
+msgid "deal"
+msgstr "сделку"
+
+#: apps/crm/models/deals.py:128
+msgid "In progress"
+msgstr "В работе"
+
+#: apps/crm/models/deals.py:129 apps/crm/rest_views.py:166
+msgid "Successfully completed"
+msgstr "Успешно завершена"
+
+#: apps/crm/models/deals.py:130 apps/crm/models/tasks.py:383
+msgid "Not completed"
+msgstr "Не завершена"
+
+#: apps/crm/models/deals.py:137
+msgid "Budget"
+msgstr "Бюджет"
+
+#: apps/crm/models/deals.py:138
+msgid "Currency"
+msgstr "Валюта"
+
+#: apps/crm/models/deals.py:139
+msgid "Status"
+msgstr "Статус"
+
+#: apps/crm/models/deals.py:140
+msgid "Stage"
+msgstr "Этап"
+
+#: apps/crm/models/deals.py:141
+msgid "Deal description"
+msgstr "Описание сделки"
+
+#: apps/crm/models/deals.py:145 apps/crm/models/tasks.py:261
+#: apps/notifications/templates/notifications/crm/deal_closed/email.html:6
+#: apps/notifications/templates/notifications/crm/deal_closed/email.txt:5
+#: apps/notifications/templates/notifications/crm/deal_closed/subject.txt:1
+msgid "Deal"
+msgstr "Сделка"
+
+#: apps/crm/models/deals.py:146 apps/crm/templates/crm/app.html:67
+#: apps/crm/templates/crm/app.html:69
+msgid "Deals"
+msgstr "Сделки"
+
+#: apps/crm/models/deals.py:217
+msgid "<b>Budget</b>: {}"
+msgstr "<b>Бюджет</b>: {}"
+
+#: apps/crm/models/deals.py:219
+msgid "<br><b>Contact:</b> "
+msgstr "<br><b>Контакт:</b> "
+
+#: apps/crm/models/deals.py:227
+msgid " <br><b>Tags:</b> {}"
+msgstr " <br><b>Теги:</b> {}"
+
+#: apps/crm/models/deals.py:231
+msgid "<br><b>Assignees:</b> {}"
+msgstr "<br><b>Ответственные:</b> {}"
+
+#: apps/crm/models/deals.py:236
+msgid "<br><b>Description:</b> {}"
+msgstr "<br><b>Описание:</b> {}"
+
+#: apps/crm/models/misc.py:150
+msgid "Note"
+msgstr "Заметка"
+
+#: apps/crm/models/misc.py:151
+msgid "Notes"
+msgstr "Заметки"
+
+#: apps/crm/models/misc.py:228
+msgid "File"
+msgstr "Файл"
+
+#: apps/crm/models/misc.py:229
+msgid "Files"
+msgstr "Файлы"
+
+#: apps/crm/models/misc.py:285
+msgid "String"
+msgstr "Строка"
+
+#: apps/crm/models/misc.py:286
+msgid "Text"
+msgstr "Текст"
+
+#: apps/crm/models/misc.py:287
+msgid "List"
+msgstr "Список"
+
+#: apps/crm/models/misc.py:288
+msgid "Date"
+msgstr "Дата"
+
+#: apps/crm/models/misc.py:289
+msgid "Date and time"
+msgstr "Дата и время"
+
+#: apps/crm/models/misc.py:290
+msgid "Number"
+msgstr "Число"
+
+#: apps/crm/models/tasks.py:36
+msgid "Every week"
+msgstr "Каждую неделю"
+
+#: apps/crm/models/tasks.py:37
+msgid "By month"
+msgstr "По месяцам"
+
+#: apps/crm/models/tasks.py:41
+msgctxt "recurring task weekday"
+msgid "Monday"
+msgstr "понедельник"
+
+#: apps/crm/models/tasks.py:42
+msgctxt "recurring task weekday"
+msgid "Tuesday"
+msgstr "вторник"
+
+#: apps/crm/models/tasks.py:43
+msgctxt "recurring task weekday"
+msgid "Wednesday"
+msgstr "среду"
+
+#: apps/crm/models/tasks.py:44
+msgctxt "recurring task weekday"
+msgid "Thursday"
+msgstr "четверг"
+
+#: apps/crm/models/tasks.py:45
+msgctxt "recurring task weekday"
+msgid "Friday"
+msgstr "пятницу"
+
+#: apps/crm/models/tasks.py:46
+msgctxt "recurring task weekday"
+msgid "Saturday"
+msgstr "субботу"
+
+#: apps/crm/models/tasks.py:47
+msgctxt "recurring task weekday"
+msgid "Sunday"
+msgstr "воскресенье"
+
+#: apps/crm/models/tasks.py:51
+msgid "January"
+msgstr "январь"
+
+#: apps/crm/models/tasks.py:52
+msgid "February"
+msgstr "февраль"
+
+#: apps/crm/models/tasks.py:53
+msgid "March"
+msgstr "март"
+
+#: apps/crm/models/tasks.py:54
+msgid "April"
+msgstr "апрель"
+
+#: apps/crm/models/tasks.py:55
+msgid "May"
+msgstr "май"
+
+#: apps/crm/models/tasks.py:56
+msgid "June"
+msgstr "июнь"
+
+#: apps/crm/models/tasks.py:57
+msgid "July"
+msgstr "июль"
+
+#: apps/crm/models/tasks.py:58
+msgid "August"
+msgstr "август"
+
+#: apps/crm/models/tasks.py:59
+msgid "September"
+msgstr "сентябрь"
+
+#: apps/crm/models/tasks.py:60
+msgid "October"
+msgstr "октябрь"
+
+#: apps/crm/models/tasks.py:61
+msgid "November"
+msgstr "ноябрь"
+
+#: apps/crm/models/tasks.py:62
+msgid "December"
+msgstr "декабрь"
+
+#: apps/crm/models/tasks.py:138
+msgid "{} on day {}"
+msgstr "{} {} числа"
+
+#: apps/crm/models/tasks.py:139
+msgid "Every month"
+msgstr "Каждый месяц"
+
+#: apps/crm/models/tasks.py:139
+msgid "In selected months"
+msgstr "По выбранным месяцам"
+
+#: apps/crm/models/tasks.py:144
+msgid "Every day"
+msgstr "Каждый день"
+
+#: apps/crm/models/tasks.py:146
+msgid "Every week on {}"
+msgstr "Каждую неделю: {}"
+
+#: apps/crm/models/tasks.py:245
+msgctxt "grammatical genitive"
+msgid "task"
+msgstr "задачи"
+
+#: apps/crm/models/tasks.py:246
+msgctxt "grammatical dative"
+msgid "task"
+msgstr "задаче"
+
+#: apps/crm/models/tasks.py:247
+msgctxt "grammatical accusative"
+msgid "task"
+msgstr "задачу"
+
+#: apps/crm/models/tasks.py:254
+msgid "Pending"
+msgstr "Ожидает выполнения"
+
+#: apps/crm/models/tasks.py:255 apps/crm/models/tasks.py:381
+msgid "Completed"
+msgstr "Выполнена"
+
+#: apps/crm/models/tasks.py:256
+msgid "Overdue"
+msgstr "Просрочена"
+
+#: apps/crm/models/tasks.py:264
+msgid "Task description"
+msgstr "Описание задачи"
+
+#: apps/crm/models/tasks.py:266
+msgid "Due date"
+msgstr "Срок исполнения"
+
+#: apps/crm/models/tasks.py:275
+msgid "Task"
+msgstr "Задача"
+
+#: apps/crm/models/tasks.py:276 apps/crm/templates/crm/app.html:73
+#: apps/crm/templates/crm/app.html:75
+msgid "Tasks"
+msgstr "Задачи"
+
+#: apps/crm/models/tasks.py:304 apps/crm/models/tasks.py:330
+msgid "Scheduled"
+msgstr "Запланирована"
+
+#: apps/crm/models/tasks.py:313
+msgid "Today"
+msgstr "Сегодня"
+
+#: apps/crm/models/tasks.py:317
+msgid "Tomorrow"
+msgstr "Завтра"
+
+#: apps/crm/models/tasks.py:321
+msgid "This week"
+msgstr "Эта неделя"
+
+#: apps/crm/models/tasks.py:323
+msgid "Next week"
+msgstr "Следующая неделя"
+
+#: apps/crm/models/tasks.py:326
+msgid "This month"
+msgstr "Этот месяц"
+
+#: apps/crm/models/tasks.py:328
+msgid "Next month"
+msgstr "Следующий месяц"
+
+#: apps/crm/tasks/base.py:407 apps/crm/tasks/base.py:466
+#: apps/crm/viewsets/contacts.py:249
+msgid "Assignees"
+msgstr "Ответственные"
+
+#: apps/crm/tasks/base.py:407 apps/crm/tasks/base.py:466
+#: apps/crm/viewsets/contacts.py:250
+msgid "Tags"
+msgstr "Теги"
+
+#: apps/crm/templates/crm/app.html:41 apps/crm/templates/crm/app.html:43
+msgid "Dashboard"
+msgstr "Обзор"
+
+#: apps/crm/templates/crm/app.html:48 apps/crm/templates/crm/app.html:51
+#: apps/notifications/models.py:23
+msgid "Notifications"
+msgstr "Уведомления"
+
+#: apps/crm/templates/crm/app.html:79 apps/crm/templates/crm/app.html:81
+msgid "Settings"
+msgstr "Настройки"
+
+#: apps/crm/templates/crm/app.html:85 apps/crm/templates/crm/app.html:87
+msgid "Sign out"
+msgstr "Выйти"
+
+#: apps/crm/templates/crm/app.html:92 apps/crm/templates/crm/app.html:95
+msgid "Collapse"
+msgstr "Свернуть"
+
+#: apps/crm/templates/crm/includes/modal_forms/export.html:6
+#: apps/crm/templates/crm/includes/modal_forms/export.html:41
+msgid "Export"
+msgstr "Экспортировать"
+
+#: apps/crm/templates/crm/includes/modal_forms/export.html:6
+msgid "deals"
+msgstr "сделки"
+
+#: apps/crm/templates/crm/includes/modal_forms/export.html:6
+msgid "tasks"
+msgstr "задачи"
+
+#: apps/crm/templates/crm/includes/modal_forms/export.html:6
+msgid "contacts"
+msgstr "контактные лица"
+
+#: apps/crm/templates/crm/includes/modal_forms/export.html:38
+#: apps/crm/templates/crm/includes/modal_forms/settings/invite_user.html:38
+msgid "Cancel"
+msgstr "Отмена"
+
+#: apps/crm/templates/crm/includes/modal_forms/export.html:45
+msgid "All"
+msgstr "Все"
+
+#: apps/crm/templates/crm/includes/modal_forms/settings/invite_user.html:7
+msgid "Invite users"
+msgstr "Приглашение пользователей"
+
+#: apps/crm/templates/crm/includes/modal_forms/settings/invite_user.html:39
+msgid "Send invitations"
+msgstr "Отправить приглашения"
+
+#: apps/crm/viewsets/base.py:163 apps/crm/viewsets/base.py:194
+msgid "Nothing selected for modification"
+msgstr "Ничего не выбрано для изменений"
+
+#: apps/crm/viewsets/base.py:168 apps/crm/viewsets/base.py:199
+#: apps/crm/viewsets/contacts.py:448 apps/crm/viewsets/contacts.py:485
+msgid "No action selected."
+msgstr "Не выбрано ни одно действие."
+
+#: apps/crm/viewsets/base.py:213
+msgid "Nothing selected for deletion"
+msgstr "Ничего не выбрано для удаления"
+
+#: apps/crm/viewsets/base.py:296
+msgid "Maximum file size is {} MB"
+msgstr "Максимальный размер файла — {} МБ"
+
+#: apps/crm/viewsets/base.py:304
+msgid "The file storage limit has been reached"
+msgstr "Достигнут лимит свободного места для файлов"
+
+#: apps/crm/viewsets/base.py:328
+msgid "Enter note text"
+msgstr "Укажите текст заметки"
+
+#: apps/crm/viewsets/contacts.py:95
+msgid "This company does not exist"
+msgstr "Такой компании не существует"
+
+#: apps/crm/viewsets/contacts.py:195
+msgid "This contact does not exist"
+msgstr "Такого контактного лица не существует"
+
+#: apps/crm/viewsets/contacts.py:237
+msgid "company"
+msgstr "компании"
+
+#: apps/crm/viewsets/contacts.py:237
+msgid "name"
+msgstr "название"
+
+#: apps/crm/viewsets/contacts.py:237
+msgid "company name"
+msgstr "название компании"
+
+#: apps/crm/viewsets/contacts.py:238
+msgid "address"
+msgstr "адрес"
+
+#: apps/crm/viewsets/contacts.py:238
+msgid "company address"
+msgstr "адрес компании"
+
+#: apps/crm/viewsets/contacts.py:239
+msgid "website"
+msgstr "сайт"
+
+#: apps/crm/viewsets/contacts.py:239
+msgid "company website"
+msgstr "сайт компании"
+
+#: apps/crm/viewsets/contacts.py:241
+msgid "full name"
+msgstr "фио"
+
+#: apps/crm/viewsets/contacts.py:241
+msgid "first name last name"
+msgstr "имя фамилия"
+
+#: apps/crm/viewsets/contacts.py:241
+msgid "last name first name"
+msgstr "фамилия имя"
+
+#: apps/crm/viewsets/contacts.py:243
+msgid "job title"
+msgstr "должность"
+
+#: apps/crm/viewsets/contacts.py:244
+msgid "phone"
+msgstr "телефон"
+
+#: apps/crm/viewsets/contacts.py:244
+msgid "phones"
+msgstr "телефоны"
+
+#: apps/crm/viewsets/contacts.py:245
+msgid "email address"
+msgstr "электронная почта"
+
+#: apps/crm/viewsets/contacts.py:245
+msgid "email"
+msgstr "email"
+
+#: apps/crm/viewsets/contacts.py:245
+msgid "e-mail"
+msgstr "e-mail"
+
+#: apps/crm/viewsets/contacts.py:246
+msgid "additional information"
+msgstr "дополнительная информация"
+
+#: apps/crm/viewsets/contacts.py:246
+msgid "additional info"
+msgstr "доп. информация"
+
+#: apps/crm/viewsets/contacts.py:280
+msgid "You did not select a file to import"
+msgstr "Вы не выбрали файл для импорта"
+
+#: apps/crm/viewsets/contacts.py:289
+msgid "The file must have one of these extensions: .csv, .xls"
+msgstr "Файл должен иметь одно из следующих расширений: .csv, .xls"
+
+#: apps/crm/viewsets/contacts.py:297 apps/crm/viewsets/contacts.py:310
+msgid "Unsupported file encoding"
+msgstr "Неподдерживаемая кодировка файла"
+
+#: apps/crm/viewsets/contacts.py:300 apps/crm/viewsets/contacts.py:313
+msgid "Error reading the file"
+msgstr "Ошибка при чтении файла"
+
+#: apps/crm/viewsets/contacts.py:323
+msgid "The file contains no data"
+msgstr "В файле нет данных"
+
+#: apps/crm/viewsets/contacts.py:381
+msgid "Could not start the import. Try importing the file again."
+msgstr "Ошибка при запуске импорта. Попробуйте импортировать файл еще раз."
+
+#: apps/crm/viewsets/contacts.py:402
+msgid "Import failed. Try importing the file again."
+msgstr "Ошибка импорта. Попробуйте импортировать файл еще раз."
+
+#: apps/crm/viewsets/contacts.py:409
+msgid "Contact import completed successfully. "
+msgstr "Импорт контактов успешно завершен. "
+
+#: apps/crm/viewsets/contacts.py:414
+#, python-format
+msgid "%(count)d company"
+msgid_plural "%(count)d companies"
+msgstr[0] "%(count)d компания"
+msgstr[1] "%(count)d компании"
+msgstr[2] "%(count)d компаний"
+msgstr[3] "%(count)d компании"
+
+#: apps/crm/viewsets/contacts.py:415
+#, python-format
+msgid "%(count)d contact"
+msgid_plural "%(count)d contacts"
+msgstr[0] "%(count)d контактное лицо"
+msgstr[1] "%(count)d контактных лица"
+msgstr[2] "%(count)d контактных лиц"
+msgstr[3] "%(count)d контактного лица"
+
+#: apps/crm/viewsets/contacts.py:416
+#, python-brace-format
+msgid "Imported {companies} and {contacts}."
+msgstr "Импортировано: {companies} и {contacts}."
+
+#: apps/crm/viewsets/contacts.py:418
+#, python-format
+msgid "Imported %(count)d company."
+msgid_plural "Imported %(count)d companies."
+msgstr[0] "Импортирована %(count)d компания."
+msgstr[1] "Импортированы %(count)d компании."
+msgstr[2] "Импортировано %(count)d компаний."
+msgstr[3] "Импортировано %(count)d компании."
+
+#: apps/crm/viewsets/contacts.py:422
+#, python-format
+msgid "Imported %(count)d contact."
+msgid_plural "Imported %(count)d contacts."
+msgstr[0] "Импортировано %(count)d контактное лицо."
+msgstr[1] "Импортировано %(count)d контактных лица."
+msgstr[2] "Импортировано %(count)d контактных лиц."
+msgstr[3] "Импортировано %(count)d контактного лица."
+
+#: apps/crm/viewsets/contacts.py:426
+msgid "No contacts were imported."
+msgstr "Не импортировано ни одного контакта."
+
+#: apps/crm/viewsets/contacts.py:444
+msgid "Could not edit assignees. Please refresh the page."
+msgstr "Ошибка при редактировании ответственных. Пожалуйста, обновите страницу."
+
+#: apps/crm/viewsets/contacts.py:481
+msgid "Could not edit tags. Please refresh the page."
+msgstr "Ошибка при редактировании тегов. Пожалуйста, обновите страницу."
+
+#: apps/crm/viewsets/deals.py:90 apps/crm/viewsets/deals.py:127
+#: apps/crm/viewsets/deals.py:173
+msgid "This deal does not exist"
+msgstr "Такой сделки не существует"
+
+#: apps/crm/viewsets/deals.py:149
+msgid "Stage <b>{}</b> completed"
+msgstr "Этап <b>{}</b> завершен"
+
+#: apps/crm/viewsets/deals.py:156
+msgid "Deal completed"
+msgstr "Сделка завершена"
+
+#: apps/crm/viewsets/deals.py:187
+msgid "Rejected at stage {}"
+msgstr "Отказ на этапе {}"
+
+#: apps/crm/viewsets/deals.py:220 apps/crm/viewsets/misc.py:237
+#: apps/crm/viewsets/misc.py:259
+msgid "A tag with this name already exists"
+msgstr "Тег с таким названием уже существует"
+
+#: apps/crm/viewsets/deals.py:233
+msgid "This stage does not exist"
+msgstr "Такого этапа не существует"
+
+#: apps/crm/viewsets/deals.py:240
+msgid "A stage with this name already exists"
+msgstr "Этап с таким названием уже существует"
+
+#: apps/crm/viewsets/deals.py:252
+msgid "The stage has already been deleted"
+msgstr "Этап уже удален"
+
+#: apps/crm/viewsets/deals.py:297
+msgid "The currency has already been deleted"
+msgstr "Валюта уже удалена"
+
+#: apps/crm/viewsets/misc.py:165 apps/crm/viewsets/misc.py:192
+#: apps/crm/viewsets/misc.py:203
+msgid "This field does not exist"
+msgstr "Такого поля не существует"
+
+#: apps/crm/viewsets/misc.py:252
+msgid "This tag does not exist"
+msgstr "Такого тега не существует"
+
+#: apps/crm/viewsets/misc.py:272
+msgid "The tag has already been deleted"
+msgstr "Тег уже удален"
+
+#: apps/crm/viewsets/tasks.py:113 apps/crm/viewsets/tasks.py:170
+#: apps/crm/viewsets/tasks.py:205 apps/crm/viewsets/tasks.py:239
+msgid "This task does not exist"
+msgstr "Такой задачи не существует"
+
+#: apps/crm/viewsets/tasks.py:182
+msgid "Task reminder: <a href=\"{}\">{}</a>"
+msgstr "Напоминание о задаче: <a href=\"{}\">{}</a>"
+
+#: apps/crm/viewsets/tasks.py:190
+msgid "Task completed"
+msgstr "Задача завершена"
+
+#: apps/crm/viewsets/tasks.py:223
+msgid "Task reopened"
+msgstr "Задача возобновлена"
+
+#: apps/crm/viewsets/tasks.py:246
+msgid "Invalid date"
+msgstr "Некорректная дата"
+
+#: apps/crm/viewsets/tasks.py:251
+msgid "The new date is the same as the current due date"
+msgstr "Новая дата совпадает с текущим сроком исполнения"
+
+#: apps/crm/viewsets/tasks.py:287 apps/crm/viewsets/tasks.py:356
+msgid "Specify a time for the recurring task"
+msgstr "Укажите время для периодической задачи"
+
+#: apps/crm/viewsets/tasks.py:349
+msgid "This recurring task does not exist"
+msgstr "Такой периодической задачи не существует"
+
+#: apps/notifications/helpers/__init__.py:48
+#, python-brace-format
+msgid "Task reminder: <a href=\"{0}\">{1}</a>"
+msgstr "Напоминание о задаче: <a href=\"{0}\">{1}</a>"
+
+#: apps/notifications/helpers/__init__.py:79
+msgid "You have been assigned to {}: <a href=\"{}\">{}</a>"
+msgstr "Вы назначены ответственным за {}: <a href=\"{}\">{}</a>"
+
+#: apps/notifications/helpers/crm.py:34
+msgid "New deal: <a href=\"{}\">{}</a>"
+msgstr "Новая сделка: <a href=\"{}\">{}</a>"
+
+#: apps/notifications/helpers/crm.py:56
+msgid "Deal {}: <a href=\"{}\">{}</a>"
+msgstr "Сделка {}: <a href=\"{}\">{}</a>"
+
+#: apps/notifications/helpers/crm.py:85
+msgid "New task: <a href=\"{}\">{}</a>"
+msgstr "Новая задача: <a href=\"{}\">{}</a>"
+
+#: apps/notifications/helpers/crm.py:119
+msgid "Task completed: <a href=\"{}\">{}</a>"
+msgstr "Задача завершена: <a href=\"{}\">{}</a>"
+
+#: apps/notifications/helpers/crm.py:158
+msgid "New note for {}: <a href=\"{}\">{}</a>"
+msgstr "Новая заметка к {}: <a href=\"{}\">{}</a>"
+
+#: apps/notifications/models.py:17
+msgid "Notification text"
+msgstr "Текст уведомления"
+
+#: apps/notifications/models.py:18
+msgid "Read"
+msgstr "Прочитано"
+
+#: apps/notifications/models.py:22
+msgid "Notification"
+msgstr "Уведомление"
+
+#: apps/notifications/models.py:57
+msgid "Email task reminders"
+msgstr "Напоминать о задачах по электронной почте"
+
+#: apps/notifications/models.py:58
+msgid "Remind before"
+msgstr "Напоминать за"
+
+#: apps/notifications/models.py:61
+msgid "Email notifications when assigned to"
+msgstr "Уведомлять по электронной почте, когда назначили ответственным за"
+
+#: apps/notifications/models.py:65
+msgid "Email notifications when a task is completed"
+msgstr "Уведомлять о завершении задачи по электронной почте"
+
+#: apps/notifications/templates/notifications/crm/deal_added/email.html:6
+#: apps/notifications/templates/notifications/crm/deal_added/email.txt:5
+#: apps/notifications/templates/notifications/crm/note_added/company/email.html:7
+#: apps/notifications/templates/notifications/crm/note_added/company/email.txt:5
+#: apps/notifications/templates/notifications/crm/note_added/deal/email.html:6
+#: apps/notifications/templates/notifications/crm/note_added/deal/email.txt:5
+#: apps/notifications/templates/notifications/crm/note_added/person/email.html:7
+#: apps/notifications/templates/notifications/crm/note_added/person/email.txt:5
+#: apps/notifications/templates/notifications/crm/note_added/task/email.html:7
+#: apps/notifications/templates/notifications/crm/note_added/task/email.txt:7
+#: apps/notifications/templates/notifications/crm/task_added/email.html:6
+#: apps/notifications/templates/notifications/crm/task_added/email.txt:5
+#: apps/notifications/templates/notifications/crm/task_completed/email.html:7
+#: apps/notifications/templates/notifications/crm/task_completed/email.txt:7
+msgid "User"
+msgstr "Пользователь"
+
+#: apps/notifications/templates/notifications/crm/deal_added/email.html:6
+#: apps/notifications/templates/notifications/crm/deal_added/email.txt:5
+msgid "added a new deal."
+msgstr "добавил новую сделку."
+
+#: apps/notifications/templates/notifications/crm/deal_added/email.html:10
+#: apps/notifications/templates/notifications/crm/deal_added/email.txt:7
+#: apps/notifications/templates/notifications/crm/deal_closed/email.html:10
+#: apps/notifications/templates/notifications/crm/deal_closed/email.txt:7
+#: apps/notifications/templates/notifications/crm/note_added/deal/email.html:14
+#: apps/notifications/templates/notifications/crm/note_added/deal/email.txt:9
+#: apps/notifications/templates/notifications/crm/note_added/task/email.html:31
+#: apps/notifications/templates/notifications/crm/note_added/task/email.txt:15
+#: apps/notifications/templates/notifications/crm/task_added/email.html:28
+#: apps/notifications/templates/notifications/crm/task_added/email.txt:11
+#: apps/notifications/templates/notifications/crm/task_completed/email.html:29
+#: apps/notifications/templates/notifications/crm/task_completed/email.txt:13
+#: apps/notifications/templates/notifications/responsible_assigned/deal/email.html:10
+#: apps/notifications/templates/notifications/responsible_assigned/deal/email.txt:7
+#: apps/notifications/templates/notifications/responsible_assigned/task/email.html:29
+#: apps/notifications/templates/notifications/responsible_assigned/task/email.txt:13
+#: apps/notifications/templates/notifications/task_reminder/email.html:27
+#: apps/notifications/templates/notifications/task_reminder/email.txt:13
+#: apps/notifications/templates/notifications/tasks_digest/email.html:28
+#: apps/notifications/templates/notifications/tasks_digest/email.txt:13
+msgid "Deal:"
+msgstr "Сделка:"
+
+#: apps/notifications/templates/notifications/crm/deal_added/email.html:12
+#: apps/notifications/templates/notifications/crm/deal_added/email.txt:9
+#: apps/notifications/templates/notifications/crm/deal_closed/email.html:12
+#: apps/notifications/templates/notifications/crm/deal_closed/email.txt:9
+#: apps/notifications/templates/notifications/crm/note_added/deal/email.html:16
+#: apps/notifications/templates/notifications/crm/note_added/deal/email.txt:11
+#: apps/notifications/templates/notifications/responsible_assigned/deal/email.html:12
+#: apps/notifications/templates/notifications/responsible_assigned/deal/email.txt:9
+msgid "Budget:"
+msgstr "Бюджет:"
+
+#: apps/notifications/templates/notifications/crm/deal_added/email.html:16
+#: apps/notifications/templates/notifications/crm/deal_added/email.txt:10
+#: apps/notifications/templates/notifications/crm/deal_closed/email.html:16
+#: apps/notifications/templates/notifications/crm/deal_closed/email.txt:10
+#: apps/notifications/templates/notifications/crm/note_added/deal/email.html:20
+#: apps/notifications/templates/notifications/crm/note_added/deal/email.txt:12
+#: apps/notifications/templates/notifications/crm/note_added/task/email.html:21
+#: apps/notifications/templates/notifications/crm/note_added/task/email.txt:14
+#: apps/notifications/templates/notifications/crm/task_added/email.html:18
+#: apps/notifications/templates/notifications/crm/task_added/email.txt:10
+#: apps/notifications/templates/notifications/crm/task_completed/email.html:19
+#: apps/notifications/templates/notifications/crm/task_completed/email.txt:12
+#: apps/notifications/templates/notifications/responsible_assigned/deal/email.html:16
+#: apps/notifications/templates/notifications/responsible_assigned/deal/email.txt:10
+#: apps/notifications/templates/notifications/responsible_assigned/task/email.html:19
+#: apps/notifications/templates/notifications/responsible_assigned/task/email.txt:12
+#: apps/notifications/templates/notifications/task_reminder/email.html:17
+#: apps/notifications/templates/notifications/task_reminder/email.txt:12
+#: apps/notifications/templates/notifications/tasks_digest/email.html:18
+#: apps/notifications/templates/notifications/tasks_digest/email.txt:12
+msgid "Contact:"
+msgstr "Контакт:"
+
+#: apps/notifications/templates/notifications/crm/deal_added/email.html:26
+#: apps/notifications/templates/notifications/crm/deal_added/email.txt:11
+#: apps/notifications/templates/notifications/crm/deal_closed/email.html:26
+#: apps/notifications/templates/notifications/crm/deal_closed/email.txt:11
+#: apps/notifications/templates/notifications/crm/note_added/deal/email.html:30
+#: apps/notifications/templates/notifications/crm/note_added/deal/email.txt:13
+#: apps/notifications/templates/notifications/responsible_assigned/deal/email.html:26
+#: apps/notifications/templates/notifications/responsible_assigned/deal/email.txt:11
+msgid "Deal description:"
+msgstr "Описание сделки:"
+
+#: apps/notifications/templates/notifications/crm/deal_added/email.txt:8
+#: apps/notifications/templates/notifications/crm/deal_closed/email.txt:8
+#: apps/notifications/templates/notifications/crm/note_added/deal/email.txt:10
+#: apps/notifications/templates/notifications/responsible_assigned/deal/email.txt:8
+msgid "Deal link:"
+msgstr "Ссылка на сделку:"
+
+#: apps/notifications/templates/notifications/crm/deal_added/subject.txt:1
+msgid "New deal:"
+msgstr "Новая сделка:"
+
+#: apps/notifications/templates/notifications/crm/note_added/company/email.html:7
+#: apps/notifications/templates/notifications/crm/note_added/company/email.txt:5
+#: apps/notifications/templates/notifications/crm/note_added/deal/email.html:6
+#: apps/notifications/templates/notifications/crm/note_added/deal/email.txt:5
+#: apps/notifications/templates/notifications/crm/note_added/person/email.html:7
+#: apps/notifications/templates/notifications/crm/note_added/person/email.txt:5
+#: apps/notifications/templates/notifications/crm/note_added/task/email.html:7
+#: apps/notifications/templates/notifications/crm/note_added/task/email.txt:7
+msgid "added a note:"
+msgstr "оставил заметку:"
+
+#: apps/notifications/templates/notifications/crm/note_added/company/email.html:15
+#: apps/notifications/templates/notifications/crm/note_added/company/email.txt:9
+#: apps/notifications/templates/notifications/crm/note_added/person/email.html:19
+#: apps/notifications/templates/notifications/crm/note_added/person/email.txt:11
+#: apps/notifications/templates/notifications/responsible_assigned/company/email.html:10
+#: apps/notifications/templates/notifications/responsible_assigned/company/email.txt:7
+#: apps/notifications/templates/notifications/responsible_assigned/person/email.html:15
+#: apps/notifications/templates/notifications/responsible_assigned/person/email.txt:9
+msgid "Company:"
+msgstr "Компания:"
+
+#: apps/notifications/templates/notifications/crm/note_added/company/email.txt:10
+#: apps/notifications/templates/notifications/responsible_assigned/company/email.txt:8
+msgid "Company link:"
+msgstr "Ссылка на компанию:"
+
+#: apps/notifications/templates/notifications/crm/note_added/company/subject.txt:1
+msgid "New note for company:"
+msgstr "Новая заметка к компании:"
+
+#: apps/notifications/templates/notifications/crm/note_added/deal/subject.txt:1
+msgid "New note for deal:"
+msgstr "Новая заметка к сделке:"
+
+#: apps/notifications/templates/notifications/crm/note_added/person/email.html:15
+#: apps/notifications/templates/notifications/crm/note_added/person/email.txt:9
+#: apps/notifications/templates/notifications/responsible_assigned/person/email.html:11
+#: apps/notifications/templates/notifications/responsible_assigned/person/email.txt:7
+msgid "Person:"
+msgstr "Контакт:"
+
+#: apps/notifications/templates/notifications/crm/note_added/person/email.txt:10
+#: apps/notifications/templates/notifications/responsible_assigned/person/email.txt:8
+msgid "Person link:"
+msgstr "Ссылка на контактное лицо:"
+
+#: apps/notifications/templates/notifications/crm/note_added/person/subject.txt:1
+msgid "New note for contact:"
+msgstr "Новая заметка к контактному лицу:"
+
+#: apps/notifications/templates/notifications/crm/note_added/task/email.html:15
+#: apps/notifications/templates/notifications/crm/note_added/task/email.txt:11
+#: apps/notifications/templates/notifications/crm/task_added/email.html:10
+#: apps/notifications/templates/notifications/crm/task_added/email.txt:7
+#: apps/notifications/templates/notifications/crm/task_completed/email.html:11
+#: apps/notifications/templates/notifications/crm/task_completed/email.txt:9
+#: apps/notifications/templates/notifications/responsible_assigned/task/email.html:11
+#: apps/notifications/templates/notifications/responsible_assigned/task/email.txt:9
+#: apps/notifications/templates/notifications/task_reminder/email.html:11
+#: apps/notifications/templates/notifications/task_reminder/email.txt:9
+#: apps/notifications/templates/notifications/tasks_digest/email.html:12
+#: apps/notifications/templates/notifications/tasks_digest/email.txt:9
+msgid "Task:"
+msgstr "Задача:"
+
+#: apps/notifications/templates/notifications/crm/note_added/task/email.html:17
+#: apps/notifications/templates/notifications/crm/note_added/task/email.txt:13
+#: apps/notifications/templates/notifications/crm/task_added/email.html:13
+#: apps/notifications/templates/notifications/crm/task_added/email.txt:9
+#: apps/notifications/templates/notifications/crm/task_completed/email.html:14
+#: apps/notifications/templates/notifications/crm/task_completed/email.txt:11
+#: apps/notifications/templates/notifications/responsible_assigned/task/email.html:14
+#: apps/notifications/templates/notifications/responsible_assigned/task/email.txt:11
+#: apps/notifications/templates/notifications/task_reminder/email.html:13
+#: apps/notifications/templates/notifications/task_reminder/email.txt:11
+#: apps/notifications/templates/notifications/tasks_digest/email.html:14
+#: apps/notifications/templates/notifications/tasks_digest/email.txt:11
+msgid "Due date:"
+msgstr "Срок исполнения:"
+
+#: apps/notifications/templates/notifications/crm/note_added/task/email.html:36
+#: apps/notifications/templates/notifications/crm/note_added/task/email.txt:16
+#: apps/notifications/templates/notifications/crm/task_added/email.html:33
+#: apps/notifications/templates/notifications/crm/task_added/email.txt:12
+#: apps/notifications/templates/notifications/crm/task_completed/email.html:34
+#: apps/notifications/templates/notifications/crm/task_completed/email.txt:14
+#: apps/notifications/templates/notifications/responsible_assigned/task/email.html:34
+#: apps/notifications/templates/notifications/responsible_assigned/task/email.txt:14
+#: apps/notifications/templates/notifications/task_reminder/email.html:32
+#: apps/notifications/templates/notifications/task_reminder/email.txt:14
+#: apps/notifications/templates/notifications/tasks_digest/email.html:33
+#: apps/notifications/templates/notifications/tasks_digest/email.txt:14
+msgid "Task description:"
+msgstr "Описание задачи:"
+
+#: apps/notifications/templates/notifications/crm/note_added/task/email.txt:12
+#: apps/notifications/templates/notifications/crm/task_added/email.txt:8
+#: apps/notifications/templates/notifications/crm/task_completed/email.txt:10
+#: apps/notifications/templates/notifications/responsible_assigned/task/email.txt:10
+#: apps/notifications/templates/notifications/task_reminder/email.txt:10
+#: apps/notifications/templates/notifications/tasks_digest/email.txt:10
+msgid "Task link:"
+msgstr "Ссылка на задачу:"
+
+#: apps/notifications/templates/notifications/crm/note_added/task/subject.txt:1
+msgid "New note for task:"
+msgstr "Новая заметка к задаче:"
+
+#: apps/notifications/templates/notifications/crm/task_added/email.html:6
+#: apps/notifications/templates/notifications/crm/task_added/email.txt:5
+msgid "added a new task."
+msgstr "добавил новую задачу."
+
+#: apps/notifications/templates/notifications/crm/task_added/subject.txt:1
+msgid "New task:"
+msgstr "Новая задача:"
+
+#: apps/notifications/templates/notifications/crm/task_completed/email.html:7
+#: apps/notifications/templates/notifications/crm/task_completed/email.txt:7
+msgid "completed the task."
+msgstr "завершил задачу."
+
+#: apps/notifications/templates/notifications/crm/task_completed/subject.txt:1
+msgid "Task completed:"
+msgstr "Задача завершена:"
+
+#: apps/notifications/templates/notifications/custom/subject.txt:1
+msgid "Custom notification"
+msgstr "Произвольное уведомление"
+
+#: apps/notifications/templates/notifications/email_base.html:213
+msgid "Sign in to Sails CRM"
+msgstr "Войти в Sails CRM"
+
+#: apps/notifications/templates/notifications/email_base.txt:5
+msgid "Sign in to Sails CRM:"
+msgstr "Войти в Sails CRM:"
+
+#: apps/notifications/templates/notifications/responsible_assigned/company/email.html:6
+#: apps/notifications/templates/notifications/responsible_assigned/company/email.txt:5
+msgid "assigned you to a company."
+msgstr "назначил вас ответственным за компанию."
+
+#: apps/notifications/templates/notifications/responsible_assigned/company/subject.txt:1
+msgid "assigned you to a company:"
+msgstr "назначил вас ответственным за компанию:"
+
+#: apps/notifications/templates/notifications/responsible_assigned/deal/email.html:6
+#: apps/notifications/templates/notifications/responsible_assigned/deal/email.txt:5
+msgid "assigned you to a deal."
+msgstr "назначил вас ответственным за сделку."
+
+#: apps/notifications/templates/notifications/responsible_assigned/deal/subject.txt:1
+msgid "assigned you to a deal:"
+msgstr "назначил вас ответственным за сделку:"
+
+#: apps/notifications/templates/notifications/responsible_assigned/person/email.html:7
+#: apps/notifications/templates/notifications/responsible_assigned/person/email.txt:5
+msgid "assigned you to a contact."
+msgstr "назначил вас ответственным за контактное лицо."
+
+#: apps/notifications/templates/notifications/responsible_assigned/person/subject.txt:1
+msgid "assigned you to a contact:"
+msgstr "назначил вас ответственным за контактное лицо:"
+
+#: apps/notifications/templates/notifications/responsible_assigned/task/email.html:7
+#: apps/notifications/templates/notifications/responsible_assigned/task/email.txt:7
+msgid "assigned you to a task."
+msgstr "назначил вас ответственным за задачу."
+
+#: apps/notifications/templates/notifications/responsible_assigned/task/subject.txt:1
+msgid "assigned you to a task:"
+msgstr "назначил вас ответственным за задачу:"
+
+#: apps/notifications/templates/notifications/task_reminder/email.html:7
+#: apps/notifications/templates/notifications/task_reminder/email.txt:7
+msgid "Task reminder"
+msgstr "Напоминание о задаче"
+
+#: apps/notifications/templates/notifications/task_reminder/subject.txt:1
+msgid "Task reminder:"
+msgstr "Напоминание о задаче:"
+
+#: apps/notifications/templates/notifications/tasks_digest/email.html:7
+#: apps/notifications/templates/notifications/tasks_digest/email.txt:7
+#: apps/notifications/templates/notifications/tasks_digest/subject.txt:1
+msgid "Today's task digest"
+msgstr "Дайджест задач на сегодня"
+
+#: apps/notifications/templates/notifications/user_invite/email.html:6
+#: apps/notifications/templates/notifications/user_invite/email.txt:5
+msgid "Hello!"
+msgstr "Здравствуйте!"
+
+#: apps/notifications/templates/notifications/user_invite/email.html:8
+#: apps/notifications/templates/notifications/user_invite/email.txt:6
+msgid "Welcome to Sails CRM."
+msgstr "Добро пожаловать в Sails CRM."
+
+#: apps/notifications/templates/notifications/user_invite/email.html:12
+#: apps/notifications/templates/notifications/user_invite/email.txt:8
+msgid "You were invited to the account"
+msgstr "Вас пригласили в аккаунт"
+
+#: apps/notifications/templates/notifications/user_invite/email.html:12
+#: apps/notifications/templates/notifications/user_invite/email.txt:8
+msgid ". Follow this link to activate your account:"
+msgstr ". Для активации учетной записи перейдите по ссылке:"
+
+#: apps/notifications/templates/notifications/user_invite/email.html:20
+#: apps/notifications/templates/notifications/user_invite/email.txt:13
+msgid "Account information"
+msgstr "Информация об аккаунте"
+
+#: apps/notifications/templates/notifications/user_invite/email.html:22
+#: apps/notifications/templates/notifications/user_invite/email.txt:14
+msgid "After activation, select the account"
+msgstr "После активации выберите аккаунт"
+
+#: apps/notifications/templates/notifications/user_invite/email.html:22
+#: apps/notifications/templates/notifications/user_invite/email.txt:14
+msgid "on the sign-in page."
+msgstr "на странице входа."
+
+#: apps/notifications/templates/notifications/user_invite/email.html:26
+#: apps/notifications/templates/notifications/user_invite/email.txt:16
+msgid "Help"
+msgstr "Помощь"
+
+#: apps/notifications/templates/notifications/user_invite/email.html:28
+#: apps/notifications/templates/notifications/user_invite/email.txt:17
+msgid "If you have any questions, reply to this email."
+msgstr "Если у вас возникнут вопросы, ответьте на это письмо."
+
+#: apps/notifications/templates/notifications/user_invite/subject.txt:1
+msgid "You are invited to Sails CRM"
+msgstr "Вы приглашены в Sails CRM"

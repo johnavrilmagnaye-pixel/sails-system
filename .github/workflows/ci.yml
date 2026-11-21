@@ -1,0 +1,58 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:15
+        env:
+          POSTGRES_DB: sails_crm
+          POSTGRES_USER: sails_crm
+          POSTGRES_PASSWORD: sails_crm
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U sails_crm -d sails_crm"
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 10
+      redis:
+        image: redis:7
+        ports:
+          - 6379:6379
+
+    env:
+      TEST_DB_NAME: sails_crm
+      TEST_DB_USER: sails_crm
+      TEST_DB_PASSWORD: sails_crm
+      TEST_DB_HOST: 127.0.0.1
+      TEST_DB_PORT: 5432
+      REDIS_URL: redis://127.0.0.1:6379/0
+      REDIS_CACHE_URL: redis://127.0.0.1:6379/1
+      SECRET_KEY: unsafe-ci-key
+
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+      - name: Install system dependencies
+        run: sudo apt-get update && sudo apt-get install -y gettext
+      - name: Install Python dependencies
+        run: pip install -r requirements.txt
+      - name: Validate frontend translations
+        run: make frontend-gettext-check
+      - name: Validate gettext catalogs
+        run: |
+          msgfmt --check --check-format -o /dev/null locale/ru/LC_MESSAGES/django.po
+          msgfmt --check --check-format -o /dev/null locale/ru/LC_MESSAGES/djangojs.po
+      - name: Django regression tests
+        run: python manage.py test --settings=project.settings_test
+      - name: Collect and compress static assets
+        run: python manage.py collectstatic --noinput --settings=project.settings_test

@@ -1,0 +1,280 @@
+{% load static compress get_settings i18n %}
+{% setting DEBUG as DEBUG %}
+{% get_current_language as LANGUAGE_CODE %}
+
+<!DOCTYPE html>
+<html lang="{{ LANGUAGE_CODE }}">
+<head>
+    <title>Sails CRM</title>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="shortcut icon" type="image/ico" href="{% static 'favicon.ico' %}">
+    {% compress css %}
+        <link rel="stylesheet" href="{% static 'libs/bootstrap/css/bootstrap.css' %}">
+        <link rel="stylesheet" href="{% static 'libs/fontawesome/css/font-awesome.css' %}">
+        <link rel="stylesheet" href="{% static 'libs/ionicons/css/ionicons.css' %}">
+        <link rel="stylesheet" href="{% static 'libs/select2/select2.css' %}">
+        <link rel="stylesheet" href="{% static 'libs/select2-bootstrap-theme/select2-bootstrap.css' %}">
+        <link rel="stylesheet" href="{% static 'libs/smalot-bootstrap-datetimepicker/css/bootstrap-datetimepicker.css' %}">
+        <link rel="stylesheet" href="{% static 'libs/bootstrap-daterangepicker/daterangepicker.css' %}">
+        <link rel="stylesheet" href="{% static 'libs/x-editable/css/bootstrap-editable.css' %}">
+        <link rel="stylesheet" href="{% static 'libs/fullcalendar/fullcalendar.css' %}">
+
+        <link rel="stylesheet" href="{% static 'core/css/btn.css' %}">
+        <link rel="stylesheet" href="{% static 'crm/css/tokens.css' %}">
+        <link rel="stylesheet" href="{% static 'crm/css/base.css' %}">
+        <link rel="stylesheet" href="{% static 'crm/css/layout.css' %}">
+        <link rel="stylesheet" href="{% static 'crm/css/components.css' %}">
+        <link rel="stylesheet" href="{% static 'crm/css/features.css' %}">
+        <link rel="stylesheet" href="{% static 'crm/css/responsive.css' %}">
+    {% endcompress %}
+</head>
+<body>
+    <div class="container-fluid" id="app">
+        <div class="row">
+            <div class="col-md-2 sidebar hidden">
+                <ul class="nav">
+                    {% if request.user_link.is_admin and not request.account.is_gta  %}
+                        <li>
+                            <a v-link.literal="/dashboard/" title="{% translate 'Dashboard' %}">
+                                <i class="ion-ios-pulse-strong"></i>
+                                <span class="menu-text">{% translate "Dashboard" %}</span>
+                            </a>
+                        </li>
+                    {% endif %}
+                    <li>
+                        <a v-link.literal="/notifications/" title="{% translate 'Notifications' %}">
+                            <i class="ion-android-notifications-none"></i>
+                            <span class="notifications-indicator"></span>
+                            <span class="menu-text">{% translate "Notifications" %}</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a v-link.literal="/companies/" title="{% translate 'Companies' %}">
+                            <i class="fa fa-building-o"></i>
+                            <span class="menu-text">{% translate "Companies" %}</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a v-link.literal="/persons/" title="{% translate 'Persons' %}">
+                            <i class="ion-person-stalker"></i>
+                            <span class="menu-text">{% translate "Persons" %}</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a v-link.literal="/deals/" title="{% translate 'Deals' %}">
+                            <i class="ion-briefcase"></i>
+                            <span class="menu-text">{% translate "Deals" %}</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a v-link.literal="/tasks/" title="{% translate 'Tasks' %}">
+                            <i class="fa fa-check-square-o"></i>
+                            <span class="menu-text">{% translate "Tasks" %}</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a v-link.literal="/settings/profile/" title="{% translate 'Settings' %}">
+                            <i class="ion-gear-b"></i>
+                            <span class="menu-text">{% translate "Settings" %}</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/logout/" title="{% translate 'Sign out' %}">
+                            <i class="fa fa-sign-out"></i>
+                            <span class="menu-text">{% translate "Sign out" %}</span>
+                        </a>
+                    </li>
+
+                    <li class="bottom-sidebar-toggle">
+                        <button type="button" @click="toggleSidebar" :aria-expanded="sidebarCollapsed ? 'false' : 'true'" aria-controls="app-content" title="{% translate 'Collapse' %}">
+                            <i class="ion-chevron-left"></i>
+                            <i class="ion-chevron-right"></i>
+                            <span class="menu-text">{% translate "Collapse" %}</span>
+                        </button>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-md-offset-2 col-md-10 content" id="app-content">
+                <router-view transition-mode="out-in"></router-view>
+            </div>
+        </div>
+    </div>
+
+    <ul class="messages" aria-live="polite" aria-relevant="additions" aria-atomic="true"></ul>
+    <input type="text" class="copy-input" value="" aria-hidden="true" tabindex="-1">
+
+    {% include 'core/js_templates/editor_templates.html' %}
+    {% include 'core/js_templates/grid_templates.html' %}
+    {% include 'core/js_templates/component_templates.html' %}
+
+    {% include 'crm/js_templates/common_templates.html' %}
+    {% include 'crm/js_templates/intro_templates.html' %}
+    {% include 'crm/js_templates/dashboard_templates.html' %}
+    {% include 'crm/js_templates/notifications_templates.html' %}
+    {% include 'crm/js_templates/companies_templates.html' %}
+    {% include 'crm/js_templates/persons_templates.html' %}
+    {% include 'crm/js_templates/deals_templates.html' %}
+    {% include 'crm/js_templates/tasks_templates.html' %}
+    {% include 'crm/js_templates/settings_templates.html' %}
+    {% include 'crm/js_templates/modals_templates.html' %}
+
+    <script src="{% static 'libs/vue/vue.min.js' %}"></script>
+    <script src="{% static 'libs/vue-router/vue-router.min.js' %}"></script>
+
+    {% compress js %}
+        <script src="{% static 'libs/lodash/lodash.js' %}"></script>
+        <script src="{% static 'libs/jquery/jquery.js' %}"></script>
+        <script src="{% static 'libs/bootstrap/js/bootstrap.js' %}"></script>
+
+        <script src="{% static 'libs/jquery-highlight/jquery.highlight.js' %}"></script>
+        <script src="{% static 'libs/urlize/urlize.js' %}"></script>
+
+        <script src="{% static 'libs/bootbox/bootbox.js' %}"></script>
+        <script src="{% static 'patches/bootstrap-editable.js' %}"></script>
+
+        <script src="{% static 'patches/bootstrap-datetimepicker.js' %}"></script>
+        <script src="{% static 'libs/moment/moment.js' %}"></script>
+        <script src="{% static 'libs/bootstrap-daterangepicker/daterangepicker.js' %}"></script>
+        <script src="{% static 'libs/fullcalendar/fullcalendar.js' %}"></script>
+        <script src="{% static 'libs/select2/select2.js' %}"></script>
+        <script src="{% static 'libs/jquery-file-upload/js/vendor/jquery.ui.widget.js' %}"></script>
+        <script src="{% static 'libs/jquery-file-upload/js/jquery.iframe-transport.js' %}"></script>
+        <script src="{% static 'libs/jquery-file-upload/js/jquery.fileupload.js' %}"></script>
+
+        <script src="{% static 'libs/Sortable/Sortable.js' %}"></script>
+        <script src="{% static 'libs/jquery-maskedinput/jquery.maskedinput.js' %}"></script>
+
+        <script src="{% static 'libs/Chart.js/Chart.js' %}"></script>
+    {% endcompress %}
+
+    <script src="{% url 'javascript-catalog' %}"></script>
+    {{ timezone_options|json_script:"timezone-options" }}
+
+    <script type="text/javascript">
+        var CURRENT_ACCOUNT_ID = {{ request.account.id }},
+            CURRENT_ACCOUNT_NAME = '{{ request.account.name|escapejs }}',
+            ACCOUNT = CURRENT_ACCOUNT_NAME + ' (' + CURRENT_ACCOUNT_ID + ')';
+    </script>
+
+    {% compress js %}
+        <script src="{% static 'core/js/i18n.js' %}"></script>
+        <script src="{% static 'core/js/widget_i18n.js' %}"></script>
+        <script type="text/javascript">
+            var Views = {
+                    base: {},
+                    editors: {},
+                    modals: {},
+                    common: {},
+                    intro: {},
+                    dashboard: {},
+                    notifications: {},
+                    companies: {},
+                    persons: {},
+                    deals: {},
+                    tasks: {},
+                    settings: {}
+                },
+                Mixins = {},
+                Const = {};
+
+            Const.TIMEZONES = JSON.parse(document.getElementById('timezone-options').textContent);
+        </script>
+
+        <script src="{% static 'core/js/btn.js' %}"></script>
+        <script src="{% static 'core/js/csrf.js' %}"></script>
+        <script src="{% static 'core/js/storage.js' %}"></script>
+        <script src="{% static 'core/js/utils.js' %}"></script>
+        <script src="{% static 'core/js/vue/directives.js' %}"></script>
+        <script src="{% static 'core/js/vue/filters.js' %}"></script>
+        <script src="{% static 'core/js/vue/transitions.js' %}"></script>
+        <script src="{% static 'core/js/views/Editors.js' %}"></script>
+        <script src="{% static 'core/js/views/Components.js' %}"></script>
+        <script src="{% static 'core/js/views/ModalView.js' %}"></script>
+        <script src="{% static 'core/js/views/GridView.js' %}"></script>
+        <script src="{% static 'core/js/views/CardView.js' %}"></script>
+
+        <script src="{% static 'crm/js/const.js' %}"></script>
+        <script src="{% static 'crm/js/urls.js' %}"></script>
+
+        <script src="{% static 'crm/js/modal.js' %}"></script>
+
+        <script src="{% static 'crm/js/mixins/CommonMixin.js' %}"></script>
+        <script src="{% static 'crm/js/mixins/FetchDataMixin.js' %}"></script>
+        <script src="{% static 'crm/js/mixins/BaseGridMixin.js' %}"></script>
+        <script src="{% static 'crm/js/mixins/GridCheckboxesMixin.js' %}"></script>
+        <script src="{% static 'crm/js/mixins/ModalsMixin.js' %}"></script>
+        <script src="{% static 'crm/js/mixins/FormMixin.js' %}"></script>
+
+        <script src="{% static 'crm/js/views/modals/CompanyFormModalView.js' %}"></script>
+        <script src="{% static 'crm/js/views/modals/PersonFormModalView.js' %}"></script>
+        <script src="{% static 'crm/js/views/modals/ImportContactsStep1ModalView.js' %}"></script>
+        <script src="{% static 'crm/js/views/modals/ImportContactsStep2ModalView.js' %}"></script>
+        <script src="{% static 'crm/js/views/modals/TagsModalView.js' %}"></script>
+        <script src="{% static 'crm/js/views/modals/ResponsiblesModalView.js' %}"></script>
+        <script src="{% static 'crm/js/views/modals/ExtraFieldFormModalView.js' %}"></script>
+        <script src="{% static 'crm/js/views/modals/GridConfigModalView.js' %}"></script>
+        <script src="{% static 'crm/js/views/modals/DealFormModalView.js' %}"></script>
+        <script src="{% static 'crm/js/views/modals/TaskFormModalView.js' %}"></script>
+        <script src="{% static 'crm/js/views/modals/PeriodicTaskFormModalView.js' %}"></script>
+        <script src="{% static 'crm/js/views/modals/PermissionsFormModalView.js' %}"></script>
+        <script src="{% static 'crm/js/views/modals/DealStagesModalView.js' %}"></script>
+        <script src="{% static 'crm/js/views/modals/DealCurrenciesModalView.js' %}"></script>
+
+        <script src="{% static 'crm/js/views/common/FiltersFormView.js' %}"></script>
+        <script src="{% static 'crm/js/views/common/CardPersonsView.js' %}"></script>
+        <script src="{% static 'crm/js/views/common/CardDealsView.js' %}"></script>
+        <script src="{% static 'crm/js/views/common/CardTasksView.js' %}"></script>
+        <script src="{% static 'crm/js/views/common/CardNotesView.js' %}"></script>
+        <script src="{% static 'crm/js/views/common/CardUploadsView.js' %}"></script>
+        <script src="{% static 'crm/js/views/common/CardExtraFieldsView.js' %}"></script>
+
+        <script src="{% static 'crm/js/views/intro/IntroImportStep2View.js' %}"></script>
+        <script src="{% static 'crm/js/views/intro/IntroImportStep1View.js' %}"></script>
+        <script src="{% static 'crm/js/views/intro/IntroUsersStepView.js' %}"></script>
+        <script src="{% static 'crm/js/views/intro/IntroProfileStepView.js' %}"></script>
+        <script src="{% static 'crm/js/views/intro/IntroLayoutView.js' %}"></script>
+
+        <script src="{% static 'crm/js/views/dashboard/DashboardLayoutView.js' %}"></script>
+        <script src="{% static 'crm/js/views/notifications/NotificationsLayoutView.js' %}"></script>
+
+        <script src="{% static 'crm/js/views/settings/SettingsContactsImportLayoutView.js' %}"></script>
+        <script src="{% static 'crm/js/views/settings/SettingsTagsLayoutView.js' %}"></script>
+        <script src="{% static 'crm/js/views/settings/SettingsCompanyFieldsLayoutView.js' %}"></script>
+        <script src="{% static 'crm/js/views/settings/SettingsPersonFieldsLayoutView.js' %}"></script>
+        <script src="{% static 'crm/js/views/settings/SettingsDealFieldsLayoutView.js' %}"></script>
+        <script src="{% static 'crm/js/views/settings/SettingsTaskFieldsLayoutView.js' %}"></script>
+        <script src="{% static 'crm/js/views/settings/SettingsUsersLayoutView.js' %}"></script>
+        <script src="{% static 'crm/js/views/settings/SettingsProfileLayoutView.js' %}"></script>
+        <script src="{% static 'crm/js/views/settings/SettingsLayoutView.js' %}"></script>
+
+        <script src="{% static 'crm/js/views/companies/CompanyFiltersFormView.js' %}"></script>
+        <script src="{% static 'crm/js/views/companies/CompanyGridView.js' %}"></script>
+        <script src="{% static 'crm/js/views/companies/CompanyCardLayoutView.js' %}"></script>
+        <script src="{% static 'crm/js/views/companies/CompanyListLayoutView.js' %}"></script>
+
+        <script src="{% static 'crm/js/views/persons/PersonFiltersFormView.js' %}"></script>
+        <script src="{% static 'crm/js/views/persons/PersonGridView.js' %}"></script>
+        <script src="{% static 'crm/js/views/persons/PersonCardLayoutView.js' %}"></script>
+        <script src="{% static 'crm/js/views/persons/PersonListLayoutView.js' %}"></script>
+
+        <script src="{% static 'crm/js/views/deals/DealFiltersFormView.js' %}"></script>
+        <script src="{% static 'crm/js/views/deals/DealFunnelView.js' %}"></script>
+        <script src="{% static 'crm/js/views/deals/DealBoardView.js' %}"></script>
+        <script src="{% static 'crm/js/views/deals/DealGridView.js' %}"></script>
+        <script src="{% static 'crm/js/views/deals/DealCardLayoutView.js' %}"></script>
+        <script src="{% static 'crm/js/views/deals/DealListLayoutView.js' %}"></script>
+
+        <script src="{% static 'crm/js/views/tasks/TaskFiltersFormView.js' %}"></script>
+        <script src="{% static 'crm/js/views/tasks/PeriodicTasksView.js' %}"></script>
+        <script src="{% static 'crm/js/views/tasks/TaskCalendarView.js' %}"></script>
+        <script src="{% static 'crm/js/views/tasks/TaskGridView.js' %}"></script>
+        <script src="{% static 'crm/js/views/tasks/TaskCardLayoutView.js' %}"></script>
+        <script src="{% static 'crm/js/views/tasks/TaskListLayoutView.js' %}"></script>
+
+        <script src="{% static 'crm/js/app.js' %}"></script>
+    {% endcompress %}
+</body>
+</html> 
